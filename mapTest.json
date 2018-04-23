@@ -1,0 +1,19 @@
+
+[
+{
+    "type" : "Basketball",
+    "streetAddress": "1026 s Broadway",
+    "city": "Los Angeles",
+    "state": "California",
+    "zip": "90015",
+    "gameStatus": "6/10"
+},
+{
+    "type" : "Soccer",
+    "streetAddress": "1010 Westwood blvd",
+    "city": "Los Angeles",
+    "state": "California",
+    "zip": "90024",
+    "gameStatus": "5/10"
+}
+]
