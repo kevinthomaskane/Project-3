@@ -2,6 +2,7 @@ const db = require("../models");
 
 module.exports = function (app) {
 
+  //this route is for Ed and the create a new user page
   app.post("/api/newUser", function(req, res) {
     req.body.token =  "t"+Math.random();
     console.log(req.body.token);
@@ -11,6 +12,7 @@ module.exports = function (app) {
     });
   });
 
+  //this route is for a user logging in
   app.post("/api/login", function(req, res) {
     db.User.update(
       {token: req.body.token},
@@ -35,8 +37,8 @@ module.exports = function (app) {
     });
   });
 
+  //this route is for Ed and the profile page to display a user's events
   app.get("/api/userEvents/:id", function(req, res) {
-    //console.log(req.body);
     db.User.findOne({
       where:{
         id: req.params.id

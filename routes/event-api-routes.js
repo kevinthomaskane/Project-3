@@ -2,7 +2,7 @@ const db = require("../models");
 
 module.exports = function (app) {
 
-
+  //this route is for Gus and the main page
   app.get("/api/events", function (req, res) {
     let query = req.body === null ? {} : {where: req.body};
     db.Event.findAll(query).then(function (data) {
@@ -10,6 +10,7 @@ module.exports = function (app) {
     });
   });
 
+  //this route is for Kevin for each specific event page
   app.get("/api/events/:id", function (req,res) {
     db.Event.findOne({
       where:{
@@ -29,7 +30,8 @@ module.exports = function (app) {
     });
   });
 
-  app.post("/api/addEvent", function(req, res) {
+  //this route is for Ed and the profile page so users can create events
+  app.post("/api/createEvent", function(req, res) {
     db.Event.create({
         name: req.body.name,
       })
@@ -39,7 +41,8 @@ module.exports = function (app) {
       });
   });
 
-  app.post("/api/contributors/:event_id", function (req, res) {
+  //this route is for Kevin and the specific event page to add new hosts
+  app.post("/api/addHosts/:event_id", function (req, res) {
     db.User.findOne({
       where: {
         username: req.body.name
@@ -51,6 +54,7 @@ module.exports = function (app) {
     })
   });
 
+  //this route is for deleting events owned by a user
   app.delete("/api/userEvent/:id", function (req, res) {
     db.Event.destroy({
       where: {
