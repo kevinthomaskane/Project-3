@@ -20,6 +20,9 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // parse application/json
 app.use(bodyParser.json());
 
+
+require("./routes/user-api-routes.js")(app);
+require("./routes/event-api-routes.js")(app);
 // Send every request to the React app
 // Define any API routes before this runs
 app.get("*", function(req, res) {

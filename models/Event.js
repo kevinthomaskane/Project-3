@@ -6,7 +6,8 @@ module.exports = function(sequelize, DataTypes) {
     },
     date: {
       type: DataTypes.DATE,
-      allowNull: false
+      allowNull: false,
+      defaultVaulte: DataTypes.NOW
     },
     image: {
       type: DataTypes.BLOB('long'),
