@@ -35,4 +35,23 @@ module.exports = function (app) {
     });
   });
 
+  app.get("/api/userEvents/:id", function(req, res) {
+    //console.log(req.body);
+    db.User.findOne({
+      where:{
+        id: req.params.id
+      },
+      include: [{
+        model: db.Event,
+        through: {
+          attributes: [],
+          where: {
+            userId: req.params.id
+          }
+        }
+      }]
+    }).then(function(data) {
+      res.json(data);
+    });
+  });
 };
