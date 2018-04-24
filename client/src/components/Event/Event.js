@@ -1,5 +1,7 @@
 import React from "react";
 import axios from "axios";
+import Header from "../Header";
+import MapContainer from "../MapContainer";
 
 const styles = {
 
@@ -29,7 +31,7 @@ const styles = {
 
 
 
-// var projectId = this.props.match.params.id;
+
 
 class Event extends React.Component {
 
@@ -38,29 +40,28 @@ class Event extends React.Component {
     attendees: ["kevin", "gus"],
     message: "",
     messages: ["hey this is a message", "here's another message"],
-    location: {
-      address: "",
-      city: "",
-      state: "",
-      zip: ""
-    }
   }
 
   componentDidMount = () => {
-    this.getInfo(1);
-    this.getMessages(1);
+    var projectId = this.props.match.params.id;
+    this.getInfo(projectId);
+    this.getMessages(projectId);
   };
 
   getInfo = (PID) => {
     axios.get("/api/events/" + PID).then((response) => {
+      var projectId = this.props.match.params.id;
+      console.log("get info response", response)
       this.setState({
-        project: response
-        })
-    })
+        project: response.data
+        });
+    });
   };
 
   getMessages = (PID) => {
     axios.get("/api/chat/" + PID).then((response) => {
+      var projectId = this.props.match.params.id;
+      console.log("this is chat response", response)
       this.setState({messages: response.data})
     })
   };
@@ -71,7 +72,9 @@ class Event extends React.Component {
   };
 
   handleMessageSubmit = (PID) => {
-    axios.post("/api/chat/" + PID, {content: this.state.message}).then((response) => {
+    let username = localStorage.getItem("username");
+    let userId = localStorage.getItem("userId");
+    axios.post("/api/chat/" + PID, {content: this.state.message, username: username, userId: userId}).then((response) => {
       console.log(response)
     })
   };
@@ -81,14 +84,14 @@ class Event extends React.Component {
   }
 
   render(){
-    console.log(this.state.messages)
     return (
     <div>
+      <Header />
       <div className="container">
         <div className="row">
           <div className="col m8" style={styles.topSection}>
-            <h2>{this.state.name}</h2><br/>
-            <h5>{this.state.date} {this.state.location.address} {this.state.location.city} {this.state.location.state}</h5>
+            <h2>{this.state.project.name}</h2><br/>
+            <h5>{this.state.project.date} {this.state.project.address} {this.state.project.city} {this.state.project.state}</h5>
             <img src={this.state.hostImage} /> <p>{this.state.host}</p>
           </div>
           <div className="col m4">
@@ -97,7 +100,7 @@ class Event extends React.Component {
         </div>
         <div className="row">
         <h3>About this event</h3>
-          <p>{this.state.description}</p>
+          <p>{this.state.project.description}</p>
         </div>
         <div className="row">
           <h3>Attendees</h3><br/>
@@ -124,7 +127,7 @@ class Event extends React.Component {
           </ul>
           <input type="text" onChange={this.handleInputChange}/>
           <button onClick={() => {
-            this.handleMessageSubmit()
+            this.handleMessageSubmit(this.props.match.params.id)
             }}>Send Message</button>
         </div>
       </div>
