@@ -1,11 +1,7 @@
 import React from "react";
 import axios from "axios";
-<<<<<<< HEAD
 import Header from "../Header";
 import MapContainer from "../MapContainer";
-=======
-import Header from "../Header"
->>>>>>> login
 
 const styles = {
 

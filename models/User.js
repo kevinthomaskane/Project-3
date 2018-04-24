@@ -21,7 +21,7 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: true
     },
     skill_level: DataTypes.INTEGER,
-    address: DataTypes.INTEGER,
+    address: DataTypes.STRING,
     city: DataTypes.STRING,
     state: DataTypes.STRING,
     zip: DataTypes.INTEGER

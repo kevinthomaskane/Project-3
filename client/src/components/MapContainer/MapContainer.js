@@ -20,11 +20,11 @@ export class MapContainer extends Component {
     onMarkerClick = () => {
         alert("hey");
       };
-    
+
       componentDidMount() {
-          
+
         let addy = `${this.state.streetAddress} ${this.state.city} ${this.state.city} ${this.state.zip}`;
-          
+
           getInfo = () => {
             axios.get("https://maps.googleapis.com/maps/api/geocode/json?"+addy+"CA&key=AIzaSyDKYcYNqOJapazYjjFKVq3t94ljuBhx67o"
             ).then((response) => {
@@ -46,7 +46,7 @@ export class MapContainer extends Component {
       <Map google={this.props.google} zoom={14}>
 
         {this.state.on ? <Marker onClick={this.onMarkerClick}
-                name={'Current location'} /> : null} 
+                name={'Current location'} /> : null}
 
         {this.state.on ? <Marker onClick={this.onMarkerClick}
                 name={address} /> : null}
