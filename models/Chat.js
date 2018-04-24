@@ -17,6 +17,13 @@ module.exports = function (sequelize, DataTypes) {
       },
       onDelete: "CASCADE"
     });
+    models.Chat.belongsTo(models.Event, {
+      foreignKey: {
+        name: "user_id",
+        allowNull: false
+      },
+      onDelete: "CASCADE"
+    });
   };
 
   return Chat;

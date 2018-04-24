@@ -37,6 +37,13 @@ module.exports = function(sequelize, DataTypes) {
       through: "Attendee",
       foreignKey: "userId"
     });
+    User.hasMany(models.Chat, {
+      foreignKey: {
+        name: "user_id",
+        allowNull: false
+      },
+      onDelete: "CASCADE"
+    });
   };
   return User;
 };
