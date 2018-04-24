@@ -1,6 +1,7 @@
 import React from "react";
 import axios from "axios";
-import Header from "./Header";
+import Header from "../Header";
+import MapContainer from "../MapContainer";
 
 const styles = {
 
@@ -94,9 +95,7 @@ class Event extends React.Component {
             <img src={this.state.hostImage} /> <p>{this.state.host}</p>
           </div>
           <div className="col m4">
-            <div style={styles.map}>
-            
-            </div>
+            <div style={styles.map}></div>
           </div>
         </div>
         <div className="row">
