@@ -1,0 +1,60 @@
+.header{
+    background-color: black;
+    height: 100px;
+    margin-bottom: 20px;
+}
+
+#logo{
+    color: white;
+    font-family: 'Lobster', cursive;
+    font-size: 250%;
+    line-height: 100px;
+    vertical-align: middle;
+    text-align: center;
+    text-decoration: none;
+}
+
+#logout {
+
+    color: white;
+    font-family: 'Lobster', cursive;
+    font-size: 250%;
+    line-height: 100px;
+    vertical-align: middle;
+    text-align: center;
+    text-decoration: none;
+}
+
+
+
+#profilePic{
+    height: 60px;
+    width: 60px;
+    background-color: white;
+    margin-top: 20px;
+    border-radius: 3px;
+    box-shadow: 0 4px 8px 0 rgba(66, 66, 66, 0.2), 0 6px 20px 0 rgba(58, 57, 57, 0.05);
+}
+
+
+#profilePic:hover{
+    -webkit-filter: brightness(70%);
+    -webkit-transition: all .5s ease;
+    -moz-transition: all .5s ease;
+    -o-transition: all .5s ease;
+    -ms-transition: all .5s ease;
+    transition: all .5s ease;
+}
+ 
+#loginForm{
+    width:500px;
+    margin-right: 30px;
+    margin-left: 30px;
+    box-sizing: border-box;
+}
+
+ul.dropdown-content.active{
+    margin-left:90.6%;
+    margin-top:75px;
+    width:100px !important;
+}
