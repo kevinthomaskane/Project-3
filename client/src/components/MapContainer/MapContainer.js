@@ -1,6 +1,6 @@
 import {Map, InfoWindow, Marker, GoogleApiWrapper} from 'google-maps-react';
 import React, { Component } from 'react';
-import mapTest from "../../mapTest.json";
+import mapTest from "../../../mapTest.json";
 
 const address = `${mapTest[i].streetAddress} ${mapTest[i].city} ${mapTest[i].state} ${mapTest[i].zip}`;
 
