@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import axios from "axios";
 import mapTest from "../../../mapTest.json";
 
-const address = `${mapTest[i].streetAddress} ${mapTest[i].city} ${mapTest[i].state} ${mapTest[i].zip}`;
+// const address = `${mapTest[i].streetAddress} ${mapTest[i].city} ${mapTest[i].state} ${mapTest[i].zip}`;
 
 export class MapContainer extends Component {
 
@@ -23,7 +23,7 @@ export class MapContainer extends Component {
     
       componentDidMount() {
           let addy = `${this.state.streetAddress} ${this.state.city} ${this.state.city} ${this.state.zip}`;
-          getInfo = (PID) => {
+          getInfo = () => {
             axios.get("https://maps.googleapis.com/maps/api/geocode/json?"+addy+"CA&key=AIzaSyDKYcYNqOJapazYjjFKVq3t94ljuBhx67o"
             ).then((response) => {
               console.log(response);
