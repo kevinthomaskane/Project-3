@@ -25,8 +25,8 @@ const styles = {
 
   image: {
 
-  }
-};
+  }};
+
 
 
 var projectId = this.props.match.params.id;
@@ -70,7 +70,7 @@ class Event extends React.Component {
   };
 
   handleMessageSubmit = (PID) => {
-    axios.post("/api/chat/" + PID, {content: this.state.message}).then((response) => {
+    axios.post("/api/chat/" + PID, {content: this.state.message, username: username, userId: userId}).then((response) => {
       console.log(response)
     })
   };
