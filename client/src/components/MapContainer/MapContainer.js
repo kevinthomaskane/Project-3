@@ -46,7 +46,16 @@ export class MapContainer extends Component {
       <Map google={this.props.google} zoom={14}>
 
         {this.state.on ? <Marker onClick={this.onMarkerClick}
+                name={'Current location'} /> : null} 
+
+        {this.state.on ? <Marker onClick={this.onMarkerClick}
                 name={address} /> : null}
+
+        <InfoWindow onClose={this.onInfoWindowClose}>
+            <div>
+              <h1>{this.state.selectedPlace.name}</h1>
+            </div>
+        </InfoWindow>
 
       </Map>
     );
