@@ -1,5 +1,6 @@
 import React from "react";
 import axios from "axios";
+import Header from "../Header"
 
 const styles = {
 
@@ -84,6 +85,7 @@ class Event extends React.Component {
     console.log(this.state.messages)
     return (
     <div>
+      <Header/>
       <div className="container">
         <div className="row">
           <div className="col m8" style={styles.topSection}>

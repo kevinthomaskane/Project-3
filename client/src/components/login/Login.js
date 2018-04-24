@@ -17,12 +17,23 @@ class Login extends React.Component {
   };
 
   handleSubmitForm = (event) => {
-    event.preventDefault()
+    event.preventDefault();
+    var t = "t"+ Math.random();
     var data = {
       username: this.state.username,
-      password: this.state.password
+      password: this.state.password,
+      token: t
     };
-    axios({method: "GET", url: "/api/login", data: data}).then((res) => {}).catch((error) => {});
+    axios({method: "POST", url: "/api/login", data: data})
+    .then((res) => {
+      console.log(res);
+      localStorage.setItem("user_id", res.data.id);
+      localStorage.setItem("username", res.data.username);
+      this.setState({
+        username: "",
+        password: ""
+      });
+    }).catch((error) => {});
   };
 
   render() {
@@ -36,7 +47,7 @@ class Login extends React.Component {
             <input onChange={this.handleInputPassword} placeholder="Password " id="last_name" value={this.state.password} type="text" className="validate"/>
           </div>
         </div>
-        <button onClick={() => this.handleSubmitForm()} className="btn btn-success" type="submit" value="login!">Log In</button>
+        <button onClick={this.handleSubmitForm} className="btn btn-success" type="submit" value="login!">Log In</button>
       </form>
 
     </div>)
