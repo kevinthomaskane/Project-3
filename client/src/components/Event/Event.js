@@ -1,43 +1,14 @@
 import React from "react";
 import axios from "axios";
 import Header from "../Header";
-import MapContainer from "../MapContainer";
-
-const styles = {
-
-  map: {
-    height: 300,
-    backgroundColor: "red"
-  },
-
-  topSection: {
-    height: 300,
-    backgroundColor: "gray"
-  },
-
-  attendee: {
-    width: 150,
-    height: 200,
-    border: "solid 1px black",
-    display: "inline-block",
-    margin: "10px",
-    borderRadius: 5
-
-  },
-
-  image: {
-
-  }};
-
-
-
-
+import "./Event.css";
+// import MapContainer from "../MapContainer";
 
 class Event extends React.Component {
 
   state = {
     project: {},
-    attendees: ["kevin", "gus"],
+    attendees: [{name: "kevin", image:"https://media.licdn.com/dms/image/C5603AQGPPjFWbcohHA/profile-displayphoto-shrink_200_200/0?e=1529787600&v=beta&t=fANZ1-RmAHSnlN9YR5DIVD5f7KaZgjfwuV4zzowwCDM"}, {name: "Gus", image:"https://media.licdn.com/dms/image/C5603AQGPPjFWbcohHA/profile-displayphoto-shrink_200_200/0?e=1529787600&v=beta&t=fANZ1-RmAHSnlN9YR5DIVD5f7KaZgjfwuV4zzowwCDM"}],
     message: "",
     messages: ["hey this is a message", "here's another message"],
   }
@@ -89,13 +60,13 @@ class Event extends React.Component {
       <Header />
       <div className="container">
         <div className="row">
-          <div className="col m8" style={styles.topSection}>
+          <div className="col m8" id="topSection">
             <h2>{this.state.project.name}</h2><br/>
             <h5>{this.state.project.date} {this.state.project.address} {this.state.project.city} {this.state.project.state}</h5>
-            <img src={this.state.hostImage} /> <p>{this.state.host}</p>
+            <img className="image" src={this.state.hostImage} /> <p>{this.state.host}</p>
           </div>
           <div className="col m4">
-            <div style={styles.map}></div>
+            <div id="map"></div>
           </div>
         </div>
         <div className="row">
@@ -106,30 +77,40 @@ class Event extends React.Component {
           <h3>Attendees</h3><br/>
           {this.state.attendees.map(function(person, index){
             return (
-              <div key={index} style={styles.attendee}>
-              <img src={person.image} />
+              <div key={index} className="attendee">
+              <img className="image" src={person.image} />
               <p>{person.name}</p>
               </div>
             )
           })}
         </div>
         <div className="row">
-          <h3>Message Board</h3><br/>
-          <ul className="collection">
-          {this.state.messages.map(function(message, index){
-            return (
-              <li key={index} className="collection-item avatar">
-              <img className="circle" src={message.image} />
-              <p>{message.content}</p>
-              </li>
-            )
-          })}
-          </ul>
-          <input type="text" onChange={this.handleInputChange}/>
-          <button onClick={() => {
-            this.handleMessageSubmit(this.props.match.params.id)
-            }}>Send Message</button>
+
         </div>
+        
+          {/* <h3>Message Board</h3><br/>
+            <div id="messageBoard" className="col m12">
+              <ul className="collection">
+                {this.state.messages.map(function(message, index){
+                  return (
+                  <li key={index} className="collection-item avatar">
+                  <img className="circle" src={message.image} />
+                  <p>{message.content}</p>
+                  </li>
+                  )
+                })}
+              </ul>
+          <div id="messageSubmit">
+              <div className="col m11">
+                <input type="text" placeholder="send a message" onChange={this.handleInputChange}/>
+                    </div>
+                   <div className="col m1">
+                  <button class="btn waves-effect waves-light red" onClick={() => {
+                  this.handleMessageSubmit(this.props.match.params.id)
+                  }}><i class="material-icons">send</i></button>
+                   </div>
+               </div>
+            </div> */}
       </div>
     </div>
     )
