@@ -17,10 +17,10 @@ export class MapContainer extends Component {
       getInfo = () => {
         axios.get("/api/events").then((response) => {
           console.log(response.data);
-          for (var i = 0; i < response.data.length; i++) {
-            let addy = `${response.data[i].address} ${response.data[i].city} ${response.data[i].state}`;
-          }
-          console.log(addy);
+          // for (var i = 0; i < response.data.length; i++) {
+          //   let addy = `${response.data[i].address} ${response.data[i].city} ${response.data[i].state}`;
+          // }
+          //
           // axios.get(`https://maps.googleapis.com/maps/api/geocode/json?address=${addy}CA&key=AIzaSyDKYcYNqOJapazYjjFKVq3t94ljuBhx67o`
           // ).then((response) => {
           //   console.log(response);
@@ -41,19 +41,7 @@ export class MapContainer extends Component {
     return (
       <Map google={this.props.google} zoom={14}>
 
-        {this.state}
-
-        {this.state.on ? <Marker onClick={this.onMarkerClick}
-                name={'Current location'} /> : null}
-
-        {this.state.on ? <Marker onClick={this.onMarkerClick}
-                name="test" /> : null}
-
-        <InfoWindow onClose={this.onInfoWindowClose}>
-            <div>
-              <h1>{this.state.selectedPlace}</h1>
-            </div>
-        </InfoWindow>
+        
 
       </Map>
     );
