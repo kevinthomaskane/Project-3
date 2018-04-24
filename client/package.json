@@ -5,10 +5,7 @@
   "proxy": "http://localhost:3001/",
   "dependencies": {
     "axios": "^0.18.0",
-<<<<<<< HEAD
     "materialize-css": "^1.0.0-beta",
-=======
->>>>>>> 15db8ae1f9da2db536bdf0f568d2eb133b9fa742
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
     "react-materialize": "^2.2.0",

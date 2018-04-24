@@ -52,9 +52,7 @@ class Event extends React.Component {
   };
 
   getInfo = (PID) => {
-    console.log("here")
     axios.get("/api/events/" + PID).then((response) => {
-      console.log(response)
       this.setState({
         project: response
         })
@@ -63,8 +61,7 @@ class Event extends React.Component {
 
   getMessages = (PID) => {
     axios.get("/api/chat/" + PID).then((response) => {
-      console.log("hello")
-      this.setState({messages: response.messages})
+      this.setState({messages: response.data})
     })
   };
 
@@ -103,10 +100,10 @@ class Event extends React.Component {
         </div>
         <div className="row">
           <h3>Attendees</h3><br/>
-          {this.state.attendees.map(function(person){
+          {this.state.attendees.map(function(person, index){
             return (
-              <div style={styles.attendee}>
-              <img src={person.image} /> 
+              <div key={index} style={styles.attendee}>
+              <img src={person.image} />
               <p>{person.name}</p>
               </div>
             )
@@ -115,10 +112,10 @@ class Event extends React.Component {
         <div className="row">
           <h3>Message Board</h3><br/>
           <ul className="collection">
-          {this.state.messages.map(function(message){
+          {this.state.messages.map(function(message, index){
             return (
-              <li className="collection-item avatar">
-              <img className="circle" src={message.image} /> 
+              <li key={index} className="collection-item avatar">
+              <img className="circle" src={message.image} />
               <p>{message.content}</p>
               </li>
             )
@@ -133,7 +130,7 @@ class Event extends React.Component {
     </div>
     )
   }
-  
+
 };
 
 export default Event;
