@@ -31,13 +31,11 @@ module.exports = function (app) {
   });
 
   //this route is for Ed and the profile page so users can create events
-  app.post("/api/createEvent", function(req, res) {
-    db.Event.create({
-        name: req.body.name,
-      })
-      .then(function(event) {
-        event.setUsers([req.body.userId]);
-        res.json(event);
+  app.post("/api/createEvent/:user_id", function(req, res) {
+    db.Event.create(req.body)
+      .then(function(even) {
+        even.setUsers([req.params.user_id]);
+        res.json(even);
       });
   });
 

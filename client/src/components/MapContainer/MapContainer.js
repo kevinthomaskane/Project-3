@@ -1,9 +1,7 @@
 import {Map, InfoWindow, Marker, GoogleApiWrapper} from 'google-maps-react';
 import React, { Component } from 'react';
 import axios from "axios";
-// import mapTest from "../../mapTest.json";
 
-// const addy = `${this.state.streetAddress} ${this.state.city} ${this.state.city} ${this.state.zip}`;
 export class MapContainer extends Component {
 
     state = {
@@ -17,9 +15,10 @@ export class MapContainer extends Component {
       getInfo = () => {
         axios.get("/api/events").then((response) => {
           console.log(response.data);
-          // for (var i = 0; i < response.data.length; i++) {
-          //   let addy = `${response.data[i].address} ${response.data[i].city} ${response.data[i].state}`;
-          // }
+          for (var i = 0; i < response.data.length; i++) {
+            let addy = `${response.data[i].address} ${response.data[i].city} ${response.data[i].state}`;
+            console.log(addy);
+          }
           //
           // axios.get(`https://maps.googleapis.com/maps/api/geocode/json?address=${addy}CA&key=AIzaSyDKYcYNqOJapazYjjFKVq3t94ljuBhx67o`
           // ).then((response) => {
@@ -41,7 +40,7 @@ export class MapContainer extends Component {
     return (
       <Map google={this.props.google} zoom={14}>
 
-        
+
 
       </Map>
     );

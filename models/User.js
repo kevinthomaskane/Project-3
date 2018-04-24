@@ -22,9 +22,8 @@ module.exports = function(sequelize, DataTypes) {
     },
     skill_level: DataTypes.INTEGER,
     address: DataTypes.STRING,
-    city: DataTypes.STRING,
-    state: DataTypes.STRING,
-    zip: DataTypes.INTEGER
+    lat: DataTypes.FLOAT,
+    lon: DataTypes.FLOAT
   });
 
   User.associate = function(models) {

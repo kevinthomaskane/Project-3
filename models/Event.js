@@ -19,9 +19,6 @@ module.exports = function(sequelize, DataTypes) {
     },
     description: DataTypes.TEXT,
     address: DataTypes.STRING,
-    city: DataTypes.STRING,
-    state: DataTypes.STRING,
-    zip: DataTypes.INTEGER,
     lat: DataTypes.FLOAT,
     lng: DataTypes.FLOAT
   });
