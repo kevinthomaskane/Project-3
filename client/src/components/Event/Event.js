@@ -63,6 +63,7 @@ class Event extends React.Component {
 
   getMessages = (PID) => {
     axios.get("/api/chat/" + PID).then((response) => {
+      console.log("hello")
       this.setState({messages: response.messages})
     })
   };
