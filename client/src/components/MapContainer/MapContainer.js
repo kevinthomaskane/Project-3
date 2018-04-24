@@ -1,5 +1,6 @@
 import {Map, InfoWindow, Marker, GoogleApiWrapper} from 'google-maps-react';
 import React, { Component } from 'react';
+import axios from "axios";
 import mapTest from "../../../mapTest.json";
 
 const address = `${mapTest[i].streetAddress} ${mapTest[i].city} ${mapTest[i].state} ${mapTest[i].zip}`;
@@ -12,7 +13,8 @@ export class MapContainer extends Component {
         "city": "",
         "state": "",
         "zip": "",
-        "gameStatus": ""
+        "gameStatus": "",
+        on: false
       };
 
     onMarkerClick = () => {
@@ -21,14 +23,19 @@ export class MapContainer extends Component {
     
       componentDidMount() {
           let addy = `${this.state.streetAddress} ${this.state.city} ${this.state.city} ${this.state.zip}`;
-
-          API.
-
+          getInfo = (PID) => {
+            axios.get("https://maps.googleapis.com/maps/api/geocode/json?"+addy+"CA&key=AIzaSyDKYcYNqOJapazYjjFKVq3t94ljuBhx67o"
+            ).then((response) => {
+              console.log(response);
+            })
+          };
 
 
         setTimeout(() => {
           this.setState({
-            on: true
+            on: true,
+            type: this.state.type,
+
           })
         }, 2000);
       }
