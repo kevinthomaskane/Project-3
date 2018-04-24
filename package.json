@@ -26,6 +26,5 @@
     "mysql": "^2.15.0",
     "mysql2": "^1.5.3",
     "sequelize": "^4.37.6",
-    "google-maps-react": "^2.0.0"
   }
 }
