@@ -10,22 +10,24 @@
     "setup": "npm install && cd client && npm install",
     "heroku-postbuild": "cd client && npm install && npm run build"
   },
-  "author": "",
+  "author": "Guswilliams <gus.williams1@outlook.com>",
   "license": "ISC",
   "devDependencies": {
     "concurrently": "^3.5.0",
     "nodemon": "^1.11.0"
   },
   "dependencies": {
-    "express": "^4.15.4",
-    "react-materialize": "^2.2.0",
     "axios": "^0.18.0",
     "body-parser": "^1.18.2",
     "cookie-parser": "^1.4.3",
+    "express": "^4.15.4",
     "express-fileupload": "^0.4.0",
+    "google-maps-react": "^2.0.0",
     "mysql": "^2.15.0",
     "mysql2": "^1.5.3",
-    "sequelize": "^4.37.6",
-    "google-maps-react": "^2.0.0"
-  }
+    "promise": "^8.0.1",
+    "react-materialize": "^2.2.0",
+    "sequelize": "^4.37.6"
+  },
+  "repository": "git@github.com:bijansemnani/Project-3.git"
 }
