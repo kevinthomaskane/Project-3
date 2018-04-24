@@ -22,7 +22,6 @@ const styles = {
     display: "inline-block",
     margin: "10px",
     borderRadius: 5
-
   },
 
   image: {
@@ -95,7 +94,9 @@ class Event extends React.Component {
             <img src={this.state.hostImage} /> <p>{this.state.host}</p>
           </div>
           <div className="col m4">
-            <div style={styles.map}></div>
+            <div style={styles.map}>
+            <MapContainer />
+            </div>
           </div>
         </div>
         <div className="row">
