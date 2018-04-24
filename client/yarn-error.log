@@ -1,5 +1,6 @@
 Arguments: 
 <<<<<<< HEAD
+<<<<<<< HEAD
   /usr/local/bin/node /usr/local/bin/yarn start
 
 PATH: 
@@ -10,11 +11,18 @@ PATH:
 PATH: 
   C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files\Git\cmd;C:\Program Files\nodejs\;C:\Users\guswi\AppData\Local\Microsoft\WindowsApps;C:\Program Files\Microsoft VS Code\bin;C:\Program Files\Heroku\bin;C:\Users\guswi\AppData\Roaming\npm;C:\\Program Files\\MongoDB\\Server\\3.6\\bin;
 >>>>>>> fefe337040362097c1612086deadf5d0fcceb436
+=======
+  /usr/local/Cellar/node/9.4.0/bin/node /usr/local/bin/yarn start
+
+PATH: 
+  /usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
+>>>>>>> googleMaps2
 
 Yarn version: 
   1.5.1
 
 Node version: 
+<<<<<<< HEAD
 <<<<<<< HEAD
   8.9.2
 
@@ -26,6 +34,12 @@ Platform:
 Platform: 
   win32 x64
 >>>>>>> fefe337040362097c1612086deadf5d0fcceb436
+=======
+  9.4.0
+
+Platform: 
+  darwin x64
+>>>>>>> googleMaps2
 
 npm manifest: 
   {
@@ -36,6 +50,7 @@ npm manifest:
     "dependencies": {
       "axios": "^0.18.0",
 <<<<<<< HEAD
+<<<<<<< HEAD
       "react": "^16.0.0",
       "react-dom": "^16.0.0",
       "react-materialize": "^2.2.0",
@@ -44,6 +59,11 @@ npm manifest:
       "react": "^16.0.0",
       "react-dom": "^16.0.0",
 >>>>>>> fefe337040362097c1612086deadf5d0fcceb436
+=======
+      "react": "^16.0.0",
+      "react-dom": "^16.0.0",
+      "react-materialize": "^2.2.0",
+>>>>>>> googleMaps2
       "react-scripts": "1.0.14"
     },
     "scripts": {
@@ -4505,12 +4525,15 @@ Lockfile:
       object-visit "^1.0.0"
   
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
   materialize-css@^1.0.0-beta:
     version "1.0.0-beta"
     resolved "https://registry.yarnpkg.com/materialize-css/-/materialize-css-1.0.0-beta.tgz#fe79bba7faa77d277568b290e1f75b0d8c635926"
   
 >>>>>>> fefe337040362097c1612086deadf5d0fcceb436
+=======
+>>>>>>> googleMaps2
   math-expression-evaluator@^1.2.14:
     version "1.2.17"
     resolved "https://registry.yarnpkg.com/math-expression-evaluator/-/math-expression-evaluator-1.2.17.tgz#de819fdbcd84dccd8fae59c6aeb79615b9d266ac"
@@ -7431,16 +7454,24 @@ Lockfile:
 
 Trace: 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> googleMaps2
   Error: Command failed.
   Exit code: 127
   Command: sh
   Arguments: -c react-scripts start
+<<<<<<< HEAD
   Directory: /Users/edo/Desktop/Project-3/client
+=======
+  Directory: /Users/mikeheiser/Documents/Project-3/client
+>>>>>>> googleMaps2
   Output:
   
       at ProcessTermError.MessageError (/usr/local/lib/node_modules/yarn/lib/cli.js:186:110)
       at new ProcessTermError (/usr/local/lib/node_modules/yarn/lib/cli.js:226:113)
       at ChildProcess.<anonymous> (/usr/local/lib/node_modules/yarn/lib/cli.js:30281:17)
+<<<<<<< HEAD
       at emitTwo (events.js:126:13)
       at ChildProcess.emit (events.js:214:7)
       at maybeClose (internal/child_process.js:925:16)
@@ -7458,3 +7489,8 @@ Trace:
       at runCommand (C:\Users\guswi\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:87312:22)
       at Object.<anonymous> (C:\Users\guswi\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:87412:14)
 >>>>>>> fefe337040362097c1612086deadf5d0fcceb436
+=======
+      at ChildProcess.emit (events.js:160:13)
+      at maybeClose (internal/child_process.js:943:16)
+      at Process.ChildProcess._handle.onexit (internal/child_process.js:220:5)
+>>>>>>> googleMaps2
