@@ -9,9 +9,9 @@ class Mainpage extends Component {
     };
 
     componentDidMount() {
-        axios.get("/api/events")
+        Axios.get("/api/events")
             .then(res =>
-                this.setState({ events: res })
+                this.setState({ events: [{id: 1, content: "event 1", image: "random.com"}] })
             )
             .catch(err => console.log(err));
 
@@ -25,12 +25,12 @@ class Mainpage extends Component {
         return (
 
             <ul className="collection">
-                {this.state.events.map(function (events) {
+                {this.state.events.map(function (event) {
                     return (
-                        <Link>
+                        <Link to={"/event/" + event.id}>
                             <li className="collection-item avatar">
-                                <img className="circle" src={events.image} />
-                                <p>{events.content}</p>
+                                <img className="circle" src={event.image} />
+                                <p>{event.content}</p>
                             </li>
                         </Link>
                     )

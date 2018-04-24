@@ -81,6 +81,7 @@ class Event extends React.Component {
   }
 
   render(){
+    console.log(this.state.messages)
     return (
     <div>
       <div className="container">
