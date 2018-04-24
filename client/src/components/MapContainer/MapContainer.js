@@ -1,56 +1,57 @@
 import {Map, InfoWindow, Marker, GoogleApiWrapper} from 'google-maps-react';
 import React, { Component } from 'react';
-// import axios from "axios";
+import axios from "axios";
 // import mapTest from "../../mapTest.json";
 
-// const address = `${mapTest[i].streetAddress} ${mapTest[i].city} ${mapTest[i].state} ${mapTest[i].zip}`;
-const addy = `${this.state.streetAddress} ${this.state.city} ${this.state.city} ${this.state.zip}`;
+// const addy = `${this.state.streetAddress} ${this.state.city} ${this.state.city} ${this.state.zip}`;
 export class MapContainer extends Component {
 
     state = {
-        type : "",
-        streetAddress: "",
-        city: "",
-        state: "",
-        zip: "",
-        gameStatus: "",
-        on: false
-      };
+        address: ""
+    };
 
     onMarkerClick = () => {
         alert("hey");
       };
 
-      // getInfo = () => {
-      //   axios.get("https://maps.googleapis.com/maps/api/geocode/json?"+addy+"CA&key=AIzaSyDKYcYNqOJapazYjjFKVq3t94ljuBhx67o"
-      //   ).then((response) => {
-      //     console.log(response);
-      //     // this.setState({  address : this.response.geometry.location.lat + this.response.geometry.location.lng  })
-      //   })
-      // };
-    
+      getInfo = () => {
+        axios.get("/api/events").then((response) => {
+          console.log(response.data);
+          for (var i = 0; i < response.data.length; i++) {
+            let addy = `${response.data[i].address} ${response.data[i].city} ${response.data[i].state}`;
+          }
+          console.log(addy);
+          // axios.get(`https://maps.googleapis.com/maps/api/geocode/json?address=${addy}CA&key=AIzaSyDKYcYNqOJapazYjjFKVq3t94ljuBhx67o`
+          // ).then((response) => {
+          //   console.log(response);
+          //   this.setState({ address : {
+          //     lat: response.data.results[0].geometry.location.lat,
+          //     lng: response.data.results[0].geometry.location.lng
+          //   }
+          //   })
+          // })
+        });
+      };
+
       componentDidMount() {
-        setTimeout(() => {
-          this.setState({
-            on: true,
-            // type: this.state.type,
-          })
-        }, 2000);
+        this.getInfo();
       }
 
   render() {
     return (
       <Map google={this.props.google} zoom={14}>
 
+        {this.state}
+
         {this.state.on ? <Marker onClick={this.onMarkerClick}
                 name={'Current location'} /> : null}
 
         {this.state.on ? <Marker onClick={this.onMarkerClick}
-                name={addy} /> : null}
+                name="test" /> : null}
 
         <InfoWindow onClose={this.onInfoWindowClose}>
             <div>
-              <h1>{this.state.selectedPlace.name}</h1>
+              <h1>{this.state.selectedPlace}</h1>
             </div>
         </InfoWindow>
 
