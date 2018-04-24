@@ -64,7 +64,11 @@ class Event extends React.Component {
   getMessages = (PID) => {
     axios.get("/api/chat/" + PID).then((response) => {
       console.log("hello")
-      this.setState({messages: response.messages})
+      if (response !== null){
+        this.setState({messages: response.data})
+      } else {
+        this.setState({messages: []})
+      }
     })
   };
 
@@ -84,6 +88,7 @@ class Event extends React.Component {
   }
 
   render(){
+    console.log(this.state.messages)
     return (
     <div>
       <div className="container">
