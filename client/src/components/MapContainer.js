@@ -7,7 +7,12 @@ const address = `${mapTest[i].streetAddress} ${mapTest[i].city} ${mapTest[i].sta
 export class MapContainer extends Component {
 
     state = {
-        on: false
+        "type" : "",
+        "streetAddress": "",
+        "city": "",
+        "state": "",
+        "zip": "",
+        "gameStatus": ""
       };
 
     onMarkerClick = () => {
@@ -15,6 +20,12 @@ export class MapContainer extends Component {
       };
     
       componentDidMount() {
+          let addy = `${this.state.streetAddress} ${this.state.city} ${this.state.city} ${this.state.zip}`;
+
+          API.
+
+
+
         setTimeout(() => {
           this.setState({
             on: true
