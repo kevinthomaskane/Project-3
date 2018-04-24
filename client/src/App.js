@@ -13,7 +13,7 @@ class App extends Component {
       <Router>
     <div>
       <Switch>
-        <Route exact path="/login" component={Login}/>
+        <Route exact path="/Login" component={Login}/>
         <Route exact path="/" component={mainpage} />
         {/* <Route exact path="/profile/:id" component={Profile} /> */}
         <Route exact path="/event/:id" component={Even} />
