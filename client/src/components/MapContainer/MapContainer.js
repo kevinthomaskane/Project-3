@@ -27,6 +27,7 @@ export class MapContainer extends Component {
             axios.get("https://maps.googleapis.com/maps/api/geocode/json?"+addy+"CA&key=AIzaSyDKYcYNqOJapazYjjFKVq3t94ljuBhx67o"
             ).then((response) => {
               console.log(response);
+              this.setState({  address = this.response.geometry.location.lat + this.response.geometry.location.lng  })
             })
           };
 
