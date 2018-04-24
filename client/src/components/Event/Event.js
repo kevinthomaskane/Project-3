@@ -29,12 +29,13 @@ const styles = {
 
 
 
-var projectId = this.props.match.params.id;
+// var projectId = this.props.match.params.id;
 
 class Event extends React.Component {
 
   state = {
     project: {},
+    attendees: ["kevin", "gus"],
     message: "",
     messages: ["hey this is a message", "here's another message"],
     location: {
@@ -46,12 +47,14 @@ class Event extends React.Component {
   }
 
   componentDidMount = () => {
-    // this.getInfo(projectId);
-    // this.getMessages(projectId);
+    this.getInfo(1);
+    this.getMessages(1);
   };
 
   getInfo = (PID) => {
+    console.log("here")
     axios.get("/api/events/" + PID).then((response) => {
+      console.log(response)
       this.setState({
         project: response
         })
@@ -70,7 +73,7 @@ class Event extends React.Component {
   };
 
   handleMessageSubmit = (PID) => {
-    axios.post("/api/chat/" + PID, {content: this.state.message, username: username, userId: userId}).then((response) => {
+    axios.post("/api/chat/" + PID, {content: this.state.message}).then((response) => {
       console.log(response)
     })
   };
@@ -122,7 +125,7 @@ class Event extends React.Component {
           </ul>
           <input type="text" onChange={this.handleInputChange}/>
           <button onClick={() => {
-            this.handleMessageSubmit(projectId)
+            this.handleMessageSubmit()
             }}>Send Message</button>
         </div>
       </div>

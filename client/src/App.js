@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Even from "./components/Event"
 
 class App extends Component {
@@ -6,12 +7,12 @@ class App extends Component {
     return (
       <Router>
     <div>
-      <Nav />
+      {/* <Nav /> */}
       <Switch>
-        <Route exact path="/" component={mainpage} />
-        <Route exact path="/profile/:id" component={Profile} />
+        {/* <Route exact path="/" component={mainpage} /> */}
+        {/* <Route exact path="/profile/:id" component={Profile} /> */}
         <Route exact path="/event/:id" component={Even} />
-        <Route component={NoMatch} />
+        {/* <Route component={NoMatch} /> */}
       </Switch>
     </div>
   </Router>
