@@ -22,7 +22,9 @@ export class MapContainer extends Component {
       };
     
       componentDidMount() {
-          let addy = `${this.state.streetAddress} ${this.state.city} ${this.state.city} ${this.state.zip}`;
+          
+        let addy = `${this.state.streetAddress} ${this.state.city} ${this.state.city} ${this.state.zip}`;
+          
           getInfo = () => {
             axios.get("https://maps.googleapis.com/maps/api/geocode/json?"+addy+"CA&key=AIzaSyDKYcYNqOJapazYjjFKVq3t94ljuBhx67o"
             ).then((response) => {
@@ -31,12 +33,10 @@ export class MapContainer extends Component {
             })
           };
 
-
         setTimeout(() => {
           this.setState({
             on: true,
             type: this.state.type,
-
           })
         }, 2000);
       }
