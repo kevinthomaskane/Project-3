@@ -25,21 +25,18 @@ const styles = {
 
   image: {
 
-  }
-};
+  }};
+
+
+
+// var projectId = this.props.match.params.id;
 
 class Event extends React.Component {
 
   state = {
-    name: "",
-    date: "",
-    image: "",
-    sportType: "",
-    description: "",
-    host: "",
-    hostImage: "",
+    project: {},
+    attendees: ["kevin", "gus"],
     message: "",
-    attendees: [{name: "kevin", image: ""}],
     messages: ["hey this is a message", "here's another message"],
     location: {
       address: "",
@@ -50,26 +47,21 @@ class Event extends React.Component {
   }
 
   componentDidMount = () => {
-    // var projectId = this.props.match.params.id;
-    // this.getInfo(projectId);
-    // this.getMessages(projectId);
+    this.getInfo(1);
+    this.getMessages(1);
   };
 
   getInfo = (PID) => {
     axios.get("/api/events/" + PID).then((response) => {
       this.setState({
-        title: response.name, 
-        date: response.date, 
-        sportType: response.sportType,
-        description: response.description,
-        host: response.host
+        project: response
         })
     })
   };
 
   getMessages = (PID) => {
     axios.get("/api/chat/" + PID).then((response) => {
-      this.setState({messages: response.messages})
+      this.setState({messages: response.data})
     })
   };
 
@@ -89,6 +81,7 @@ class Event extends React.Component {
   }
 
   render(){
+    console.log(this.state.messages)
     return (
     <div>
       <div className="container">
@@ -108,10 +101,10 @@ class Event extends React.Component {
         </div>
         <div className="row">
           <h3>Attendees</h3><br/>
-          {this.state.attendees.map(function(person){
+          {this.state.attendees.map(function(person, index){
             return (
-              <div style={styles.attendee}>
-              <img src={person.image} /> 
+              <div key={index} style={styles.attendee}>
+              <img src={person.image} />
               <p>{person.name}</p>
               </div>
             )
@@ -120,23 +113,25 @@ class Event extends React.Component {
         <div className="row">
           <h3>Message Board</h3><br/>
           <ul className="collection">
-          {this.state.messages.map(function(message){
+          {this.state.messages.map(function(message, index){
             return (
-              <li className="collection-item avatar">
-              <img className="circle" src={message.image} /> 
+              <li key={index} className="collection-item avatar">
+              <img className="circle" src={message.image} />
               <p>{message.content}</p>
               </li>
             )
           })}
           </ul>
           <input type="text" onChange={this.handleInputChange}/>
-          <button onClick={this.handleMessageSubmit}>Send Message</button>
+          <button onClick={() => {
+            this.handleMessageSubmit()
+            }}>Send Message</button>
         </div>
       </div>
     </div>
     )
   }
-  
+
 };
 
 export default Event;
