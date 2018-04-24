@@ -21,7 +21,9 @@ module.exports = function(sequelize, DataTypes) {
     address: DataTypes.STRING,
     city: DataTypes.STRING,
     state: DataTypes.STRING,
-    zip: DataTypes.INTEGER
+    zip: DataTypes.INTEGER,
+    lat: DataTypes.FLOAT,
+    lng: DataTypes.FLOAT
   });
 
   Even.associate = function(models) {
