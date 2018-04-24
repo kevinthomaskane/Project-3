@@ -1,19 +1,19 @@
 import {Map, InfoWindow, Marker, GoogleApiWrapper} from 'google-maps-react';
 import React, { Component } from 'react';
-import axios from "axios";
-import mapTest from "../../../mapTest.json";
+// import axios from "axios";
+// import mapTest from "../../mapTest.json";
 
 // const address = `${mapTest[i].streetAddress} ${mapTest[i].city} ${mapTest[i].state} ${mapTest[i].zip}`;
-
+const addy = `${this.state.streetAddress} ${this.state.city} ${this.state.city} ${this.state.zip}`;
 export class MapContainer extends Component {
 
     state = {
-        "type" : "",
-        "streetAddress": "",
-        "city": "",
-        "state": "",
-        "zip": "",
-        "gameStatus": "",
+        type : "",
+        streetAddress: "",
+        city: "",
+        state: "",
+        zip: "",
+        gameStatus: "",
         on: false
       };
 
@@ -21,22 +21,19 @@ export class MapContainer extends Component {
         alert("hey");
       };
 
+      // getInfo = () => {
+      //   axios.get("https://maps.googleapis.com/maps/api/geocode/json?"+addy+"CA&key=AIzaSyDKYcYNqOJapazYjjFKVq3t94ljuBhx67o"
+      //   ).then((response) => {
+      //     console.log(response);
+      //     // this.setState({  address : this.response.geometry.location.lat + this.response.geometry.location.lng  })
+      //   })
+      // };
+    
       componentDidMount() {
-
-        let addy = `${this.state.streetAddress} ${this.state.city} ${this.state.city} ${this.state.zip}`;
-
-          getInfo = () => {
-            axios.get("https://maps.googleapis.com/maps/api/geocode/json?"+addy+"CA&key=AIzaSyDKYcYNqOJapazYjjFKVq3t94ljuBhx67o"
-            ).then((response) => {
-              console.log(response);
-              this.setState({  address = this.response.geometry.location.lat + this.response.geometry.location.lng  })
-            })
-          };
-
         setTimeout(() => {
           this.setState({
             on: true,
-            type: this.state.type,
+            // type: this.state.type,
           })
         }, 2000);
       }
@@ -49,7 +46,7 @@ export class MapContainer extends Component {
                 name={'Current location'} /> : null}
 
         {this.state.on ? <Marker onClick={this.onMarkerClick}
-                name={address} /> : null}
+                name={addy} /> : null}
 
         <InfoWindow onClose={this.onInfoWindowClose}>
             <div>
@@ -63,5 +60,5 @@ export class MapContainer extends Component {
 }
 
 export default GoogleApiWrapper({
-  apiKey: (AIzaSyCLk94LTMJRjooWHuL5CAzeCxxSoML927Y)
+  apiKey: "AIzaSyCLk94LTMJRjooWHuL5CAzeCxxSoML927Y"
 })(MapContainer)
