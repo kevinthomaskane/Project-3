@@ -4,47 +4,40 @@ import "./SignUp.css";
 class SignUp extends React.Component{
 
     state = {
-      Firstname:"",
-      LastName:"",
-      Password:"",
-      Email:""
+      name:"",
+      username:"",
+      password:"",
+     
     };
 
     handleFirstNameInputChange = (event) =>{
       this.setState({
-        Firstname:event.target.value
+        name:event.target.value
       })
     };
-
-    handleLastNameInputChange = (event) =>{
+    handleUserNameInputChange = (event) =>{
       this.setState({
-        LastName:event.target.value
+        username:event.target.value
       })
     };
 
     handlePasswordInputChange = (event) =>{
       this.setState({
-        Password:event.target.value
+        password:event.target.value
       })
     };
-
-    handleEmailInputChange = (event) =>{
-      this.setState({
-        Email:event.target.value
-      })
-    };
-
+ 
     handleInputSubmit = (event) =>{
       event.preventDefault()
         var data={
-          Firstname:this.state.Firstname,
-          LastName:this.state.LastName,
-          Password:this.state.Password,
-          Email:this.state.Email
+          name:this.state.name,
+          username:this.state.username,
+          password:this.state.password,
+         
         };
         axios({
-            method:"GET",
-            url:"/login",
+            method:"POST",
+            url:"/api/newUser",
             data:data
         }).then((res)=>{
         }).catch((error)=>{
@@ -57,33 +50,26 @@ class SignUp extends React.Component{
         return(
           <div id="SignUpForm" class="row">
           <form className="col s12">
-          <div className="row">
-              <div className="input-field col s12">
-                <input onChange={this.handleEmailInputChange} placeholder="Email" id="email" value={this.state.Email} type="email" className="validate"/>
-              </div>
-            </div>
+ 
             <div className="row">
               <div className="input-field col s6">
-                <input onChange={this.handleFirstNameInputChange} placeholder="First Name" id="first_name"  value={this.state.Firstname}type="text" className="validate"/>
-              </div>
-              <div className="input-field col s6">
-                <input onChange={this.handleLastNameInputChange} placeholder="Last Name "id="last_name" value={this.state.LastName} type="text" className="validate"/>
+                <input onChange={this.handleFirstNameInputChange} placeholder="First Name" id="first_name"  value={this.state.name}type="text" className="validate"/>
               </div>
             </div>
             <div className="row">
             <div className="input-field col s6">
-                <input onChange={this.handleUserNameInputChange} placeholder="Username" id="Username" value={this.state.UserName} type="text" className="validate"/>
+                <input onChange={this.handleUserNameInputChange} placeholder="Username" id="Username" value={this.state.username} type="text" className="validate"/>
               </div>
               <div className="input-field col s6">
-                <input onChange={this.handlePasswordInputChange} placeholder="Password" id="Password" value={this.state.Password} type="password" className="validate"/>
+                <input onChange={this.handlePasswordInputChange} placeholder="Password" id="Password" value={this.state.password} type="password" className="validate"/>
               </div>
             </div>
-             <form  id="uploadImg" action="/api/upload" method="post" enctype="multipart/form-data">
+             <form  id="uploadImg" method="post" enctype="multipart/form-data">
              <p id="UploadText">Upload Your Image</p>
              <input type="file" name="uploadFile"/>
-             <input  className="btn btn-success" type="submit" value="Submit!"/>
              <input id="hiddenInput" type="hidden" value="32" name="userId"/>
              </form>
+             <button onClick={this.handleInputSubmit} className="btn btn-success" type="submit" value="Submit!"></button>
           </form>
           </div>
           
