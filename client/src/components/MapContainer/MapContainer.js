@@ -18,9 +18,7 @@ export class MapContainer extends Component {
     getInfo = () => {
       axios.get("/api/events").then((response) => {
         console.log(response);
-        let ip = response.data.ip;
-        console.log(ip);
-        axios.get(`http://api.ipstack.com/${ip}?access_key=${apiKey}`).then((res) => {
+        axios.get(`https://freegeoip.net/json/`).then((res) => {
           console.log(res);
           this.setState({
             currentLocation: {
@@ -41,10 +39,6 @@ export class MapContainer extends Component {
       <Map google={this.props.google}
         initialCenter={this.state.currentLocation}
         zoom={14}>
-        <Marker
-          title="Current Location"
-          position={{lat: this.state.currentLocation.lat, lng:this.state.currentLocation.lng}}
-        />
         {this.state.events.map((even) => {
           return (
             <Marker
