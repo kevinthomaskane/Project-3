@@ -4,6 +4,21 @@ import axios from "axios";
 
 
 export class MapContainer extends Component {
+  
+  
+  
+  
+  loadMap() {
+    if (this.props && this.props.google) {
+      const {google} = this.props;
+      const maps = google.maps;
+      const mapRef = this.refs.map;
+      const node= ReactDOM.findDOMNode(mapRef);
+
+      let zoom =14;
+      let lat = {this.state.curentLocation}
+    }
+  }
 
     // state = {
     //     address: ""
