@@ -1,0 +1,26 @@
+#logout{
+    color:red;
+}
+
+#signup{
+    color: white;
+    font-family: 'Lobster', cursive;
+    font-size: 20px;
+    line-height: 97px;
+    vertical-align: middle;
+    text-align: center;
+    text-decoration: none;
+    margin-left: 35px;
+ 
+}
+
+#SignUpForm{
+    border: 1px solid gray;
+    box-shadow: dimgrey;
+    margin-top:30px;
+    box-shadow: 0px 0px 6px 2px #ccc;
+    height: auto;
+}
+#UploadText{
+    font-size: 13px;
+} 

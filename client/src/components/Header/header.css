@@ -14,19 +14,6 @@
     text-decoration: none;
 }
 
-#logout {
-
-    color: white;
-    font-family: 'Lobster', cursive;
-    font-size: 250%;
-    line-height: 100px;
-    vertical-align: middle;
-    text-align: center;
-    text-decoration: none;
-}
-
-
-
 #profilePic{
     height: 60px;
     width: 60px;
@@ -36,7 +23,6 @@
     box-shadow: 0 4px 8px 0 rgba(66, 66, 66, 0.2), 0 6px 20px 0 rgba(58, 57, 57, 0.05);
 }
 
-
 #profilePic:hover{
     -webkit-filter: brightness(70%);
     -webkit-transition: all .5s ease;
@@ -45,16 +31,10 @@
     -ms-transition: all .5s ease;
     transition: all .5s ease;
 }
- 
-#loginForm{
-    width:500px;
-    margin-right: 30px;
-    margin-left: 30px;
-    box-sizing: border-box;
-}
 
-ul.dropdown-content.active{
-    margin-left:90.6%;
-    margin-top:75px;
-    width:100px !important;
+ul.dropdown-content {
+    position: relative;
+    margin-left:70.6%;
+    margin-top:81px;
+    width:20% !important;
 }

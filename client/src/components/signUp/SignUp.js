@@ -1,6 +1,6 @@
 import React from "react";
 import axios from "axios";
-
+import "./SignUp.css";
 class SignUp extends React.Component{
 
     state = {
@@ -55,35 +55,39 @@ class SignUp extends React.Component{
 
     render(){
         return(
-            <div id="loginForm" class="row">
-            <form class="col s12">
-              <div class="row">
-                <div class="input-field col s6">
-                  <input onChange={this.handleFirstNameInputChange} placeholder="First Name" id="first_name"  value={this.state.Firstname}type="text" class="validate"/>
-                </div>
-                <div class="input-field col s6">
-                  <input onChange={this.handleLastNameInputChange} placeholder="Last Name "id="last_name" value={this.state.LastName} type="text" class="validate"/>
-                </div>
+          <div id="SignUpForm" class="row">
+          <form className="col s12">
+          <div className="row">
+              <div className="input-field col s12">
+                <input onChange={this.handleEmailInputChange} placeholder="Email" id="email" value={this.state.Email} type="email" className="validate"/>
               </div>
-              <div class="row">
-                <div class="input-field col s12">
-                  <input onChange={this.handlePasswordInputChange} placeholder="Password" id="password" value={this.state.Password} type="password" class="validate"/>
-                </div>
-              </div>
-              <div class="row">
-                <div class="input-field col s12">
-                  <input onChange={this.handleEmailInputChange} placeholder="Email" id="email" value={this.state.Email} type="email" class="validate"/>
-                </div>
-              </div>
-               <form  id="uploadImg" action="/api/upload" method="post" enctype="multipart/form-data">
-               <input type="file" name="uploadFile"/>
-               <input  class="btn btn-success" type="submit" value="Upload!"/>
-               <input id="hiddenInput" type="hidden" value="32" name="userId"/>
-               </form>
-            </form>
             </div>
-            
-        )
+            <div className="row">
+              <div className="input-field col s6">
+                <input onChange={this.handleFirstNameInputChange} placeholder="First Name" id="first_name"  value={this.state.Firstname}type="text" className="validate"/>
+              </div>
+              <div className="input-field col s6">
+                <input onChange={this.handleLastNameInputChange} placeholder="Last Name "id="last_name" value={this.state.LastName} type="text" className="validate"/>
+              </div>
+            </div>
+            <div className="row">
+            <div className="input-field col s6">
+                <input onChange={this.handleUserNameInputChange} placeholder="Username" id="Username" value={this.state.UserName} type="text" className="validate"/>
+              </div>
+              <div className="input-field col s6">
+                <input onChange={this.handlePasswordInputChange} placeholder="Password" id="Password" value={this.state.Password} type="password" className="validate"/>
+              </div>
+            </div>
+             <form  id="uploadImg" action="/api/upload" method="post" enctype="multipart/form-data">
+             <p id="UploadText">Upload Your Image</p>
+             <input type="file" name="uploadFile"/>
+             <input  className="btn btn-success" type="submit" value="Submit!"/>
+             <input id="hiddenInput" type="hidden" value="32" name="userId"/>
+             </form>
+          </form>
+          </div>
+          
+      )
 
     };
 };
