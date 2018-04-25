@@ -1,27 +1,34 @@
 import {Map, InfoWindow, Marker, GoogleApiWrapper} from 'google-maps-react';
 import React, { Component } from 'react';
 import axios from "axios";
+// import mapTest from "../../mapTest.json";
+const apiKey = "50074c58887a47f3330613f488693773"
 
 export class MapContainer extends Component {
 
     state = {
-        address: ""
+        events: [],
+        currentLocation:{lat:34.0622, lng: -118.445}
     };
 
     onMarkerClick = () => {
-        alert("hey");
-      };
 
-      getInfo = () => {
-        axios.get("/api/events").then((response) => {
-          console.log(response.data);
-          for (var i = 0; i < response.data.length; i++) {
-            let addy = `${response.data[i].address} ${response.data[i].city} ${response.data[i].state}`;
-            console.log(addy);
-          }
-          
+    };
+
+    getInfo = () => {
+      axios.get("/api/events").then((response) => {
+        console.log(response);
+        axios.get(`http://api.ipstack.com/134.201.250.155?access_key=${apiKey}`).then((res) => {
+          console.log(res);
+          this.setState({
+            currentLocation: {
+              lat: res.data.latitude,
+              lng: res.data.longitude
+            },
+            events: response.data});
         });
-      };
+      });
+    };
 
       componentDidMount() {
         this.getInfo();
@@ -29,9 +36,22 @@ export class MapContainer extends Component {
 
   render() {
     return (
-      <Map google={this.props.google} zoom={14}>
-
-
+      <Map google={this.props.google}
+        initialCenter={this.state.currentLocation}
+        zoom={14}>
+        <Marker
+          title="Current Location"
+          position={{lat: this.state.currentLocation.lat, lng:this.state.currentLocation.lng}}
+        />
+        {this.state.events.map((even) => {
+          return (
+            <Marker
+              key={even.id}
+              title={even.name}
+              position={{lat: even.lat, lng:even.lng}}
+            />
+          );
+        })}
 
       </Map>
     );
