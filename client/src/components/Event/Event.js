@@ -3,12 +3,19 @@ import axios from "axios";
 import Header from "../Header";
 import {Link} from "react-router-dom";
 import "./Event.css";
-// import MapContainer from "../MapContainer";
+import MapContainer from "../MapContainer";
+
+const styles = {
+  map: {
+    width: 300,
+    height: 300
+  }
+}
 
 class Event extends React.Component {
 
   state = {
-    project: {},
+    currentEvent: {},
     date: "",
     attendees: [{username: "kevinthomaskane", image:"https://media.licdn.com/dms/image/C5603AQGPPjFWbcohHA/profile-displayphoto-shrink_200_200/0?e=1529787600&v=beta&t=fANZ1-RmAHSnlN9YR5DIVD5f7KaZgjfwuV4zzowwCDM", userId: 1}, {username: "Gus", image:"https://media.licdn.com/dms/image/C5603AQGPPjFWbcohHA/profile-displayphoto-shrink_200_200/0?e=1529787600&v=beta&t=fANZ1-RmAHSnlN9YR5DIVD5f7KaZgjfwuV4zzowwCDM"}],
     message: "",
@@ -24,7 +31,7 @@ class Event extends React.Component {
     axios.get("/api/events/" + EID).then((data) => {
       let eventId = this.props.match.params.id;
       axios.get("/api/chat/" + EID).then((response) => {
-        this.setState({messages: response.data, project: data.data, date: data.data.date.split("T")[0]});
+        this.setState({messages: response.data, currentEvent: data.data, date: data.data.date.split("T")[0]});
       })
     });
   };
@@ -72,21 +79,23 @@ class Event extends React.Component {
       <div className="container">
         <div className="row">
           <div className="col m8" id="topSection">
-            <h2>{this.state.project.name}</h2><br/>
-            <h5>{this.state.date} {this.state.project.address} </h5>
+            <h2>{this.state.currentEvent.name}</h2><br/>
+            <h5>{this.state.date} {this.state.currentEvent.address} </h5>
             <img src={this.state.hostImage} /> {this.state.host}Host is this name<br/>
             <button onClick={() => {
               this.joinEvent(this.props.match.params.id)
             }}id="join">Join this event</button>
           </div>
           <div className="col m4">
-            <div id="map"></div>
+            <div id="map">
+            <MapContainer eventLocation={this.state.currentEvent} style={styles.map}/>
+            </div>
           </div>
         </div>
         <div className="row">
           <h5>About this event</h5>
             <div class="col m12">
-              <p>{this.state.project.description}</p>
+              <p>{this.state.currentEvent.description}</p>
             </div>
         </div>
         <div className="row">
