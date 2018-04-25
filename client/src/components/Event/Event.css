@@ -56,6 +56,12 @@
     border-radius: 5px;
   }
 
+  ul{
+    height: 300px;
+    overflow: scroll;
+    overflow-x: hidden;
+  }
+
   #messageSubmit{
     position: absolute;
     border-top: solid 2px rgb(146, 146, 146);
@@ -82,11 +88,13 @@
 
   .message {
     background-color: rgb(240, 239, 239);
-    border-radius: 3px;
+    border-radius: 5px;
     padding-left: 5px;
     padding-right: 5px;
-    line-height: 40px;
-    vertical-align: top;
+    line-height: 20px;
+    margin-left: 10px;
+    word-break: break-word;
+    
   }
 
   .messageImg{
@@ -94,4 +102,22 @@
     height: 40px;
     margin-left: 10px;
     border-radius: 3px;
+    margin-bottom: 5px;
+  }
+
+  #join{
+    float: none;
+  }
+
+  .messageBody{
+    display: inline-block;
+    line-height: 0;
+    padding-left: 10px;
+    margin-bottom: 20px;
+  }
+
+  .usernameMessage{
+    line-height: 40px;
+    vertical-align: top;
+    font-weight: bold;
   }

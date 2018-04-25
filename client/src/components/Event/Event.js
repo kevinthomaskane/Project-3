@@ -16,38 +16,48 @@ class Event extends React.Component {
   }
 
   componentDidMount = () => {
-    var eventId = this.props.match.params.id;
+    let eventId = this.props.match.params.id;
     this.getInfo(eventId);
   };
 
   getInfo = (EID) => {
     axios.get("/api/events/" + EID).then((data) => {
-      var eventId = this.props.match.params.id;
+      let eventId = this.props.match.params.id;
       axios.get("/api/chat/" + EID).then((response) => {
-        this.setState({messages: response.data, project: data.data, date: data.data.date.split("T")[0]})
+        this.setState({messages: response.data, project: data.data, date: data.data.date.split("T")[0]});
       })
     });
   };
 
   getMessages = (EID) => {
     axios.get("/api/chat/" + EID).then((response) => {
-      var eventId = this.props.match.params.id;
-      console.log("this is chat response", response)
-      this.setState({messages: response.data})
+      let eventId = this.props.match.params.id;
+      console.log("this is chat response", response);
+      this.setState({messages: response.data.content});
     })
+  };
+
+  joinEvent = (EID) => {
+    let username = localStorage.getItem("username");
+    axios.put("/api/join/" + EID, {username: username}).then((response) => {
+      let attendees = this.state.attendees;
+      attendees.push(response.data.username);
+      this.setState({attendees: attendees})
+    });
   };
 
 
   handleInputChange = (event) => {
-    let message = event.target.value
-    this.setState({message: message})
+    let message = event.target.value;
+    this.setState({message: message});
   };
 
   handleMessageSubmit = (EID) => {
     let username = localStorage.getItem("username");
-    let userId = localStorage.getItem("userId");
-    axios.post("/api/chat/", {content: this.state.message, username: username, eventId: EID}).then((response) => {
-      console.log(response)
+    axios.post("/api/chat/", {content: this.state.message, username: "kevinthomaskane", event_id: EID}).then((response) => {
+      let messages = this.state.messages;
+      let blank = "";
+      this.state.message.length > 0 ? (messages.push(response.data), console.log("greater than 0"), this.setState({messages: messages, message: blank})): console.log("can't send blank message");
     })
   };
 
@@ -64,8 +74,11 @@ class Event extends React.Component {
         <div className="row">
           <div className="col m8" id="topSection">
             <h2>{this.state.project.name}</h2><br/>
-            <h5>{this.state.date} {this.state.project.address} {this.state.project.city} {this.state.project.state}</h5>
-            <img className="image" src={this.state.hostImage} /> <p>{this.state.host}</p>
+            <h5>{this.state.date} {this.state.project.address} </h5>
+            <img src={this.state.hostImage} /> {this.state.host}Host is this name<br/>
+            <button onClick={() => {
+              this.joinEvent(this.props.match.params.id)
+            }}id="join">Join this event</button>
           </div>
           <div className="col m4">
             <div id="map"></div>
@@ -98,17 +111,20 @@ class Event extends React.Component {
                   {this.state.messages.map((message, index) => {
                     return (
                       <li key={index}>
+                      <div className="messageBody">
                         <img className="messageImg" src={this.state.attendees.filter(function(item){
                           return item.username === message.username
                         }).map(function(element){
                           return element.image
-                        })}/> <span className="message">{message.content}</span>
+                        })}/> <span className="usernameMessage">{message.username}</span><br/>
+                        <span className="message">{message.content}</span>
+                        </div>
                       </li>
                     )
                   })}
                 </ul>
                 <div id="messageSubmit">
-                  <textarea placeholder="send a message">
+                  <textarea value={this.state.message} onChange={this.handleInputChange} placeholder="send a message">
                   </textarea>
                   <button class="blue" onClick={() => {
                   this.handleMessageSubmit(this.props.match.params.id)
