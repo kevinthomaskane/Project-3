@@ -1,15 +1,41 @@
-#loginForm{
-    position: relative;
-    border: 1px solid gray;
-    box-shadow: dimgrey;
-
-    margin-left: 30%;
-    margin-right: 30%;
-    margin-top:150px;
-
+.btn{
+    margin-right: 42%;
+    margin-bottom: 15px;
 }
 
-.btn{
-    margin-left: 42%;
-    margin-bottom: 5px;
+#password{
+    margin-top: 25px;
+    width: 250px;
+    margin-left: 25px;
+}
+
+#username{
+    margin-top: 25px;
+    width: 250px;
+    margin-left: 30px;
+}
+
+#login{
+
+    color: white;
+    font-family: 'Lobster', cursive;
+    font-size: 20px;
+    line-height: 97px;
+    vertical-align: middle;
+    text-align: center;
+    text-decoration: none;
+    margin-left: 65px;
+}
+
+#CheckboxInput{
+    margin-left: 25px;
+    margin-bottom: -25px;
+    
+}
+
+#loginForm{
+    margin-top:25px;
+    margin-bottom: 15px;
+    box-shadow: 0px 0px 6px 2px #ccc;
+    height: 200px;
 }
