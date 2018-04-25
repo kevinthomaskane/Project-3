@@ -1,22 +1,14 @@
 Arguments: 
-  /usr/local/bin/node /usr/local/bin/yarn dev
+  /usr/local/Cellar/node/9.4.0/bin/node /usr/local/bin/yarn dev
 
 PATH: 
-<<<<<<< HEAD
   /usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
-=======
-  /usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/ImageMagick/bin
->>>>>>> fefe337040362097c1612086deadf5d0fcceb436
 
 Yarn version: 
   1.5.1
 
 Node version: 
-<<<<<<< HEAD
-  8.9.2
-=======
-  9.3.0
->>>>>>> fefe337040362097c1612086deadf5d0fcceb436
+  9.4.0
 
 Platform: 
   darwin x64
@@ -49,12 +41,7 @@ npm manifest:
       "express-fileupload": "^0.4.0",
       "mysql": "^2.15.0",
       "mysql2": "^1.5.3",
-<<<<<<< HEAD
-      "sequelize": "^4.37.6"
-=======
       "sequelize": "^4.37.6",
-      "google-maps-react": "^2.0.0",
->>>>>>> fefe337040362097c1612086deadf5d0fcceb436
     }
   }
 
@@ -1955,27 +1942,10 @@ Lockfile:
     resolved "https://registry.yarnpkg.com/yallist/-/yallist-3.0.2.tgz#8452b4bb7e83c7c188d8041c1a837c773d6d8bb9"
 
 Trace: 
-<<<<<<< HEAD
-  Error: Command failed.
-  Exit code: 127
-  Command: sh
-  Arguments: -c concurrently "nodemon server.js" "npm run client"
-  Directory: /Users/edo/Desktop/Project-3
-  Output:
-  
-      at ProcessTermError.MessageError (/usr/local/lib/node_modules/yarn/lib/cli.js:186:110)
-      at new ProcessTermError (/usr/local/lib/node_modules/yarn/lib/cli.js:226:113)
-      at ChildProcess.<anonymous> (/usr/local/lib/node_modules/yarn/lib/cli.js:30281:17)
-      at emitTwo (events.js:126:13)
-      at ChildProcess.emit (events.js:214:7)
-      at maybeClose (internal/child_process.js:925:16)
-      at Process.ChildProcess._handle.onexit (internal/child_process.js:209:5)
-=======
-  SyntaxError: /Users/travis/Documents/Kevin-UCLA/Project-3/package.json: Unexpected token } in JSON at position 823
+  SyntaxError: /Users/mikeheiser/Documents/Project-3/package.json: Unexpected token } in JSON at position 788
       at JSON.parse (<anonymous>)
       at /usr/local/lib/node_modules/yarn/lib/cli.js:1036:59
       at Generator.next (<anonymous>)
       at step (/usr/local/lib/node_modules/yarn/lib/cli.js:98:30)
       at /usr/local/lib/node_modules/yarn/lib/cli.js:109:13
       at <anonymous>
->>>>>>> fefe337040362097c1612086deadf5d0fcceb436
