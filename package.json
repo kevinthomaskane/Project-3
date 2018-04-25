@@ -23,6 +23,7 @@
     "express": "^4.15.4",
     "express-fileupload": "^0.4.0",
     "google-maps-react": "^2.0.0",
+    "ipware": "^1.0.0",
     "mysql": "^2.15.0",
     "mysql2": "^1.5.3",
     "promise": "^8.0.1",

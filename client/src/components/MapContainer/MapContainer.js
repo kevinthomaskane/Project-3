@@ -18,14 +18,16 @@ export class MapContainer extends Component {
     getInfo = () => {
       axios.get("/api/events").then((response) => {
         console.log(response);
-        axios.get(`http://api.ipstack.com/134.201.250.155?access_key=${apiKey}`).then((res) => {
+        let ip = response.data.ip;
+        console.log(ip);
+        axios.get(`http://api.ipstack.com/${ip}?access_key=${apiKey}`).then((res) => {
           console.log(res);
           this.setState({
             currentLocation: {
               lat: res.data.latitude,
               lng: res.data.longitude
             },
-            events: response.data});
+            events: response.data.data});
         });
       });
     };
