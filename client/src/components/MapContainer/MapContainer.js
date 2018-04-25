@@ -20,7 +20,7 @@ export class MapContainer extends Component {
         console.log(response);
         let ip = response.data.ip;
         console.log(ip);
-        axios.get(`http://api.ipstack.com/${ip}?access_key=${apiKey}`).then((res) => {
+        axios.get(`https://api.ipstack.com/${ip}?access_key=${apiKey}`).then((res) => {
           console.log(res);
           this.setState({
             currentLocation: {
