@@ -56,6 +56,12 @@
     border-radius: 5px;
   }
 
+  ul{
+    height: 300px;
+    overflow: scroll;
+    overflow-x: hidden;
+  }
+
   #messageSubmit{
     position: absolute;
     border-top: solid 2px rgb(146, 146, 146);
@@ -94,4 +100,8 @@
     height: 40px;
     margin-left: 10px;
     border-radius: 3px;
+  }
+
+  #join{
+    float: none;
   }
