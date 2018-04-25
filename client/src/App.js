@@ -5,7 +5,7 @@ import Even from "./components/Event";
 import mainpage from "./components/Mainpage";
 import Header from "./components/Header";
 import MapContainer from "./components/MapContainer";
-import createEvent from "./components/createEvent";
+import createEvent from "./components/CreateEvent";
 
 
 class App extends Component {

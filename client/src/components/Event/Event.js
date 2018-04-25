@@ -69,7 +69,6 @@ class Event extends React.Component {
     
     return (
     <div>
-      <Header />
       <div className="container">
         <div className="row">
           <div className="col m8" id="topSection">
