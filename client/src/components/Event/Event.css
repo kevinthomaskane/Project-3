@@ -2,6 +2,7 @@
 
   #map {
     height: 300px;
+    width: 300px;
     border: solid 1px black;
   }
 
@@ -26,7 +27,6 @@
     border-radius: 5px;
     box-shadow: 1px 2px 4px rgba(0, 0, 0, .5);
     background-color: white;
-
   }
 
   .attendee p{
