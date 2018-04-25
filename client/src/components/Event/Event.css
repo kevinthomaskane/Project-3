@@ -88,11 +88,12 @@
 
   .message {
     background-color: rgb(240, 239, 239);
-    border-radius: 3px;
+    border-radius: 5px;
     padding-left: 5px;
     padding-right: 5px;
-    line-height: 40px;
+    line-height: 20px;
     margin-left: 10px;
+    word-break: break-word;
     
   }
 
@@ -101,6 +102,7 @@
     height: 40px;
     margin-left: 10px;
     border-radius: 3px;
+    margin-bottom: 5px;
   }
 
   #join{

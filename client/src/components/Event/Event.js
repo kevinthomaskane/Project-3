@@ -124,7 +124,7 @@ class Event extends React.Component {
                   })}
                 </ul>
                 <div id="messageSubmit">
-                  <textarea onChange={this.handleInputChange} placeholder="send a message">
+                  <textarea value={this.state.message} onChange={this.handleInputChange} placeholder="send a message">
                   </textarea>
                   <button class="blue" onClick={() => {
                   this.handleMessageSubmit(this.props.match.params.id)
