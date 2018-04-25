@@ -9,44 +9,44 @@ class Event extends React.Component {
 
   state = {
     project: {},
+    date: "",
     attendees: [{username: "kevinthomaskane", image:"https://media.licdn.com/dms/image/C5603AQGPPjFWbcohHA/profile-displayphoto-shrink_200_200/0?e=1529787600&v=beta&t=fANZ1-RmAHSnlN9YR5DIVD5f7KaZgjfwuV4zzowwCDM", userId: 1}, {username: "Gus", image:"https://media.licdn.com/dms/image/C5603AQGPPjFWbcohHA/profile-displayphoto-shrink_200_200/0?e=1529787600&v=beta&t=fANZ1-RmAHSnlN9YR5DIVD5f7KaZgjfwuV4zzowwCDM"}],
     message: "",
     messages: ["hey this is a message", "here's another message"],
   }
 
   componentDidMount = () => {
-    var projectId = this.props.match.params.id;
-    this.getInfo(projectId);
-    this.getMessages(projectId);
+    var eventId = this.props.match.params.id;
+    this.getInfo(eventId);
   };
 
-  getInfo = (PID) => {
-    axios.get("/api/events/" + PID).then((response) => {
-      var projectId = this.props.match.params.id;
-      console.log("get info response", response)
-      this.setState({
-        project: response.data
-        });
+  getInfo = (EID) => {
+    axios.get("/api/events/" + EID).then((data) => {
+      var eventId = this.props.match.params.id;
+      axios.get("/api/chat/" + EID).then((response) => {
+        this.setState({messages: response.data, project: data.data, date: data.data.date.split("T")[0]})
+      })
     });
   };
 
-  getMessages = (PID) => {
-    axios.get("/api/chat/" + PID).then((response) => {
-      var projectId = this.props.match.params.id;
+  getMessages = (EID) => {
+    axios.get("/api/chat/" + EID).then((response) => {
+      var eventId = this.props.match.params.id;
       console.log("this is chat response", response)
       this.setState({messages: response.data})
     })
   };
+
 
   handleInputChange = (event) => {
     let message = event.target.value
     this.setState({message: message})
   };
 
-  handleMessageSubmit = (PID) => {
+  handleMessageSubmit = (EID) => {
     let username = localStorage.getItem("username");
     let userId = localStorage.getItem("userId");
-    axios.post("/api/chat/" + PID, {content: this.state.message, username: username, userId: userId}).then((response) => {
+    axios.post("/api/chat/", {content: this.state.message, username: username, eventId: EID}).then((response) => {
       console.log(response)
     })
   };
@@ -56,6 +56,7 @@ class Event extends React.Component {
   }
 
   render(){
+    
     return (
     <div>
       <Header />
@@ -63,7 +64,7 @@ class Event extends React.Component {
         <div className="row">
           <div className="col m8" id="topSection">
             <h2>{this.state.project.name}</h2><br/>
-            <h5>{this.state.project.date} {this.state.project.address} {this.state.project.city} {this.state.project.state}</h5>
+            <h5>{this.state.date} {this.state.project.address} {this.state.project.city} {this.state.project.state}</h5>
             <img className="image" src={this.state.hostImage} /> <p>{this.state.host}</p>
           </div>
           <div className="col m4">
