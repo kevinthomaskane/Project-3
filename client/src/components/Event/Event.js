@@ -55,11 +55,9 @@ class Event extends React.Component {
   handleMessageSubmit = (EID) => {
     let username = localStorage.getItem("username");
     axios.post("/api/chat/", {content: this.state.message, username: "kevinthomaskane", event_id: EID}).then((response) => {
-      console.log(response);
-      console.log(this.state.message)
       let messages = this.state.messages;
-      messages.push(response.data);
-      this.setState({messages: messages});
+      let blank = "";
+      this.state.message.length > 0 ? (messages.push(response.data), console.log("greater than 0"), this.setState({messages: messages, message: blank})): console.log("can't send blank message");
     })
   };
 
@@ -113,11 +111,14 @@ class Event extends React.Component {
                   {this.state.messages.map((message, index) => {
                     return (
                       <li key={index}>
+                      <div className="messageBody">
                         <img className="messageImg" src={this.state.attendees.filter(function(item){
                           return item.username === message.username
                         }).map(function(element){
                           return element.image
-                        })}/> <span className="message">{message.content}</span>
+                        })}/> <span className="usernameMessage">{message.username}</span><br/>
+                        <span className="message">{message.content}</span>
+                        </div>
                       </li>
                     )
                   })}
