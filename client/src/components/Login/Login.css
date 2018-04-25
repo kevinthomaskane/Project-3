@@ -1,0 +1,40 @@
+.btn{
+    margin-left: 42%;
+    margin-bottom: 15px;
+}
+
+#password{
+    margin-top: 25px;
+    width: 230px;
+   
+}
+
+#username{
+    margin-top: 25px;
+    width: 230px;
+    margin-left: 15px;
+}
+
+#login {
+
+    color: white;
+    font-family: 'Lobster', cursive;
+    font-size: 20px;
+    line-height: 97px;
+    vertical-align: middle;
+    text-align: center;
+    text-decoration: none;
+    margin-left: 65px;
+}
+
+#CheckboxInput{
+    margin-left: 15px;
+    margin-bottom: -25px;
+    
+}
+
+#loginForm{
+    margin-top:25px;
+    margin-bottom: 15px;
+    box-shadow: 0px 0px 6px 2px #ccc;
+}
