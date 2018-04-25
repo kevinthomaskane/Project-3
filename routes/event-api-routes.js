@@ -1,12 +1,15 @@
 const db = require("../models");
+const get_ip = require('ipware')().get_ip;
 
 module.exports = function (app) {
 
   //this route is for Gus and the main page
   app.get("/api/events", function (req, res) {
+    let info = get_ip(req);
+    console.log(info);
     let query = req.body === null ? {} : {where: req.body};
     db.Event.findAll(query).then(function (data) {
-      res.json(data);
+      res.json({data, ip: info});
     });
   });
 
