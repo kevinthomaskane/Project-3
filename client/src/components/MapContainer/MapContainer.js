@@ -19,16 +19,7 @@ export class MapContainer extends Component {
             let addy = `${response.data[i].address} ${response.data[i].city} ${response.data[i].state}`;
             console.log(addy);
           }
-          //
-          // axios.get(`https://maps.googleapis.com/maps/api/geocode/json?address=${addy}CA&key=AIzaSyDKYcYNqOJapazYjjFKVq3t94ljuBhx67o`
-          // ).then((response) => {
-          //   console.log(response);
-          //   this.setState({ address : {
-          //     lat: response.data.results[0].geometry.location.lat,
-          //     lng: response.data.results[0].geometry.location.lng
-          //   }
-          //   })
-          // })
+          
         });
       };
 
