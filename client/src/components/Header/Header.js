@@ -1,5 +1,5 @@
 import React from "react";
-import "./Header.css"
+import "./Header.css";
 import {Dropdown, Button, NavItem} from "react-materialize"
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 

@@ -5,6 +5,7 @@
   "proxy": "http://localhost:3001/",
   "dependencies": {
     "axios": "^0.18.0",
+    "google-maps-react": "^2.0.2",
     "materialize-css": "^1.0.0-beta",
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
