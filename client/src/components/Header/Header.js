@@ -20,8 +20,8 @@ const Header = () => {
                   <div className="col m2 s2 l2"></div>
                   <Dropdown trigger={
 
-                  <div class="col m1 xs1 l1"><a id="imageLink" href=""><img id="profilePic" data-toggle="modal" data-target="#imageModal" src="https://www.vccircle.com/wp-content/uploads/2017/03/default-profile.png" />
-                  </a>     
+                  <div className="col m1 xs1 l1"><a id="imageLink" href=""><img id="profilePic" data-toggle="modal" data-target="#imageModal" src="https://www.vccircle.com/wp-content/uploads/2017/03/default-profile.png" />
+                  </a>
                   </div>
               }>
               <NavItem>Users: Name</NavItem>
