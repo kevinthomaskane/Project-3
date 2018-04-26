@@ -1,14 +1,22 @@
 import React from "react";
 import "../Header/Header.css";
-import {Dropdown, Button, NavItem,Modal} from "react-materialize"
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import {Dropdown, Button, NavItem, Modal} from "react-materialize"
+import { BrowserRouter as Router, Route, Link,Redirect} from "react-router-dom";
 import Login from "../Login/Login";
 import SignUp from "../SignUp/SignUp";
 var username = localStorage.getItem("username");
 
 const Header = () => {
 
-  if (username !== null) {
+function signOut (){
+  document.getElementById('logout').onclick = function(e){
+    localStorage.removeItem("username")
+    document.cookie = "token=; expires= Thu, 01 Jan 1970 00:00:00 UTC;";
+
+  };
+};
+
+  if (username === null) {
     return (
       <div>
           <div className="row header">
@@ -20,14 +28,14 @@ const Header = () => {
                   <div className="col m2 s2 l2"></div>
                   <Dropdown trigger={
 
-                  <div className="col m1 xs1 l1"><a id="imageLink" href=""><img id="profilePic" data-toggle="modal" data-target="#imageModal" src="https://www.vccircle.com/wp-content/uploads/2017/03/default-profile.png" />
+                  <div class="col m1 xs1 l1"><a id="imageLink" href=""><img id="profilePic" data-toggle="modal" data-target="#imageModal" src="https://www.vccircle.com/wp-content/uploads/2017/03/default-profile.png" />
                   </a>
                   </div>
               }>
               <NavItem>Users: Name</NavItem>
               <NavItem divider />
-              <NavItem>Edit profile</NavItem>
-              <NavItem>Log Out</NavItem>
+              <Link> to={"/viewpage"}<NavItem>Edit profile</NavItem></Link>
+              <Link to={"/"}> <NavItem onClick={this.signOut} >Log Out</NavItem></Link> 
               </Dropdown>
               </div>
           </div>

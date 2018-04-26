@@ -8,6 +8,7 @@ import MapContainer from "./components/MapContainer";
 import createEvent from "./components/CreateEvent";
 import LocationSearchInput from "./components/LocationSearchInput";
 import ViewProfile from "./components/ViewProfile/ViewProfile";
+import ProfilePage from "./components/ProfilePage";
 
 
 class App extends Component {
@@ -15,7 +16,7 @@ class App extends Component {
     return (
       <Router>
     <div>
-   
+   <Header />
       <Switch>
         <Route exact path="/" component={mainpage} />
         <Route exact path="/create" component={createEvent} />
@@ -24,9 +25,9 @@ class App extends Component {
         <Route exact path="/event/:id" component={Even} />
         <Route exact path="/map" component={MapContainer} />
         <Route exact path="/viewpage" component={ViewProfile}/>
+        <Route exact path="/profilepage" component={ProfilePage}/>
         {/* <Route component={NoMatch} /> */}
         <Route exact path="/search" component={LocationSearchInput} />
-
       </Switch>
     </div>
   </Router>
