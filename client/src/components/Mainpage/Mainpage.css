@@ -40,5 +40,10 @@ body {
 }
 
 .MainMap {
-    border: 3px solid #2D3047; 
+    border: 3px solid #2D3047;
+}
+
+#content .row:nth-child(2) .col:nth-child(2) > div > div {
+  height: 100% !important;
+  width: 49% !important;
 }

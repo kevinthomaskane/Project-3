@@ -86,9 +86,9 @@ class Event extends React.Component {
               this.joinEvent(this.props.match.params.id)
             }}id="join">Join this event</button>
           </div>
-          <div className="col m4">
+          <div id="mapLocation" className="col m4">
             <div id="map">
-            <MapContainer eventLocation={this.state.currentEvent} style={styles.map}/>
+            <MapContainer isEvent={true} events={this.state.currentEvent}  style={styles.map}/>
             </div>
           </div>
         </div>

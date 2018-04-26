@@ -13,13 +13,19 @@ import {
 import "./Mainpage.css";
 import MapContainer from "../MapContainer";
 
+const style = {
+  width: '50%',
+  height: '50%'
+};
+
 class Mainpage extends Component {
   state = {
     events: [],
     searching: false,
     searchterm: "",
     filtered: [],
-    clicked: false
+    clicked: false,
+    currentLocation: ""
 
   };
 
@@ -37,9 +43,17 @@ class Mainpage extends Component {
   getFiltered = (sportType) => {
     console.log(sportType);
     Axios.get("/api/events/" + sportType).then((response) => {
-      this.setState({events: response.data.data})
-    })
-  }
+      Axios.get(`https://freegeoip.net/json/`).then((res) => {
+        console.log(res);
+        this.setState({
+          currentLocation: {
+            lat: res.data.latitude,
+            lng: res.data.longitude
+          },
+          events: response.data.data});
+      });
+    });
+  };
 
   handleInputChange = event => {
     const {name, value} = event.target;
@@ -61,7 +75,7 @@ class Mainpage extends Component {
 
   render() {
     return (
-    <div>
+    <div id="content">
       <Row>
         <Col s={3}>
           <Button className="EventButton" onClick={() => this.getFiltered("football")}><img className="icon" src={"../images/football.png"}/>Flag Football</Button>
@@ -98,7 +112,7 @@ class Mainpage extends Component {
         </Col>
 
         <Col s={6}>
-          <MapContainer/>
+          <MapContainer events={this.state.events} currentLocation={this.state.currentLocation}/>
         </Col>
       </Row>
 

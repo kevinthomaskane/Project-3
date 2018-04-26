@@ -6,40 +6,36 @@ const apiKey = "50074c58887a47f3330613f488693773"
 
 export class MapContainer extends Component {
 
-    state = {
-        events: [],
-        currentLocation:{lat:34.0622, lng: -118.445}
-    };
+  state = {
+      events: [],
+      currentLocation:{lat:34.0622, lng: -118.445}
+  };
 
-    onMarkerClick = () => {
-
-    };
-
-    getInfo = () => {
-      axios.get("/api/events").then((response) => {
-        console.log(response);
-        axios.get(`https://freegeoip.net/json/`).then((res) => {
-          console.log(res);
-          this.setState({
-            currentLocation: {
-              lat: res.data.latitude,
-              lng: res.data.longitude
-            },
-            events: response.data.data});
-        });
+  componentWillMount () {
+    if(this.props.events.lat !== undefined){
+      this.setState({
+        currentLocation:{
+          lat: this.props.events.lat,
+          lng: this.props.events.lng
+        }
       });
-    };
-
-      componentDidMount() {
-        this.getInfo();
-      }
+    } else {
+      console.log("here");
+    }
+  };
 
   render() {
     return (
       <Map google={this.props.google}
         initialCenter={this.state.currentLocation}
         zoom={14}>
-        {this.state.events.map((even) => {
+        {this.props.isEvent=== true ?
+
+          <Marker
+            title={this.props.events.name}
+            position={{lat:this.props.events.lat, lng:this.props.events.lng}}
+              />
+          :this.props.events.map((even) => {
           return (
             <Marker
               key={even.id}
