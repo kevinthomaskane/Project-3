@@ -1,7 +1,7 @@
 import React from "react";
 import axios from "axios";
 import "./Login.css";
-
+import {Link} from "react-router-dom"
 class Login extends React.Component {
   state = {
     username: "",
@@ -16,7 +16,7 @@ class Login extends React.Component {
   };
 
   handleSubmitForm = (event) => {
-    event.preventDefault();
+ 
     var t = "t"+ Math.random();
     var data = {
       username: this.state.username,
@@ -54,7 +54,13 @@ class Login extends React.Component {
                     <span>Remember me</span>
                 </label>
                 </p>
+<<<<<<< HEAD
             <button onClick={this.handleSubmitForm} className="btn btn-success" type="submit" value="login!">Log In</button>
+=======
+              
+            <button onClick={this.handleSubmitForm} className="btn btn-success" type="submit" value="login!">Log In</button>
+              
+>>>>>>> viewprofile
             </form>
             </form>
         </div>

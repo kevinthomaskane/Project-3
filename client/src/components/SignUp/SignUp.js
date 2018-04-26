@@ -1,7 +1,12 @@
 import React from "react";
 import axios from "axios";
 import "./SignUp.css";
+<<<<<<< HEAD
 class SignUp extends React.Component {
+=======
+import {Link} from "react-router-dom"
+class SignUp extends React.Component{
+>>>>>>> viewprofile
 
   state = {
     first_name: "",
@@ -15,6 +20,7 @@ class SignUp extends React.Component {
 
   };
 
+<<<<<<< HEAD
   handleInput = (event) => {
     let name = event.target.name;
     this.setState({[name]: event.target.value})
@@ -41,6 +47,29 @@ class SignUp extends React.Component {
         lat: lat,
         lon: lng
       };
+=======
+    handlePasswordInputChange = (event) =>{
+      this.setState({
+        password:event.target.value
+      })
+    };
+ 
+    handleInputSubmit = (event) =>{
+        var data={
+          name:this.state.name,
+          username:this.state.username,
+          password:this.state.password,
+         
+        };
+        axios({
+            method:"POST",
+            url:"/api/newUser",
+            data:data
+        }).then((res)=>{
+        }).catch((error)=>{
+        });
+    };
+>>>>>>> viewprofile
 
       axios({method: "POST", url: "/api/newUser", data: data}).then((res) => {
         localStorage.setItem("user_id", res.data.id);
@@ -63,6 +92,7 @@ class SignUp extends React.Component {
     return (<div id="SignUpForm" class="row">
       <form className="col s12">
 
+<<<<<<< HEAD
         <div className="row">
           <div className="input-field col s6">
             <input type="text" onChange={this.handleInput} placeholder="First Name" name="first_name" value={this.state.first_name} className="validate"/>
@@ -79,6 +109,35 @@ class SignUp extends React.Component {
           </div>
           <div className="input-field col s6">
             <input onChange={this.handleInput} placeholder="Password" name="password" value={this.state.password} type="password" className="validate"/>
+=======
+    render(){
+        return(
+          <div id="SignUpForm" class="row">
+          <form className="col s12">
+ 
+            <div className="row">
+              <div className="input-field col s6">
+                <input onChange={this.handleFirstNameInputChange} placeholder="First Name" id="first_name"  value={this.state.name}type="text" className="validate"/>
+              </div>
+            </div>
+            <div className="row">
+            <div className="input-field col s6">
+                <input onChange={this.handleUserNameInputChange} placeholder="Username" id="Username" value={this.state.username} type="text" className="validate"/>
+              </div>
+              <div className="input-field col s6">
+                <input onChange={this.handlePasswordInputChange} placeholder="Password" id="Password" value={this.state.password} type="password" className="validate"/>
+              </div>
+            </div>
+             <form  id="uploadImg" method="post" enctype="multipart/form-data">
+             <p id="UploadText">Upload Your Image</p>
+             <input type="file" name="uploadFile"/>
+             <input id="hiddenInput" type="hidden" value="32" name="userId"/>
+             </form>
+             <Link to={"login"}>
+             <button onClick={this.handleInputSubmit} className="btn btn-success" type="submit" value="Submit!"></button>
+             </Link>
+             </form>
+>>>>>>> viewprofile
           </div>
         </div>
         <div className="row">
