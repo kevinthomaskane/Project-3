@@ -17,23 +17,78 @@ class Event extends React.Component {
   state = {
     currentEvent: {},
     date: "",
-    attendees: [{username: "kevinthomaskane", image:"https://media.licdn.com/dms/image/C5603AQGPPjFWbcohHA/profile-displayphoto-shrink_200_200/0?e=1529787600&v=beta&t=fANZ1-RmAHSnlN9YR5DIVD5f7KaZgjfwuV4zzowwCDM", userId: 1}, {username: "Gus", image:"https://media.licdn.com/dms/image/C5603AQGPPjFWbcohHA/profile-displayphoto-shrink_200_200/0?e=1529787600&v=beta&t=fANZ1-RmAHSnlN9YR5DIVD5f7KaZgjfwuV4zzowwCDM"}],
     message: "",
-    messages: ["hey this is a message", "here's another message"],
+    hosts: [],
+    messages: [],
+    attendees: []
   }
 
   componentDidMount = () => {
     let eventId = this.props.match.params.id;
     this.getInfo(eventId);
+   
   };
 
   getInfo = (EID) => {
     axios.get("/api/event/" + EID).then((data) => {
       let eventId = this.props.match.params.id;
       axios.get("/api/chat/" + EID).then((response) => {
-        this.setState({messages: response.data, currentEvent: data.data, date: data.data.date.split("T")[0]});
+        this.setState({messages: response.data, attendees: data.data.attendees.Users, currentEvent: data.data.attendees, date: data.data.attendees.date.split("T")[0], hosts: data.data.host});
+        console.log(this.state.attendees)
       })
     });
+  };
+
+  getHostInfo = () => {
+    let userArray =  this.state.attendees
+    let hostArray = this.state.hosts
+    let hosts = [];
+    for (let i = 0; i < userArray.length; i++){
+      for (let j = 0; j < hostArray.length; j++){
+        if (userArray[i].id === hostArray[j].userId){
+          console.log(userArray[i])
+          hosts.push(userArray[i]);
+        }
+      }
+    }
+    console.log("hosts", hosts)
+    return (hosts.map((element) =>{
+      console.log(element)
+      return (
+      <div>
+        <img src={element.image} /> 
+        <h5>{element.username}</h5>
+      </div>
+      )
+    })
+  )
+  }
+
+  filterHost = () => {
+    let userArray =  this.state.attendees
+    let hostArray = this.state.hosts
+    let tmp;
+    console.log("userArray", userArray)
+    console.log("hostArray", hostArray)
+    for (let i = 0; i < userArray.length; i++){
+      for (let j = 0; j < hostArray.length; j++){
+        if (userArray[i].id === hostArray[j].userId){
+          console.log("in if", i)
+          tmp = i
+          userArray.splice(i, 1);
+        }
+      }
+    }
+    return (
+    userArray.map(function(person, index){
+      return (
+        <div key={index} className="attendee">
+          <img className="image" src={person.image === null ? "https://www.vccircle.com/wp-content/uploads/2017/03/default-profile.png" : person.image} />
+          <Link to={"/profile/" + person.userId}><p>{person.username}</p></Link>
+        </div>
+            )
+      })
+    );
   };
 
   getMessages = (EID) => {
@@ -47,8 +102,9 @@ class Event extends React.Component {
   joinEvent = (EID) => {
     let userId = localStorage.getItem("user_id");
     axios.post("/api/join/" + EID, {userId: userId}).then((response) => {
+      console.log(response)
       let attendees = this.state.attendees;
-      attendees.push(response.data.username);
+      attendees.push(response.data);
       this.setState({attendees: attendees})
     });
   };
@@ -61,7 +117,7 @@ class Event extends React.Component {
 
   handleMessageSubmit = (EID) => {
     let username = localStorage.getItem("username");
-    axios.post("/api/chat/", {content: this.state.message, username: "kevinthomaskane", event_id: EID}).then((response) => {
+    axios.post("/api/chat/", {content: this.state.message, username: username, event_id: EID}).then((response) => {
       let messages = this.state.messages;
       let blank = "";
       this.state.message.length > 0 ? (messages.push(response.data), console.log("greater than 0"), this.setState({messages: messages, message: blank})): console.log("can't send blank message");
@@ -81,7 +137,7 @@ class Event extends React.Component {
           <div className="col m8" id="topSection">
             <h2>{this.state.currentEvent.name}</h2><br/>
             <h5>{this.state.date} {this.state.currentEvent.address} </h5>
-            <img src={this.state.hostImage} /> {this.state.host}Host is this name<br/>
+            {this.getHostInfo()}<br/>
             <button onClick={() => {
               this.joinEvent(this.props.match.params.id)
             }}id="join">Join this event</button>
@@ -91,7 +147,7 @@ class Event extends React.Component {
             <MapContainer isEvent={true} events={this.state.currentEvent}  style={styles.map}/>
             </div>
           </div>
-        </div>
+        </div>  
         <div className="row">
           <h5>About this event</h5>
             <div class="col m12">
@@ -101,14 +157,7 @@ class Event extends React.Component {
         <div className="row">
           <h5>Attendees</h5><br/>
             <div class="col m12">
-              {this.state.attendees.map(function(person, index){
-                return (
-                  <div key={index} className="attendee">
-                    <img className="image" src={person.image} />
-                    <Link to={"/profile/" + person.userId}><p>{person.username}</p></Link>
-                  </div>
-                      )
-                })}
+            {this.filterHost()}
             </div>
         </div>
         <div className="row">
@@ -120,10 +169,14 @@ class Event extends React.Component {
                     return (
                       <li key={index}>
                       <div className="messageBody">
-                        <img className="messageImg" src={this.state.attendees.filter(function(item){
+                        <img className="messageImg" src={this.state.attendees.filter((item) => {
+                          console.log("message", message)
+                          console.log(this.state.attendees)
                           return item.username === message.username
                         }).map(function(element){
-                          return element.image
+                          console.log("image", element.image)
+                          return (element.image === null ? 
+                          "https://www.vccircle.com/wp-content/uploads/2017/03/default-profile.png" : element.image)
                         })}/> <span className="usernameMessage">{message.username}</span><br/>
                         <span className="message">{message.content}</span>
                         </div>
