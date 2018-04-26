@@ -33,10 +33,35 @@ class Event extends React.Component {
       let eventId = this.props.match.params.id;
       axios.get("/api/chat/" + EID).then((response) => {
         this.setState({messages: response.data, attendees: data.data.attendees.Users, currentEvent: data.data.attendees, date: data.data.attendees.date.split("T")[0], hosts: data.data.host});
-        console.log(this.state.attendees)
+        console.log(data)
       })
     });
   };
+
+  getHostInfo = () => {
+    let userArray =  this.state.attendees
+    let hostArray = this.state.hosts
+    let hosts = [];
+    for (let i = 0; i < userArray.length; i++){
+      for (let j = 0; j < hostArray.length; j++){
+        if (userArray[i].id === hostArray[j].userId){
+          console.log(userArray[i])
+          hosts.push(userArray[i]);
+        }
+      }
+    }
+    console.log("hosts", hosts)
+    return (hosts.map((element) =>{
+      console.log(element)
+      return (
+      <div>
+        <img src={element.image} /> 
+        <h5>{element.username}</h5>
+      </div>
+      )
+    })
+  )
+  }
 
   filterHost = () => {
     let userArray =  this.state.attendees
@@ -50,6 +75,7 @@ class Event extends React.Component {
         }
       }
     }
+    return (
     userArray.map(function(person, index){
       return (
         <div key={index} className="attendee">
@@ -58,6 +84,7 @@ class Event extends React.Component {
         </div>
             )
       })
+    )
   }
 
   getMessages = (EID) => {
@@ -105,7 +132,7 @@ class Event extends React.Component {
           <div className="col m8" id="topSection">
             <h2>{this.state.currentEvent.name}</h2><br/>
             <h5>{this.state.date} {this.state.currentEvent.address} </h5>
-            <img src={this.state.hostImage} /> {this.state.host}Host is this name<br/>
+            {this.getHostInfo()}<br/>
             <button onClick={() => {
               this.joinEvent(this.props.match.params.id)
             }}id="join">Join this event</button>
@@ -115,7 +142,7 @@ class Event extends React.Component {
             <MapContainer eventLocation={this.state.currentEvent} style={styles.map}/>
             </div>
           </div>
-        </div>
+        </div>  
         <div className="row">
           <h5>About this event</h5>
             <div class="col m12">
@@ -125,7 +152,7 @@ class Event extends React.Component {
         <div className="row">
           <h5>Attendees</h5><br/>
             <div class="col m12">
-            {this.filterHost()}
+            {/* {this.filterHost()} */}
               {/* {this.state.attendees.map(function(person, index){
                 return (
                   <div key={index} className="attendee">
