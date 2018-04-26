@@ -11,10 +11,13 @@ class LocationSearchInput extends React.Component {
         currentLocation:{lat:"", lng: ""}
     }
 
-    handleChange = (currentLocation) => {
-        this.setState({lat = this.target.value.currentLocation, lng = this.target.value.currentLocation})
-      }
+    // handleChange = (currentLocation) => {
+    //     this.setState({lat = this.target.value.currentLocation, lng = this.target.value.currentLocation})
+    //   }
     
+    // handleSelect = (currentLocation) => {
+    //     this.setState(null);
+    // }
     componentDidMount() {
         console.log("here");
       }
@@ -24,6 +27,7 @@ class LocationSearchInput extends React.Component {
             value={this.state.address}
             onChange={this.handleChange}
             onSelect={this.handleSelect}
+            // shouldFetchSuggestions={this.state.address.length > 5}
           >
             {({ getInputProps, suggestions, getSuggestionItemProps }) => (
               <div>
@@ -54,4 +58,4 @@ class LocationSearchInput extends React.Component {
       }
     }
 
-
+export default LocationSearchInput;
