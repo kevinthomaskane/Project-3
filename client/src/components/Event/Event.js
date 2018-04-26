@@ -17,9 +17,10 @@ class Event extends React.Component {
   state = {
     currentEvent: {},
     date: "",
-    attendees: [{username: "kevinthomaskane", image:"https://media.licdn.com/dms/image/C5603AQGPPjFWbcohHA/profile-displayphoto-shrink_200_200/0?e=1529787600&v=beta&t=fANZ1-RmAHSnlN9YR5DIVD5f7KaZgjfwuV4zzowwCDM", userId: 1}, {username: "Gus", image:"https://media.licdn.com/dms/image/C5603AQGPPjFWbcohHA/profile-displayphoto-shrink_200_200/0?e=1529787600&v=beta&t=fANZ1-RmAHSnlN9YR5DIVD5f7KaZgjfwuV4zzowwCDM"}],
     message: "",
-    messages: ["hey this is a message", "here's another message"],
+    hosts: [],
+    messages: [],
+    attendees: []
   }
 
   componentDidMount = () => {
@@ -28,13 +29,36 @@ class Event extends React.Component {
   };
 
   getInfo = (EID) => {
-    axios.get("/api/events/" + EID).then((data) => {
+    axios.get("/api/event/" + EID).then((data) => {
       let eventId = this.props.match.params.id;
       axios.get("/api/chat/" + EID).then((response) => {
-        this.setState({messages: response.data, currentEvent: data.data, date: data.data.date.split("T")[0]});
+        this.setState({messages: response.data, attendees: data.data.attendees.Users, currentEvent: data.data.attendees, date: data.data.attendees.date.split("T")[0], hosts: data.data.host});
+        console.log(this.state.attendees)
       })
     });
   };
+
+  filterHost = () => {
+    let userArray =  this.state.attendees
+    let hostArray = this.state.hosts
+    let tmp;
+    for (let i = 0; i < userArray.length; i++){
+      for (let j = 0; j < hostArray.length; j++){
+        if (userArray[i].id === hostArray[j].userId){
+          tmp = i
+          userArray.splice(i, 1);
+        }
+      }
+    }
+    userArray.map(function(person, index){
+      return (
+        <div key={index} className="attendee">
+          <img className="image" src={person.image} />
+          <Link to={"/profile/" + person.userId}><p>{person.username}</p></Link>
+        </div>
+            )
+      })
+  }
 
   getMessages = (EID) => {
     axios.get("/api/chat/" + EID).then((response) => {
@@ -101,14 +125,15 @@ class Event extends React.Component {
         <div className="row">
           <h5>Attendees</h5><br/>
             <div class="col m12">
-              {this.state.attendees.map(function(person, index){
+            {this.filterHost()}
+              {/* {this.state.attendees.map(function(person, index){
                 return (
                   <div key={index} className="attendee">
                     <img className="image" src={person.image} />
                     <Link to={"/profile/" + person.userId}><p>{person.username}</p></Link>
                   </div>
                       )
-                })}
+                })} */}
             </div>
         </div>
         <div className="row">

@@ -24,7 +24,7 @@ module.exports = function (app) {
   });
 
   //this route is for Kevin for each specific event page
-  app.get("/api/events/:id", function (req,res) {
+  app.get("/api/event/:id", function (req,res) {
     db.Event.findOne({
       where:{
         id: req.params.id
@@ -39,7 +39,14 @@ module.exports = function (app) {
         }
       }]
     }).then(function (data) {
-      res.json(data);
+      db.Going.findAll({
+        where: {
+          eventId: req.params.id,
+          isHost: true
+        }
+      }).then(function(response){
+        res.json({attendees: data, host: response});
+      })
     });
   });
 
