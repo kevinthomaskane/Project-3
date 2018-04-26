@@ -5,7 +5,7 @@ import { Navbar, Icon, Col, Row, NavItem, CardPanel, Button } from "react-materi
 
 class Mainpage extends Component {
     state = {
-        events: [ { id: 1, content: "event 1", image: "random.com" }],
+        events: [{ id: 1, content: "event 1", image: "random.com" }],
         searching: false,
         searchterm: "",
         filtered: [],
@@ -40,7 +40,6 @@ class Mainpage extends Component {
     }
     handleSubmitChange = event => {
         event.preventDefault()
-        //    Axios.get("")
     }
 
     togglesearch = () => {
@@ -57,50 +56,44 @@ class Mainpage extends Component {
         }) : this.setState({
             filtered: true
         })
-    //     after Axios request you would want to set state of events to the results of the request
+        Axios.get("/api/events/" + Sports).then((response) => {
+            this.setState({ events: response.data, clicked: true })
+        })
     }
 
     render() {
         return (
             <div>
-                {/* <Navbar brand='logo' right>
-                    {this.state.searching ? <form onSubmit={this.handleSubmitChange} > <input onChange={this.handleInputChange} id="searchbox" name="searchterm" type="text"></input></form> : ""}
-                    <NavItem onClick={this.togglesearch}><Icon>search</Icon></NavItem>
-                </Navbar> */}
 
-
-                <Button onClick={()=>this.toggleFiltered("Flag Football")}>Flag Football</Button>
-                <Button onClick={()=>this.toggleFiltered("Frisbee")}>Frisbee</Button>
-                <Button onClick={()=>this.toggleFiltered("Basketball")}>Basketball</Button>
-                <Button onClick={()=>this.toggleFiltered("Soccer")}>Soccer</Button>
-        <Row>
-             <Col s={3} >
-                <Button className="EventButton" onClick={this.toggleFiltered}>Flag Football</Button>
-             </Col>
-             <Col s={3} >
-                <Button className="EventButton" onClick={this.toggleFiltered}>Frisbee</Button>
-             </Col>
-             <Col s={3} >
-                <Button className="EventButton" onClick={this.toggleFiltered}>Basketball</Button>
-             </Col>
-             <Col s={3} >
-                <Button className="EventButton" onClick={this.toggleFiltered}>Soccer</Button>
-             </Col>
-        </Row>
+                <Row>
+                    <Col s={3} >
+                        <Button onClick={() => this.toggleFiltered("Flag Football")}>Flag Football</Button>
+                    </Col>
+                    <Col s={3} >
+                        <Button onClick={() => this.toggleFiltered("Frisbee")}>Frisbee</Button>
+                    </Col>
+                    <Col s={3} >
+                        <Button onClick={() => this.toggleFiltered("Basketball")}>Basketball</Button>
+                    </Col>
+                    <Col s={3} >
+                        <Button onClick={() => this.toggleFiltered("Soccer")}>Soccer</Button>
+                    </Col>
+                </Row>
 
                 <Row>
                     {this.state.clicked === false ? this.state.events.map(function (event, index) {
-                        if(index <6){
-                        return (
-                            <Link to={"/event/" + event.id}>
-                                <Col s={12} m={6}>
-                                    <CardPanel className="teal lighten-4 black-text">
-                                        <img className="circle" src={event.image} />
-                                        <p>{event.content}</p>
-                                    </CardPanel>
-                                </Col>
-                            </Link>
-                        )}
+                        if (index < 6) {
+                            return (
+                                <Link to={"/event/" + event.id}>
+                                    <Col s={12} m={6}>
+                                        <CardPanel className="teal lighten-4 black-text">
+                                            <img className="circle" src={event.image} />
+                                            <p>{event.content}</p>
+                                        </CardPanel>
+                                    </Col>
+                                </Link>
+                            )
+                        }
                     }) : ""}
                 </Row>
 
