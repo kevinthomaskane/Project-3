@@ -14,7 +14,7 @@ const Header = () => {
           <div className="row header">
               <div className="col m5 s5 l5"></div>
               <div className="col m3 s3 l3">
-                  <a id="logo" href="/home">Collab</a>
+                  <a id="logo" href="/home">Squad-Up</a>
               </div>
               <div id="dropDownMenu">
                   <div className="col m2 s2 l2"></div>
@@ -39,17 +39,17 @@ const Header = () => {
         <div className="row header">
           <div className="col s5 col m5 col l5"></div>
           <div className="col s3 col m3 col l3">
-            <a id="logo" href="/home">Collab</a>
+            <a id="logo" href="/home">Squad-Up</a>
           </div>
           <div>
             <div className="col s2 col m2 col l2  ">
               <Modal
-                trigger={<a id="login" href="/login">sign in</a>}>
+                trigger={<a id="login" href="/login">sign-in</a>}>
                 <Login />
               </Modal>
             </div>
             <Modal
-              trigger={<a id="signup" href="/signeup"> sing up</a>}>
+              trigger={<a id="signup" href="/signeup"> sign-up</a>}>
               <SignUp />
             </Modal>
           </div>

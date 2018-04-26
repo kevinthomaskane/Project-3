@@ -1,12 +1,12 @@
 .header{
-    background-color: black;
+    background-color: #B4302B;
     height: 100px;
     margin-bottom: 20px;
 }
 
 #logo{
-    color: white;
-    font-family: 'Lobster', cursive;
+    color: #E8E8E1;
+    font-family: 'Black Ops One', cursive;
     font-size: 250%;
     line-height: 100px;
     vertical-align: middle;
@@ -17,7 +17,7 @@
 #profilePic{
     height: 60px;
     width: 60px;
-    background-color: white;
+    background-color: #E8E8E1;
     margin-top: 20px;
     border-radius: 3px;
     box-shadow: 0 4px 8px 0 rgba(66, 66, 66, 0.2), 0 6px 20px 0 rgba(58, 57, 57, 0.05);
