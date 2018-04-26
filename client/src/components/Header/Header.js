@@ -34,7 +34,7 @@ function signOut (){
               }>
               <NavItem>Users: Name</NavItem>
               <NavItem divider />
-              <Link> to={"/viewpage"}<NavItem>Edit profile</NavItem></Link>
+              <NavItem>Edit profile</NavItem> 
               <Link to={"/"}> <NavItem onClick={this.signOut} >Log Out</NavItem></Link> 
               </Dropdown>
               </div>
