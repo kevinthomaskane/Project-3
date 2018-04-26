@@ -3,6 +3,8 @@ import Axios from "axios"
 import { Link } from "react-router-dom";
 import { Navbar, Icon, Col, Row, NavItem, CardPanel, Button } from "react-materialize";
 import "./Mainpage.css";
+import MapContainer from "../MapContainer";
+
 
 class Mainpage extends Component {
     state = {
@@ -98,6 +100,9 @@ class Mainpage extends Component {
                             </Link>
                         )}
                     }) : ""}
+                    <Col s={6}>
+                    <MapContainer />
+                    </Col>
                 </Row>
 
             </div>
