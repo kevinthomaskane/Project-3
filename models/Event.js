@@ -26,12 +26,7 @@ module.exports = function(sequelize, DataTypes) {
   Even.associate = function(models) {
     const User = models.User;
     Even.belongsToMany(User, {
-      through: "Host",
-      foreignKey: "eventId"
-    });
-
-    Even.belongsToMany(User, {
-      through: "Attendee",
+      through: models.Going,
       foreignKey: "eventId"
     });
 
