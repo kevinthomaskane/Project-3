@@ -1,6 +1,7 @@
 import React from "react";
 import axios from "axios";
 import "./SignUp.css";
+import {Link} from "react-router-dom"
 class SignUp extends React.Component{
 
     state = {
@@ -28,7 +29,6 @@ class SignUp extends React.Component{
     };
  
     handleInputSubmit = (event) =>{
-      event.preventDefault()
         var data={
           name:this.state.name,
           username:this.state.username,
@@ -69,8 +69,10 @@ class SignUp extends React.Component{
              <input type="file" name="uploadFile"/>
              <input id="hiddenInput" type="hidden" value="32" name="userId"/>
              </form>
+             <Link to={"login"}>
              <button onClick={this.handleInputSubmit} className="btn btn-success" type="submit" value="Submit!"></button>
-          </form>
+             </Link>
+             </form>
           </div>
           
       )
