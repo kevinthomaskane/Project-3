@@ -16,7 +16,7 @@ class ProfilePage extends React.Component{
     componentDidMount(){
         // make get request to get user info and update
         // get id from local sotrage
-       // let id = this.props.match.params.id
+       let id = this.props.match.params.id
             axios.update("/userUpdate/"+id)
             .then((data)=>{
                 this.setState({
