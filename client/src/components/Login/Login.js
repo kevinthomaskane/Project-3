@@ -54,13 +54,7 @@ class Login extends React.Component {
                     <span>Remember me</span>
                 </label>
                 </p>
-<<<<<<< HEAD
             <button onClick={this.handleSubmitForm} className="btn btn-success" type="submit" value="login!">Log In</button>
-=======
-              
-            <button onClick={this.handleSubmitForm} className="btn btn-success" type="submit" value="login!">Log In</button>
-              
->>>>>>> viewprofile
             </form>
             </form>
         </div>
