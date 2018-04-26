@@ -41,27 +41,6 @@ class SignUp extends React.Component {
         lat: lat,
         lon: lng
       };
-    handlePasswordInputChange = (event) =>{
-      this.setState({
-        password:event.target.value
-      })
-    };
- 
-    handleInputSubmit = (event) =>{
-        var data={
-          name:this.state.name,
-          username:this.state.username,
-          password:this.state.password,
-         
-        };
-        axios({
-            method:"POST",
-            url:"/api/newUser",
-            data:data
-        }).then((res)=>{
-        }).catch((error)=>{
-        });
-    };
 
       axios({method: "POST", url: "/api/newUser", data: data}).then((res) => {
         localStorage.setItem("user_id", res.data.id);
