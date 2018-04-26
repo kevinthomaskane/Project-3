@@ -16,7 +16,11 @@ class App extends Component {
     return (
       <Router>
     <div>
+<<<<<<< HEAD
    <Header />
+=======
+      <Header/>
+>>>>>>> b0f080cf151b8f6a343bf7d0c28ec3cbbe40769c
       <Switch>
         <Route exact path="/" component={mainpage} />
         <Route exact path="/create" component={createEvent} />

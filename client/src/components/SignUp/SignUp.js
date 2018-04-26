@@ -41,6 +41,7 @@ class SignUp extends React.Component {
         lat: lat,
         lon: lng
       };
+      
       axios({method: "POST", url: "/api/newUser", data: data}).then((res) => {
         localStorage.setItem("user_id", res.data.id);
         localStorage.setItem("username", res.data.username);
