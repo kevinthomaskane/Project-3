@@ -47,22 +47,36 @@ module.exports = function (app) {
   app.post("/api/createEvent/:user_id", function(req, res) {
     db.Event.create(req.body)
       .then(function(even) {
-        even.setUsers([req.params.user_id]);
+        db.Going.create(
+          {
+            isHost: true,
+            userId: req.params.user_id,
+            eventId: even.id
+          }
+        ).then(function (res) {
+          console.log("done");
+        });
         res.json(even);
       });
   });
 
   //this route is for Kevin and the specific event page to add new hosts
   app.post("/api/join/:event_id", function (req, res) {
+    console.log("here");
     db.User.findOne({
       where: {
         id: req.body.userId
       }
     }).then(function (user) {
-      let query = `INSERT INTO Attendee (eventId, userId, createdAt, updatedAt) VALUES (?, ?, NOW(), NOW());`;
-      connection.query(query, [req.params.event_id, user.id ], function (err, res) {
-        console.log(res);
-      });
+      console.log(typeof user.id);
+      let EID = parseInt(req.params.event_id);
+      db.Going.create({
+        isHost: false,
+        userId: user.id,
+        eventId: EID
+      }).then(function (res) {
+        console.log("done");
+      })
       res.json(user);
     })
   });
@@ -73,7 +87,15 @@ module.exports = function (app) {
         id: req.body.userId
       }
     }).then(function (user) {
-      user.addEvents([req.params.event_id]);
+      db.Going.create(
+        {
+          isHost: true,
+          userId: req.params.user_id,
+          eventId: even.id
+        }
+      ).then(function (res) {
+        console.log("done");
+      });
       res.json(user);
     })
   });
