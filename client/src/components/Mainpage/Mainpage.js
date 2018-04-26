@@ -1,9 +1,8 @@
 import React, { Component } from "react";
 import Axios from "axios"
 import { Link } from "react-router-dom";
-import { Navbar, Icon, Col, Row, NavItem, CardPanel, Button } from "react-materialize"
+import { Navbar, Icon, Col, Row, NavItem, CardPanel, Button } from "react-materialize";
 import "./Mainpage.css";
-
 
 class Mainpage extends Component {
     state = {
@@ -90,7 +89,7 @@ class Mainpage extends Component {
                         if(index <6){
                         return (
                             <Link to={"/event/" + event.id}>
-                                <Col s={12} m={6}>
+                                <Col s={6}>
                                     <CardPanel className="EventCard">
                                         <img className="circle" src={event.image} />
                                         <p>{event.content}</p>
