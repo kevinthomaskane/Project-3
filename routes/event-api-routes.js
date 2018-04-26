@@ -39,7 +39,14 @@ module.exports = function (app) {
         }
       }]
     }).then(function (data) {
-      res.json(data);
+      db.Going.findAll({
+        where: {
+          eventId: req.params.id,
+          isHost: true
+        }
+      }).then(function(response){
+        res.json({attendees: data, host: response});
+      })
     });
   });
 
