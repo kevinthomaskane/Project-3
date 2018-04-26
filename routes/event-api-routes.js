@@ -14,17 +14,17 @@ const connection = mysql.createConnection({
 module.exports = function (app) {
 
   //this route is for Gus and the main page
-  app.get("/api/events", function (req, res) {
+  app.get("/api/events/:sportType", function (req, res) {
     let info = get_ip(req);
-    console.log(info);
-    let query = req.body === null ? {} : {where: req.body};
+    console.log(req.params.sportType);
+    let query = req.params.sportType === "none" ? {} : {where: { sportType: req.params.sportType}};
     db.Event.findAll(query).then(function (data) {
       res.json({data, ip: info});
     });
   });
 
   //this route is for Kevin for each specific event page
-  app.get("/api/events/:id", function (req,res) {
+  app.get("/api/event/:id", function (req,res) {
     db.Event.findOne({
       where:{
         id: req.params.id

@@ -28,7 +28,7 @@ class Event extends React.Component {
   };
 
   getInfo = (EID) => {
-    axios.get("/api/events/" + EID).then((data) => {
+    axios.get("/api/event/" + EID).then((data) => {
       let eventId = this.props.match.params.id;
       axios.get("/api/chat/" + EID).then((response) => {
         this.setState({messages: response.data, currentEvent: data.data, date: data.data.date.split("T")[0]});
