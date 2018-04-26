@@ -15,11 +15,7 @@ class App extends Component {
     return (
       <Router>
     <div>
-<<<<<<< HEAD
       <Header/>
-=======
-      <Header /> 
->>>>>>> CssMaps
       <Switch>
         <Route exact path="/" component={mainpage} />
         <Route exact path="/create" component={createEvent} />
