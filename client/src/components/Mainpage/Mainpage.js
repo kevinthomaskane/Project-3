@@ -73,6 +73,20 @@ class Mainpage extends Component {
                 <Button onClick={()=>this.toggleFiltered("Frisbee")}>Frisbee</Button>
                 <Button onClick={()=>this.toggleFiltered("Basketball")}>Basketball</Button>
                 <Button onClick={()=>this.toggleFiltered("Soccer")}>Soccer</Button>
+        <Row>
+             <Col s={3} >
+                <Button className="EventButton" onClick={this.toggleFiltered}>Flag Football</Button>
+             </Col>
+             <Col s={3} >
+                <Button className="EventButton" onClick={this.toggleFiltered}>Frisbee</Button>
+             </Col>
+             <Col s={3} >
+                <Button className="EventButton" onClick={this.toggleFiltered}>Basketball</Button>
+             </Col>
+             <Col s={3} >
+                <Button className="EventButton" onClick={this.toggleFiltered}>Soccer</Button>
+             </Col>
+        </Row>
 
                 <Row>
                     {this.state.clicked === false ? this.state.events.map(function (event, index) {

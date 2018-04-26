@@ -6,6 +6,7 @@ import mainpage from "./components/Mainpage";
 import Header from "./components/Header";
 import MapContainer from "./components/MapContainer";
 import createEvent from "./components/CreateEvent";
+import LocationSearchInput from "./components/LocationSearchInput";
 
 
 class App extends Component {
@@ -22,6 +23,8 @@ class App extends Component {
         <Route exact path="/event/:id" component={Even} />
         <Route exact path="/map" component={MapContainer} />
         {/* <Route component={NoMatch} /> */}
+        <Route exact path="/search" component={LocationSearchInput} />
+
       </Switch>
     </div>
   </Router>
