@@ -5,7 +5,7 @@ import { Navbar, Icon, Col, Row, NavItem, CardPanel, Button } from "react-materi
 
 class Mainpage extends Component {
     state = {
-        events: [{ id: 1, content: "event 1", image: "random.com" }, { id: 1, content: "event 2", image: "random.com" }, { id: 1, content: "event 3", image: "random.com" }],
+        events: [ { id: 1, content: "event 1", image: "random.com" }],
         searching: false,
         searchterm: "",
         filtered: [],
@@ -16,7 +16,7 @@ class Mainpage extends Component {
     componentDidMount() {
         Axios.get("/api/events")
             .then(res =>
-                this.setState({ events: [{ id: 1, content: "event 1", image: "random.com" }] })
+                this.setState({ events: [] })
             )
             .catch(err => console.log(err));
 
@@ -51,29 +51,32 @@ class Mainpage extends Component {
         })
     }
 
-    toggleFiltered = () => {
+    toggleFiltered = (Sports) => {
         this.state.filtered ? this.setState({
             filtered: false
         }) : this.setState({
             filtered: true
         })
+    //     after Axios request you would want to set state of events to the results of the request
     }
 
     render() {
         return (
             <div>
-                <Navbar brand='logo' right>
+                {/* <Navbar brand='logo' right>
                     {this.state.searching ? <form onSubmit={this.handleSubmitChange} > <input onChange={this.handleInputChange} id="searchbox" name="searchterm" type="text"></input></form> : ""}
                     <NavItem onClick={this.togglesearch}><Icon>search</Icon></NavItem>
-                </Navbar>
+                </Navbar> */}
 
-                <Button onClick={this.toggleFiltered}>Flag Football</Button>
-                <Button onClick={this.toggleFiltered}>Frisbee</Button>
-                <Button onClick={this.toggleFiltered}>Basketball</Button>
-                <Button onClick={this.toggleFiltered}>Soccer</Button>
+
+                <Button onClick={()=>this.toggleFiltered("Flag Football")}>Flag Football</Button>
+                <Button onClick={()=>this.toggleFiltered("Frisbee")}>Frisbee</Button>
+                <Button onClick={()=>this.toggleFiltered("Basketball")}>Basketball</Button>
+                <Button onClick={()=>this.toggleFiltered("Soccer")}>Soccer</Button>
 
                 <Row>
-                    {this.state.clicked === false ? this.state.events.map(function (event) {
+                    {this.state.clicked === false ? this.state.events.map(function (event, index) {
+                        if(index <6){
                         return (
                             <Link to={"/event/" + event.id}>
                                 <Col s={12} m={6}>
@@ -83,22 +86,10 @@ class Mainpage extends Component {
                                     </CardPanel>
                                 </Col>
                             </Link>
-                        )
+                        )}
                     }) : ""}
                 </Row>
 
-                {/* <Row>
-                    {this.state.toggleFiltered === false ? this.state.events.map(function (event) {
-                        return (
-                            <Link to={"/event/" + event.id}>
-                                <Button onClick={this.toggleFiltered}>Flag Football</Button>
-                                <Button onClick={this.toggleFiltered}>Frisbee</Button>
-                                <Button onClick={this.toggleFiltered}>Basketball</Button>
-                                <Button onClick={this.toggleFiltered}>Soccer</Button>
-                            </Link>
-                        )
-                    }) : ""}
-                </Row> */}
             </div>
         )
     }
