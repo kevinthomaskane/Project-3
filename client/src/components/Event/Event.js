@@ -46,7 +46,7 @@ class Event extends React.Component {
 
   joinEvent = (EID) => {
     let userId = localStorage.getItem("user_id");
-    axios.post("/api/join/" + EID, {userId: userId}).then((response) => {
+    axios.post("/api/addHost/" + EID, {userId: userId}).then((response) => {
       let attendees = this.state.attendees;
       attendees.push(response.data.username);
       this.setState({attendees: attendees})
@@ -73,7 +73,7 @@ class Event extends React.Component {
   }
 
   render(){
-    
+
     return (
     <div>
       <div className="container">
