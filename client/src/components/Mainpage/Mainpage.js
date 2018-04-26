@@ -62,15 +62,24 @@ class Mainpage extends Component {
     render() {
         return (
             <div>
-                <Navbar brand='logo' right>
+                {/* <Navbar brand='logo' right>
                     {this.state.searching ? <form onSubmit={this.handleSubmitChange} > <input onChange={this.handleInputChange} id="searchbox" name="searchterm" type="text"></input></form> : ""}
                     <NavItem onClick={this.togglesearch}><Icon>search</Icon></NavItem>
-                </Navbar>
-
-                <Button onClick={this.toggleFiltered}>Flag Football</Button>
-                <Button onClick={this.toggleFiltered}>Frisbee</Button>
-                <Button onClick={this.toggleFiltered}>Basketball</Button>
-                <Button onClick={this.toggleFiltered}>Soccer</Button>
+                </Navbar> */}
+        <Row>
+             <Col s={3} >
+                <Button className="EventButton" onClick={this.toggleFiltered}>Flag Football</Button>
+             </Col>
+             <Col s={3} >
+                <Button className="EventButton" onClick={this.toggleFiltered}>Frisbee</Button>
+             </Col>
+             <Col s={3} >
+                <Button className="EventButton" onClick={this.toggleFiltered}>Basketball</Button>
+             </Col>
+             <Col s={3} >
+                <Button className="EventButton" onClick={this.toggleFiltered}>Soccer</Button>
+             </Col>
+        </Row>
 
                 <Row>
                     {this.state.clicked === false ? this.state.events.map(function (event) {
