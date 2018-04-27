@@ -5,11 +5,9 @@ class ProfilePage extends React.Component{
 
 
     state = {
-        Firstname:"",
-        LastName:"",
-        Password:"",
-        UserName:"",
-        Email:""
+       name:"",
+       username:"",
+       password:"",
       };
 
       
@@ -17,54 +15,41 @@ class ProfilePage extends React.Component{
         // make get request to get user info and update
         // get id from local sotrage
        // let id = this.props.match.params.id
-            axios.update("/userUpdate/"+id)
+            axios.update("/userUpdate/" )
             .then((data)=>{
                 this.setState({
-                    Firstname:data.Firstname,
-                    LastName:data.LastName,
-                    UserName:data.UserName,
-                    Email:data.Email
+                    name:data.name,
+                    username:data.username,
+                    password:data.password,
+                
                 });
             });
     };
 
-    handleFirstNameInputChange = (event) =>{
+    handleNameInputChange = (event) =>{
       this.setState({
-        Firstname:event.target.value
-      })
-    };
-
-    handleLastNameInputChange = (event) =>{
-      this.setState({
-        LastName:event.target.value
-      })
-    };
-
-    handlePasswordInputChange = (event) =>{
-      this.setState({
-        Password:event.target.value
-      })
-    };
-
-    handleEmailInputChange = (event) =>{
-      this.setState({
-        Email:event.target.value
+        name:event.target.value
       })
     };
 
     handleUserNameInputChange = (event) =>{
       this.setState({
-        UserName:event.target.value
+        username:event.target.value
       })
-    }
+    };
+
+    handlePasswordInputChange = (event) =>{
+      this.setState({
+        password:event.target.value
+      })
+    };
 
     handleInputSubmit = (event) =>{
       event.preventDefault()
         var data={
-          Firstname:this.state.Firstname,
-          LastName:this.state.LastName,
-          Password:this.state.Password,
-          Email:this.state.Email
+          name:this.state.name,
+          username:this.state.username,
+          password:this.state.password,
         };
         axios({
             method:"PUT",
@@ -84,20 +69,19 @@ class ProfilePage extends React.Component{
                 <form className="col s12">
                     <div className="row">
                         <div className="input-field col s6">
-                            <input onChange={this.handleUserNameInputChange} placeholder="Username" id="Username" value={this.state.UserName} type="text" className="validate" />
+                            <input onChange={this.handleNameInputChange} placeholder="Username" id="name" value={this.state.name} type="text" className="validate" />
                         </div>
                     </div>
                     <div className="row">
                         <div className="input-field col s12">
-                            <input onChange={this.handleEmailInputChange} placeholder="Email" id="email" value={this.state.Email} type="email" className="validate" />
+                            <input onChange={this.handleUserNameInputChange} placeholder="Email" id="username" value={this.state.username} type="text" className="validate" />
                         </div>
                     </div>
                     <div className="row">
                         <div className="input-field col s6">
-                            <input onChange={this.handleFirstNameInputChange} placeholder="First Name" id="first_name" value={this.state.Firstname} type="text" className="validate" />
+                            <input onChange={this.handlePasswordInputChange} placeholder="First Name" id="password" value={this.state.password} type="text" className="validate" />
                         </div>
                         <div className="input-field col s6">
-                            <input onChange={this.handleLastNameInputChange} placeholder="Last Name" id="last_name" value={this.state.LastName} type="text" className="validate" />
                         </div>
                     </div>
                     <form id="uploadImg" action="/api/upload" method="post" enctype="multipart/form-data">

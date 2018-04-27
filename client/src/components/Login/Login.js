@@ -16,7 +16,7 @@ class Login extends React.Component {
   };
 
   handleSubmitForm = (event) => {
- 
+    console.log("check")
     var t = "t"+ Math.random();
     var data = {
       username: this.state.username,
