@@ -21,7 +21,8 @@ class Event extends React.Component {
     message: "",
     hosts: [],
     messages: [],
-    attendees: []
+    attendees: [],
+    allUsers: []
   }
 
   componentDidMount = () => {
@@ -32,12 +33,12 @@ class Event extends React.Component {
 
   getInfo = (EID) => {
     axios.get("/api/event/" + EID).then((data) => {
-      console.log("data from get info", data)
       let eventId = this.props.match.params.id;
       axios.get("/api/chat/" + EID).then((response) => {
-        this.setState({messages: response.data, attendees: data.data.attendees.Users, currentEvent: data.data.attendees, date: data.data.attendees.date.split("T")[0], hosts: data.data.host});
+        axios.get("/api/allUsers").then((third)=>{
+          this.setState({messages: response.data, attendees: data.data.attendees.Users, currentEvent: data.data.attendees, date: data.data.attendees.date.split("T")[0], hosts: data.data.host, allUsers: third.data});
+        })
       })
-      console.log(this.state.attendees)
     });
   };
 
@@ -52,10 +53,7 @@ class Event extends React.Component {
         }
       }
     }
-    console.log("hosts", hostArray)
-    console.log("attendees", userArray)
     return (hosts.map((element) =>{
-      console.log(element)
       return (
       <div>
         <img id="hostImage" src={element.image === null ? "https://www.vccircle.com/wp-content/uploads/2017/03/default-profile.png" : element.image} /> 
@@ -70,8 +68,6 @@ class Event extends React.Component {
     let userArray = [];
     userArray.concat(this.state.attendees);
     let hostArray = this.state.hosts
-    console.log("userArray", userArray)
-    console.log("hostArray", hostArray)
     for (let i = 0; i < userArray.length; i++){
       for (let j = 0; j < hostArray.length; j++){
         if (userArray[i].id === hostArray[j].userId){
@@ -119,12 +115,8 @@ class Event extends React.Component {
       let messages = this.state.messages;
       let blank = "";
       this.state.message.length > 0 ? (messages.push(response.data), console.log("greater than 0"), this.setState({messages: messages, message: blank})): console.log("can't send blank message");
-    })
+    });
   };
-
-  getAllUsers = () => {
-    
-  }
 
   checkHost = () => {
     let user_id = localStorage.getItem("user_id")
@@ -144,10 +136,24 @@ class Event extends React.Component {
     } else {
       return (
         <Modal trigger={<button>Invite another host</button>}>
-        
+        {this.state.allUsers.map((element) =>{
+          console.log("element", element)
+          return (
+            <h5 id={element.id}>{element.username} <button onClick={() => {
+              this.inviteHost(this.props.match.params.id, element.id)
+            }}>send invitation</button></h5>
+          )
+        })}
         </Modal>
-      )
-    }
+      );
+    };
+  };
+
+  inviteHost = (EID, userId) =>{
+    console.log("inside of add host")
+    axios.post("/api/addHost/" + EID, {userId: userId}).then((response) => {
+      console.log("response from invite host request", response)
+    })
   }
 
   getMap = () => {

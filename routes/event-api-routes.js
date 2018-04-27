@@ -97,8 +97,8 @@ module.exports = function (app) {
       db.Going.create(
         {
           isHost: true,
-          userId: req.params.user_id,
-          eventId: even.id
+          userId: req.body.userId,
+          eventId: req.params.event_id
         }
       ).then(function (res) {
         console.log("done");
