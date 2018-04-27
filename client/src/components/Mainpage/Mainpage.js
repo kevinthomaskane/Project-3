@@ -94,7 +94,7 @@ class Mainpage extends Component {
                 <Button className="EventButton needLeft" onClick={()=>this.toggleFiltered("Soccer")}><img className="icon" src={"../images/soccer.png"}/>Soccer</Button>
                 </Col>
                 <Col s={2.4} >
-                <Button className="EventButton needLeft" onClick={()=>this.toggleFiltered("Soccer")}>All</Button>
+                <Button className="EventButton needLeft" onClick={()=>this.toggleFiltered("All")}>All</Button>
                 </Col>
                 </Row>
 
@@ -112,10 +112,6 @@ class Mainpage extends Component {
                             </Link>
                         )}
                     }) : ""}
-                    <Col s={6}>
-                    <MapContainer />
-                    </Col>
-
         <Col s={6}>
           <MapContainer isEvent={false} events={this.state.events} currentLocation={this.state.currentLocation}/>
         </Col>
