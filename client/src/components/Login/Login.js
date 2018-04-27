@@ -16,7 +16,7 @@ class Login extends React.Component {
   };
 
   handleSubmitForm = (event) => {
-    console.log("check")
+     
     var t = "t"+ Math.random();
     var data = {
       username: this.state.username,
@@ -25,9 +25,15 @@ class Login extends React.Component {
     };
     axios({method: "POST", url: "/api/login", data: data})
     .then((res) => {
+
       console.log(res);
       localStorage.setItem("user_id", res.data.id);
       localStorage.setItem("username", res.data.username);
+
+ 
+        this.props.signin()
+      
+
       this.setState({
         username: "",
         password: ""
