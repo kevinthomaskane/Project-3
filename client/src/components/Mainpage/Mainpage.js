@@ -2,13 +2,14 @@ import React, {Component} from "react";
 import Axios from "axios"
 import {Link} from "react-router-dom";
 import "./Mainpage.css";
+import { Navbar, Icon, Col, Row, NavItem, CardPanel, Button, MediaBox, Slider, Slide, Parallax } from "react-materialize";
+import ParallaxSlider from "../ParallaxSlider";
 import MapContainer from "../MapContainer";
 const style = {
   width: '50%',
   height: '50%'
 };
-import { Navbar, Icon, Col, Row, NavItem, CardPanel, Button, MediaBox, Slider, Slide, Parallax } from "react-materialize";
-import ParallaxSlider from "../ParallaxSlider";
+
 
 class Mainpage extends Component {
   state = {
@@ -113,7 +114,7 @@ class Mainpage extends Component {
                     </Col>
 
         <Col s={6}>
-          <MapContainer events={this.state.events} currentLocation={this.state.currentLocation}/>
+          <MapContainer isEvent={false} events={this.state.events} currentLocation={this.state.currentLocation}/>
         </Col>
       </Row>
 

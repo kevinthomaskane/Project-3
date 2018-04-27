@@ -1,7 +1,6 @@
 import {Map, InfoWindow, Marker, GoogleApiWrapper} from 'google-maps-react';
 import React, { Component } from 'react';
 import axios from "axios";
-// import mapTest from "../../mapTest.json";
 const apiKey = "50074c58887a47f3330613f488693773"
 
 export class MapContainer extends Component {
@@ -12,7 +11,7 @@ export class MapContainer extends Component {
   };
 
   componentWillMount () {
-    if(this.props.events.lat !== undefined){
+    if(this.props.events !== undefined){
       this.setState({
         currentLocation:{
           lat: this.props.events.lat,
@@ -35,7 +34,7 @@ export class MapContainer extends Component {
             title={this.props.events.name}
             position={{lat:this.props.events.lat, lng:this.props.events.lng}}
               />
-          :this.props.events.map((even) => {
+          :this.props.events === undefined ? null:this.props.events.map((even) => {
           return (
             <Marker
               key={even.id}
