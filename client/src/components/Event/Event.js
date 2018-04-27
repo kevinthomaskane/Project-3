@@ -13,6 +13,8 @@ const styles = {
   }
 }
 
+let win1251decoder = new TextDecoder('windows-1251');
+
 class Event extends React.Component {
 
   state = {
@@ -56,7 +58,7 @@ class Event extends React.Component {
     return (hosts.map((element) =>{
       return (
       <div>
-        <img id="hostImage" src={element.image === null ? "https://www.vccircle.com/wp-content/uploads/2017/03/default-profile.png" : `data:${element.image.type};base64,${element.image.data.toString("base64")}`} />
+        <img id="hostImage" src={element.image === null ? "https://www.vccircle.com/wp-content/uploads/2017/03/default-profile.png" : `data:${element.image.type};base64,${element.image.data}`} />
         <span id="hostName">{element.username} (Host)</span>
       </div>
       )
