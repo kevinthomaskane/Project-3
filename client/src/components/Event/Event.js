@@ -1,4 +1,5 @@
 import React from "react";
+import {Modal} from "react-materialize"
 import axios from "axios";
 import Header from "../Header";
 import {Link} from "react-router-dom";
@@ -31,11 +32,12 @@ class Event extends React.Component {
 
   getInfo = (EID) => {
     axios.get("/api/event/" + EID).then((data) => {
+      console.log("data from get info", data)
       let eventId = this.props.match.params.id;
       axios.get("/api/chat/" + EID).then((response) => {
         this.setState({messages: response.data, attendees: data.data.attendees.Users, currentEvent: data.data.attendees, date: data.data.attendees.date.split("T")[0], hosts: data.data.host});
-        console.log(this.state.attendees)
       })
+      console.log(this.state.attendees)
     });
   };
 
@@ -46,12 +48,12 @@ class Event extends React.Component {
     for (let i = 0; i < userArray.length; i++){
       for (let j = 0; j < hostArray.length; j++){
         if (userArray[i].id === hostArray[j].userId){
-          console.log(userArray[i])
           hosts.push(userArray[i]);
         }
       }
     }
-    console.log("hosts", hosts)
+    console.log("hosts", hostArray)
+    console.log("attendees", userArray)
     return (hosts.map((element) =>{
       console.log(element)
       return (
@@ -65,16 +67,14 @@ class Event extends React.Component {
   }
 
   filterHost = () => {
-    let userArray =  this.state.attendees
+    let userArray = [];
+    userArray.concat(this.state.attendees);
     let hostArray = this.state.hosts
-    let tmp;
     console.log("userArray", userArray)
     console.log("hostArray", hostArray)
     for (let i = 0; i < userArray.length; i++){
       for (let j = 0; j < hostArray.length; j++){
         if (userArray[i].id === hostArray[j].userId){
-          console.log("in if", i)
-          tmp = i
           userArray.splice(i, 1);
         }
       }
@@ -94,7 +94,6 @@ class Event extends React.Component {
   getMessages = (EID) => {
     axios.get("/api/chat/" + EID).then((response) => {
       let eventId = this.props.match.params.id;
-      console.log("this is chat response", response);
       this.setState({messages: response.data.content});
     })
   };
@@ -102,7 +101,6 @@ class Event extends React.Component {
   joinEvent = (EID) => {
     let userId = localStorage.getItem("user_id");
     axios.post("/api/join/" + EID, {userId: userId}).then((response) => {
-      console.log(response)
       let attendees = this.state.attendees;
       attendees.push(response.data);
       this.setState({attendees: attendees})
@@ -124,6 +122,34 @@ class Event extends React.Component {
     })
   };
 
+  getAllUsers = () => {
+    
+  }
+
+  checkHost = () => {
+    let user_id = localStorage.getItem("user_id")
+    let hostArray = this.state.hosts
+    let found = false;
+    for (let i = 0; i < hostArray.length; i++){
+      if (hostArray[i].userId === +user_id){
+        found = true
+      }
+    }
+    if (!found){
+      return (
+        <button onClick={() => {
+          this.joinEvent(this.props.match.params.id)
+        }}id="join">Join this event</button>
+      )
+    } else {
+      return (
+        <Modal trigger={<button>Invite another host</button>}>
+        
+        </Modal>
+      )
+    }
+  }
+
   getMap = () => {
 
   }
@@ -139,9 +165,7 @@ class Event extends React.Component {
             <p><i class="material-icons">date_range</i>{this.state.date}</p><br/>
             <p id="address"><i class="material-icons">add_location</i>{this.state.currentEvent.address} </p>
             {this.getHostInfo()}<br/>
-            <button onClick={() => {
-              this.joinEvent(this.props.match.params.id)
-            }}id="join">Join this event</button>
+            {this.checkHost()}
           </div>
           <div id="mapLocation" className="col m4">
             <div id="map">
@@ -171,8 +195,6 @@ class Event extends React.Component {
                       <li key={index}>
                       <div className="messageBody">
                         <img className="messageImg" src={this.state.attendees.filter((item) => {
-                          console.log("message", message)
-                          console.log(this.state.attendees)
                           return item.username === message.username
                         }).map(function(element){
                           console.log("image", element.image)

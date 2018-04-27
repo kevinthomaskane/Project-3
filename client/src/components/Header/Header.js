@@ -16,7 +16,7 @@ function signOut (){
   };
 };
 
-  if (username === null) {
+  if (username !== null) {
     return (
       <div>
           <div className="row header">

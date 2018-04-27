@@ -56,4 +56,11 @@ module.exports = function (app) {
       res.json(data);
     });
   });
+
+  app.get("/api/allUsers", function(req, res) {
+    db.User.findAll({
+    }).then(function(data) {
+      res.json(data);
+    });
+  });
 };
