@@ -1,9 +1,22 @@
 .Slider {
-  height: 100%;
-  width: 100%;
+  height: 90vh !important;
+  width: auto !important;
+  margin-top: -20px !important;
+  margin-right: -20px !important;
+  margin-left: -20px !important;
+
 }
 
-Slide.title{
+.slider .slides {
+  height: 90vh !important;
+}
+
+h3 {
     font-family: 'Graduate', cursive;
-    color: #B4302B;
+    color: #E8E8E1;
+    float: left;
+}
+
+.slides li img {
+  background-attachment: fixed;
 }
