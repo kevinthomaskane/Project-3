@@ -35,7 +35,8 @@ export class MapContainer extends Component {
             title={this.props.events.name}
             position={{lat:this.props.events.lat, lng:this.props.events.lng}}
               />
-          :this.props.events.map((even) => {
+            :this.props.events === undefined ? null:
+             this.props.events.map((even) => {
           return (
             <Marker
               key={even.id}
