@@ -23,7 +23,7 @@ export class ParallaxSlider extends Component {
                 </Slide>
                 <Slide
                     src="../../images/flag-football-background.jpg"
-                    title="Squad-Up and play with your friends"
+                    title="Or Find a Game Anywhere Anytime"
                     placement="left">
                 </Slide>
                 <Slide
@@ -33,7 +33,7 @@ export class ParallaxSlider extends Component {
                 </Slide>
                 <Slide
                     src="../../images/soccer-background.jpg"
-                    title="Squad-Up and play with your friends"
+                    title="Or Find a Game Anywhere Anytime"
                     placement="right">
                 </Slide>
             </Slider>
