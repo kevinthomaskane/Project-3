@@ -28,6 +28,7 @@
     "mysql2": "^1.5.3",
     "promise": "^8.0.1",
     "react-materialize": "^2.2.0",
+    "react-places-autocomplete": "^7.1.1",
     "sequelize": "^4.37.6"
   },
   "repository": "git@github.com:bijansemnani/Project-3.git"

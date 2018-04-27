@@ -26,9 +26,15 @@ class Login extends React.Component {
     };
     axios({method: "POST", url: "/api/login", data: data})
     .then((res) => {
+
       console.log(res);
       localStorage.setItem("user_id", res.data.id);
       localStorage.setItem("username", res.data.username);
+
+ 
+        this.props.signin()
+      
+
       this.setState({
         username: "",
         password: ""
@@ -48,7 +54,6 @@ class Login extends React.Component {
                     <input onChange={this.handleInputPassword} placeholder="Password "id="password" value={this.state.password} type="text" className="validate"/>
                 </div>
             </div>
-
             <button onClick={this.handleSubmitForm} className="btn btn-success" type="submit" value="login!">Log In</button>
 
             </form>
