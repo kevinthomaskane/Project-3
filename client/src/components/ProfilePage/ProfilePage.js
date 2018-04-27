@@ -12,11 +12,11 @@ class ProfilePage extends React.Component{
         Email:""
       };
 
-      
+
     componentDidMount(){
         // make get request to get user info and update
         // get id from local sotrage
-       let id = this.props.match.params.id
+        let id = this.props.match.params.id
             axios.update("/userUpdate/"+id)
             .then((data)=>{
                 this.setState({
@@ -80,7 +80,7 @@ class ProfilePage extends React.Component{
     render(){
         return(
             <div id="SignUpForm" className="row">
-   
+
                 <form className="col s12">
                     <div className="row">
                         <div className="input-field col s6">
@@ -113,4 +113,3 @@ class ProfilePage extends React.Component{
 };
 
 export default ProfilePage;
-

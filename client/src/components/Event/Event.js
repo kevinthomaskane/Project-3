@@ -56,8 +56,8 @@ class Event extends React.Component {
       console.log(element)
       return (
       <div>
-        <img src={element.image} /> 
-        <h5>{element.username}</h5>
+        <img id="hostImage" src={element.image === null ? "https://www.vccircle.com/wp-content/uploads/2017/03/default-profile.png" : element.image} /> 
+        <span id="hostName">{element.username} (Host)</span>
       </div>
       )
     })
@@ -135,16 +135,17 @@ class Event extends React.Component {
       <div className="container">
         <div className="row">
           <div className="col m8" id="topSection">
-            <h2>{this.state.currentEvent.name}</h2><br/>
-            <h5>{this.state.date} {this.state.currentEvent.address} </h5>
+            <h2>{this.state.currentEvent.name}</h2>
+            <p><i class="material-icons">date_range</i>{this.state.date}</p><br/>
+            <p id="address"><i class="material-icons">add_location</i>{this.state.currentEvent.address} </p>
             {this.getHostInfo()}<br/>
             <button onClick={() => {
               this.joinEvent(this.props.match.params.id)
             }}id="join">Join this event</button>
           </div>
-          <div className="col m4">
+          <div id="mapLocation" className="col m4">
             <div id="map">
-            <MapContainer eventLocation={this.state.currentEvent} style={styles.map}/>
+            <MapContainer isEvent={true} events={this.state.currentEvent}  style={styles.map}/>
             </div>
           </div>
         </div>  
