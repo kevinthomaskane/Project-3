@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import Axios from "axios"
 import { Link } from "react-router-dom";
-import { Navbar, Icon, Col, Row, NavItem, CardPanel, Button } from "react-materialize";
+import { Navbar, Icon, Col, Row, NavItem, CardPanel, Button, MediaBox, Slider, Slide, Parallax } from "react-materialize";
 import "./Mainpage.css";
 import MapContainer from "../MapContainer";
-
+import ParallaxSlider from "../ParallaxSlider";
 
 class Mainpage extends Component {
     state = {
@@ -66,6 +66,12 @@ class Mainpage extends Component {
     render() {
         return (
             <div>
+                
+                <Row>
+                    <Col s={12}>
+                        <ParallaxSlider />
+                    </Col>
+                </Row>
                 {/* <Navbar brand='logo' right>
                     {this.state.searching ? <form onSubmit={this.handleSubmitChange} > <input onChange={this.handleInputChange} id="searchbox" name="searchterm" type="text"></input></form> : ""}
                     <NavItem onClick={this.togglesearch}><Icon>search</Icon></NavItem>
