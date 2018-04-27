@@ -16,7 +16,6 @@ export class ParallaxSlider extends Component {
     render() {
         return (
             <Slider className="Slider">
-            
                 <Slide
                     src="../../images/basketball-background.jpg"
                     title="Squad-Up and play with your friends"
