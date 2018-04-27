@@ -11,16 +11,18 @@ class SignUp extends React.Component {
     address: "",
     city: "",
     state: "",
-    zip: ""
+    zip: "",
 
   };
 
   handleInput = (event) => {
     let name = event.target.name;
+
     this.setState({[name]: event.target.value})
   }
 
   handleInputSubmit = (event) => {
+    console.log("here");
     event.preventDefault();
     let lat;
     let lng;
@@ -33,7 +35,8 @@ class SignUp extends React.Component {
         lat = 0;
         lng = 0;
       }
-      var data = {
+
+      let data = {
         name: `${this.state.first_name} ${this.state.last_name}`,
         username: this.state.username,
         password: this.state.password,
@@ -42,7 +45,7 @@ class SignUp extends React.Component {
         lon: lng
       };
 
-      axios({method: "POST", url: "/api/newUser", data: data}).then((res) => {
+      axios.post("/api/newUser", data).then((res) => {
         localStorage.setItem("user_id", res.data.id);
         localStorage.setItem("username", res.data.username);
         this.setState({
@@ -53,7 +56,7 @@ class SignUp extends React.Component {
           address: "",
           city: "",
           state: "",
-          zip: ""
+          zip: "",
         });
       }).catch((error) => {});
     });
@@ -101,10 +104,6 @@ class SignUp extends React.Component {
             <input type="text" onChange={this.handleInput} placeholder="Zipcode" name="zip" value={this.state.zip} className="validate"/>
           </div>
         </div>
-
-          <p id="UploadText">Upload Your Image</p>
-          <input type="file" name="uploadFile"/>
-          <input id="hiddenInput" type="hidden" value="32" name="userId"/>
 
         <button onClick={this.handleInputSubmit} className="btn btn-success" type="submit" value="Submit!"></button>
       </form>

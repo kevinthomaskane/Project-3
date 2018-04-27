@@ -16,6 +16,7 @@ class Login extends React.Component {
   };
 
   handleSubmitForm = (event) => {
+    event.preventDefault();
     console.log("here");
     var t = "t"+ Math.random();
     var data = {
@@ -49,7 +50,7 @@ class Login extends React.Component {
             </div>
 
             <button onClick={this.handleSubmitForm} className="btn btn-success" type="submit" value="login!">Log In</button>
-            
+
             </form>
         </div>
    )
