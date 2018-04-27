@@ -28,7 +28,7 @@ class Event extends React.Component {
   componentDidMount = () => {
     let eventId = this.props.match.params.id;
     this.getInfo(eventId);
-   
+
   };
 
   getInfo = (EID) => {
@@ -56,7 +56,7 @@ class Event extends React.Component {
     return (hosts.map((element) =>{
       return (
       <div>
-        <img id="hostImage" src={element.image === null ? "https://www.vccircle.com/wp-content/uploads/2017/03/default-profile.png" : element.image} /> 
+        <img id="hostImage" src={element.image === null ? "https://www.vccircle.com/wp-content/uploads/2017/03/default-profile.png" : `data:${element.image.type};base64,${element.image.data.toString("base64")}`} />
         <span id="hostName">{element.username} (Host)</span>
       </div>
       )
@@ -77,9 +77,10 @@ class Event extends React.Component {
     }
     return (
     userArray.map(function(person, index){
+      console.log(person.image);
       return (
         <div key={index} className="attendee">
-          <img className="image" src={person.image === null ? "https://www.vccircle.com/wp-content/uploads/2017/03/default-profile.png" : person.image} />
+          <img className="image" src={person.image === null ? "https://www.vccircle.com/wp-content/uploads/2017/03/default-profile.png" : `data:${person.image.type};base64,${person.image.data.toString("base64")}`} />
           <Link to={"/profile/" + person.userId}><p>{person.username}</p></Link>
         </div>
             )
@@ -178,7 +179,7 @@ class Event extends React.Component {
             <MapContainer isEvent={true} events={this.state.currentEvent}  style={styles.map}/>
             </div>
           </div>
-        </div>  
+        </div>
         <div className="row">
           <h5>About this event</h5>
             <div class="col m12">
@@ -204,7 +205,7 @@ class Event extends React.Component {
                           return item.username === message.username
                         }).map(function(element){
                           console.log("image", element.image)
-                          return (element.image === null ? 
+                          return (element.image === null ?
                           "https://www.vccircle.com/wp-content/uploads/2017/03/default-profile.png" : element.image)
                         })}/> <span className="usernameMessage">{message.username}</span><br/>
                         <span className="message">{message.content}</span>
