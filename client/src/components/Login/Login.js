@@ -16,7 +16,7 @@ class Login extends React.Component {
   };
 
   handleSubmitForm = (event) => {
- 
+    console.log("here");
     var t = "t"+ Math.random();
     var data = {
       username: this.state.username,
@@ -47,15 +47,9 @@ class Login extends React.Component {
                     <input onChange={this.handleInputPassword} placeholder="Password "id="password" value={this.state.password} type="text" className="validate"/>
                 </div>
             </div>
-            <form action="#" id="CheckboxInput" className="col s12 m12 l12">
-                <p id="CheckboxInput">
-                <label>
-                    <input type="checkbox" />
-                    <span>Remember me</span>
-                </label>
-                </p>
+
             <button onClick={this.handleSubmitForm} className="btn btn-success" type="submit" value="login!">Log In</button>
-            </form>
+            
             </form>
         </div>
    )
