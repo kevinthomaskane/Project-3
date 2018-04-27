@@ -50,8 +50,8 @@ class Login extends React.Component {
             <form action="#" id="CheckboxInput" className="col s12 m12 l12">
                 <p id="CheckboxInput">
                 <label>
-                    <input type="checkbox" />
-                    <span>Remember me</span>
+                    <input id="check" type="checkbox" />
+                    <span id="span1">Remember me</span>
                 </label>
                 </p>
             <button onClick={this.handleSubmitForm} className="btn btn-success" type="submit" value="login!">Log In</button>
