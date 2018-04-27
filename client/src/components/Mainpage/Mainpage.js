@@ -11,6 +11,7 @@ import {
   Button
 } from "react-materialize";
 import "./Mainpage.css";
+import ParallaxSlider from "../ParallaxSlider";
 import MapContainer from "../MapContainer";
 
 const style = {
@@ -76,18 +77,26 @@ class Mainpage extends Component {
   render() {
     return (
     <div id="content">
+     <Row>
+          <Col s={12}>
+            <ParallaxSlider />
+          </Col>
+        </Row>
       <Row>
         <Col s={3}>
-          <Button className="EventButton" onClick={() => this.getFiltered("football")}><img className="icon" src={"../images/football.png"}/>Flag Football</Button>
+          <Button className="EventButton needRight" onClick={() => this.getFiltered("football")}><img className="icon" src={"../images/football.png"}/>Flag Football</Button>
         </Col>
-        <Col s={3}>
-          <Button className="EventButton" onClick={() => this.getFiltered("frisbee")}><img className="icon" src={"../images/fris.png"}/>Frisbee</Button>
+        <Col s={2.4}>
+          <Button className="EventButton needLeft" onClick={() => this.getFiltered("frisbee")}><img className="icon" src={"../images/fris.png"}/>Frisbee</Button>
         </Col>
-        <Col s={3}>
-          <Button className="EventButton" onClick={() => this.getFiltered("basketball")}><img className="icon" src={"../images/bball.png"}/>Basketball</Button>
+        <Col s={2.4}>
+          <Button className="EventButton needLeft" onClick={() => this.getFiltered("basketball")}><img className="icon" src={"../images/bball.png"}/>Basketball</Button>
         </Col>
-        <Col s={3}>
-          <Button className="EventButton" onClick={() => this.getFiltered("soccer")}><img className="icon" src={"../images/soccer.png"}/>Soccer</Button>
+        <Col s={2.4}>
+          <Button className="EventButton needLeft" onClick={() => this.getFiltered("soccer")}><img className="icon" src={"../images/soccer.png"}/>Soccer</Button>
+        </Col>
+        <Col s={2.4}>
+          <Button className="EventButton needLeft" onClick={() => this.getFiltered("none")}><img className="icon" src={"../images/all.svg"}/>All</Button>
         </Col>
       </Row>
 
@@ -110,7 +119,6 @@ class Mainpage extends Component {
               : ""
           }
         </Col>
-
         <Col s={6}>
           <MapContainer events={this.state.events} currentLocation={this.state.currentLocation}/>
         </Col>
