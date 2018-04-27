@@ -1,0 +1,9 @@
+.Slider {
+  height: 100%;
+  width: 100%;
+}
+
+Slide.title{
+    font-family: 'Graduate', cursive;
+    color: #B4302B;
+}
