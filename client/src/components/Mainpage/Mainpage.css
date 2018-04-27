@@ -2,11 +2,18 @@ body {
     background-color: #636261;
 }
 
+.needLeft {
+    margin-left: 50px !important;
+}
+
+.needRight {
+    margin-left: -20px;
+}
+
 .EventButton {
-    width: 100% !important;
+    width: auto !important;
     background-color: #C6C7C4 !important;
     color: #B4302B !important;
-    margin-left: 0% !important;
     font-family: 'Black Ops One', cursive;
     font-size: 18px;
     height: 60px;

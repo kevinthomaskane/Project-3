@@ -80,18 +80,21 @@ class Mainpage extends Component {
                     <NavItem onClick={this.togglesearch}><Icon>search</Icon></NavItem>
                 </Navbar> */}
 
-            <Row>
+            <Row className="btnRow">
                 <Col s={3} >
-                <Button className="EventButton" onClick={()=>this.toggleFiltered("Flag Football")}><img className="icon" src={"../images/football.png"}/>Flag Football</Button>
+                <Button className="EventButton needRight" onClick={()=>this.toggleFiltered("Flag Football")}><img className="icon" src={"../images/football.png"}/>Flag Football</Button>
                 </Col>
-                <Col s={3} >
-                <Button className="EventButton" onClick={()=>this.toggleFiltered("Frisbee")}><img className="icon" src={"../images/fris.png"}/>Frisbee</Button>
+                <Col s={2.4} >
+                <Button className="EventButton needLeft" onClick={()=>this.toggleFiltered("Frisbee")}><img className="icon" src={"../images/fris.png"}/>Frisbee</Button>
                 </Col>
-                <Col s={3} >
-                <Button className="EventButton" onClick={()=>this.toggleFiltered("Basketball")}><img className="icon" src={"../images/bball.png"}/>Basketball</Button>
+                <Col s={2.4} >
+                <Button className="EventButton needLeft" onClick={()=>this.toggleFiltered("Basketball")}><img className="icon" src={"../images/bball.png"}/>Basketball</Button>
                 </Col>
-                <Col s={3} >
-                <Button className="EventButton" onClick={()=>this.toggleFiltered("Soccer")}><img className="icon" src={"../images/soccer.png"}/>Soccer</Button>
+                <Col s={2.4} >
+                <Button className="EventButton needLeft" onClick={()=>this.toggleFiltered("Soccer")}><img className="icon" src={"../images/soccer.png"}/>Soccer</Button>
+                </Col>
+                <Col s={2.4} >
+                <Button className="EventButton needLeft" onClick={()=>this.toggleFiltered("Soccer")}>All</Button>
                 </Col>
                 </Row>
 

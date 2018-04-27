@@ -1,5 +1,5 @@
 .Slider {
-  height: 90vh !important;
+  height: 75vh !important;
   width: auto !important;
   margin-top: -20px !important;
   margin-right: -20px !important;
@@ -8,7 +8,7 @@
 }
 
 .slider .slides {
-  height: 90vh !important;
+  height: 75vh !important;
 }
 
 h3 {
