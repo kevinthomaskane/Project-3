@@ -41,7 +41,7 @@ class SignUp extends React.Component {
         lat: lat,
         lon: lng
       };
-      
+
       axios({method: "POST", url: "/api/newUser", data: data}).then((res) => {
         localStorage.setItem("user_id", res.data.id);
         localStorage.setItem("username", res.data.username);
@@ -60,7 +60,7 @@ class SignUp extends React.Component {
   };
 
   render() {
-    return (<div id="SignUpForm" class="row">
+    return (<div id="SignUpForm" className="row">
       <form className="col s12">
 
         <div className="row">
@@ -101,11 +101,11 @@ class SignUp extends React.Component {
             <input type="text" onChange={this.handleInput} placeholder="Zipcode" name="zip" value={this.state.zip} className="validate"/>
           </div>
         </div>
-        <form id="uploadImg" method="post" enctype="multipart/form-data">
+
           <p id="UploadText">Upload Your Image</p>
           <input type="file" name="uploadFile"/>
           <input id="hiddenInput" type="hidden" value="32" name="userId"/>
-        </form>
+
         <button onClick={this.handleInputSubmit} className="btn btn-success" type="submit" value="Submit!"></button>
       </form>
     </div>)
