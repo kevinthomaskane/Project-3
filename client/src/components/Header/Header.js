@@ -6,17 +6,41 @@ import Login from "../Login/Login";
 import SignUp from "../SignUp/SignUp";
 var username = localStorage.getItem("username");
 
-const Header = () => {
 
-function signOut (){
-  document.getElementById('logout').onclick = function(e){
+class Header extends React.Component {
+
+  state ={
+    loggedIn:false,
+ 
+  }
+
+  componentDidMount(){
+    if(username !==null){
+    this.setState({
+      loggedIn:true
+    })
+  }
+  }
+ signIn = () =>{
+   console.log("CHECK")
+ 
+  this.setState({
+    loggedIn:true
+  })
+ 
+ }
+
+ signOut = () =>{
+  console.log("hellow")
     localStorage.removeItem("username")
     document.cookie = "token=; expires= Thu, 01 Jan 1970 00:00:00 UTC;";
-
-  };
+    this.setState({
+      loggedIn:false
+    })
 };
 
-  if (username !== null) {
+   render(){
+  if (this.state.loggedIn) {
     return (
       <div>
           <div className="row header">
@@ -27,16 +51,15 @@ function signOut (){
               <div id="dropDownMenu">
                   <div className="col m2 s2 l2"></div>
                   <Dropdown trigger={
-
                   <div class="col m1 xs1 l1"><a id="imageLink" href=""><img id="profilePic" data-toggle="modal" data-target="#imageModal" src="https://www.vccircle.com/wp-content/uploads/2017/03/default-profile.png" />
                   </a>
                   </div>
-              }>
-              <NavItem>Users: Name</NavItem>
-              <NavItem divider />
-              <NavItem>Edit profile</NavItem>
-              <Link to={"/"}> <NavItem onClick={this.signOut} >Log Out</NavItem></Link>
-              </Dropdown>
+                  }>
+                  <NavItem>Users: Name</NavItem>
+                  <NavItem divider />
+                  <NavItem>Edit profile</NavItem> 
+                  <NavItem onClick={()=>this.signOut()} >Log Out</NavItem> 
+                  </Dropdown>
               </div>
           </div>
       </div>
@@ -52,8 +75,8 @@ function signOut (){
           <div>
             <div className="col s2 col m2 col l2  ">
               <Modal
-                trigger={<a id="login" href="/login">sign-in</a>}>
-                <Login />
+                trigger={<a onClick={this.signIn}id="login" href="/login">sign-in</a>}>
+                <Login signin={this.signIn}/>
               </Modal>
             </div>
             <Modal
@@ -65,7 +88,7 @@ function signOut (){
       </div>
     )
   };
-
+}
 };
 
 export default Header;
