@@ -27,6 +27,11 @@
     margin-left: 65px;
 }
 
+#login:hover {
+    background-color: #2D3047;
+    padding: 10px;
+}
+
 #CheckboxInput{
     margin-left: 15px;
     margin-bottom: -25px;

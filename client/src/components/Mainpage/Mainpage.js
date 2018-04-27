@@ -94,7 +94,7 @@ class Mainpage extends Component {
                 <Button className="EventButton needLeft" onClick={()=>this.toggleFiltered("Soccer")}><img className="icon" src={"../images/soccer.png"}/>Soccer</Button>
                 </Col>
                 <Col s={2.4} >
-                <Button className="EventButton needLeft" onClick={()=>this.toggleFiltered("All")}>All</Button>
+                <Button className="EventButton needLeft" onClick={()=>this.toggleFiltered("All")}><img className="icon" src={"../images/all.svg"}/>All</Button>
                 </Col>
                 </Row>
 

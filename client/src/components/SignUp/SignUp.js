@@ -103,10 +103,10 @@ class SignUp extends React.Component {
         </div>
 
           <p id="UploadText">Upload Your Image</p>
-          <input type="file" name="uploadFile"/>
+          <input className="uploadImg" type="file" name="uploadFile"/>
           <input id="hiddenInput" type="hidden" value="32" name="userId"/>
 
-        <button onClick={this.handleInputSubmit} className="btn btn-success" type="submit" value="Submit!"></button>
+        <button onClick={this.handleInputSubmit} className="btn btn-success" type="submit" value="Submit!">Submit</button>
       </form>
     </div>)
 
