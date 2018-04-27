@@ -22,7 +22,7 @@ function signOut (){
           <div className="row header">
               <div className="col m5 s5 l5"></div>
               <div className="col m3 s3 l3">
-                  <a id="logo" href="/home">Squad-Up</a>
+                  <a id="logo" href="/">Squad-Up</a>
               </div>
               <div id="dropDownMenu">
                   <div className="col m2 s2 l2"></div>
@@ -34,8 +34,8 @@ function signOut (){
               }>
               <NavItem>Users: Name</NavItem>
               <NavItem divider />
-              <NavItem>Edit profile</NavItem> 
-              <Link to={"/"}> <NavItem onClick={this.signOut} >Log Out</NavItem></Link> 
+              <NavItem>Edit profile</NavItem>
+              <Link to={"/"}> <NavItem onClick={this.signOut} >Log Out</NavItem></Link>
               </Dropdown>
               </div>
           </div>
@@ -47,7 +47,7 @@ function signOut (){
         <div className="row header">
           <div className="col s5 col m5 col l5"></div>
           <div className="col s3 col m3 col l3">
-            <a id="logo" href="/home">Squad-Up</a>
+            <a id="logo" href="/">Squad-Up</a>
           </div>
           <div>
             <div className="col s2 col m2 col l2  ">
@@ -57,7 +57,7 @@ function signOut (){
               </Modal>
             </div>
             <Modal
-              trigger={<a id="signup" href="/signeup"> sign-up</a>}>
+              trigger={<a id="signup" href="/signup"> sign-up</a>}>
               <SignUp />
             </Modal>
           </div>
