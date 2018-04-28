@@ -159,10 +159,6 @@ class Event extends React.Component {
     })
   }
 
-  getMap = () => {
-
-  }
-
   render(){
 
     return (
@@ -174,7 +170,14 @@ class Event extends React.Component {
             <p><i class="material-icons">date_range</i>{this.state.date}</p><br/>
             <p id="address"><i class="material-icons">add_location</i>{this.state.currentEvent.address} </p>
             {this.getHostInfo()}<br/>
-            {this.checkHost()} <button>Invite a guest</button>
+            {this.checkHost()} 
+            <Modal trigger={<button>Invite a guest</button>}>
+            {this.state.allUsers.filter((user) => {
+              return user.username !== localStorage.getItem("username");
+            }).map((element) => {
+              return <p>{element.username} <button>Invite this user</button></p>
+            })}
+            </Modal>
           </div>
           <div id="mapLocation" className="col m4">
             <div id="map">
