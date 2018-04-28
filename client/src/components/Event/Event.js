@@ -13,6 +13,7 @@ const styles = {
   }
 }
 
+
 class Event extends React.Component {
 
   state = {
@@ -22,11 +23,12 @@ class Event extends React.Component {
     hosts: [],
     messages: [],
     attendees: [],
-    allUsers: []
+    allUsers: [],
   }
 
   componentDidMount = () => {
     let eventId = this.props.match.params.id;
+    localStorage.setItem("eventId", eventId)
     this.getInfo(eventId);
    
   };
@@ -159,6 +161,13 @@ class Event extends React.Component {
     })
   }
 
+  inviteUser = (EID, username) => {
+    console.log(EID, username);
+    axios.post("/api/invite/", {eventId: EID, username: username, userId: 1}).then((response) => {
+      console.log("response from invite route", response)
+    })
+  }
+
   render(){
 
     return (
@@ -175,7 +184,9 @@ class Event extends React.Component {
             {this.state.allUsers.filter((user) => {
               return user.username !== localStorage.getItem("username");
             }).map((element) => {
-              return <p>{element.username} <button>Invite this user</button></p>
+              return <p>{element.username} <button id={element.username} onClick={() => {
+                this.inviteUser(localStorage.getItem("eventId"), element.username)
+              }}>Invite this user</button></p>
             })}
             </Modal>
           </div>

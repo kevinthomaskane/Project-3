@@ -26,6 +26,7 @@ require("./routes/user-api-routes.js")(app);
 require("./routes/event-api-routes.js")(app);
 require("./routes/chat-api-routes.js")(app);
 require("./routes/image-api-routes.js")(app);
+require("./routes/invite-api-routes.js")(app);
 // Send every request to the React app
 // Define any API routes before this runs
 app.get("*", function(req, res) {

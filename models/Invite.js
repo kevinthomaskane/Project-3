@@ -1,7 +1,7 @@
 module.exports = function (sequelize, DataTypes) {
-  var Chat = sequelize.define("Chat", {
-    content:{
-      type: DataTypes.TEXT
+  var Invite = sequelize.define("Invite", {
+    eventId:{
+      type: DataTypes.INTEGER
     },
     username:{
       type:DataTypes.STRING,
@@ -9,15 +9,15 @@ module.exports = function (sequelize, DataTypes) {
     }
   });
 
-  Chat.associate = function (models) {
-    models.Chat.belongsTo(models.Event, {
+  Invite.associate = function (models) {
+    models.Invite.belongsTo(models.User, {
       foreignKey: {
-        name: "event_id",
+        name: "userId",
         allowNull: false
       },
       onDelete: "CASCADE"
     });
   };
 
-  return Chat;
+  return Invite;
 };
