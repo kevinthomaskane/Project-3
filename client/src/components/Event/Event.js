@@ -214,7 +214,6 @@ class Event extends React.Component {
             </div>
         </div>
         <div className="row">
-        <Invitation eventId={this.props.match.params.id}/>
           <h5>Attendees</h5><br/>
             <div class="col m12">
             {this.filterHost()}

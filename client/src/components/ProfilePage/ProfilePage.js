@@ -1,6 +1,8 @@
 import React from "react";
 import axios from "axios";
-import Header from "../Header/Header"
+import Header from "../Header/Header";
+import Invitation from "../Invitation";
+
 class ProfilePage extends React.Component{
 
 
@@ -91,6 +93,8 @@ class ProfilePage extends React.Component{
                         <input id="hiddenInput" type="hidden" value="32" name="userId" />
                     </form>
                 </form>
+
+                <Invitation />
             </div>
         )
     };

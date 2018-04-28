@@ -2,6 +2,7 @@ import React from "react";
 import axios from "axios";
 import "./ViewProfile.css";
 import Image from "../Image";
+
 import {Dropdown, Button, NavItem, Modal} from "react-materialize";
 class ViewProfile extends React.Component {
 
