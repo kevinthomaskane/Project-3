@@ -6,6 +6,7 @@ class Invitation extends React.Component {
 
   state = {
     inviteInfo: [],
+    delete: false
 
   };
 
@@ -16,19 +17,18 @@ class Invitation extends React.Component {
   getInvites = () => {
     let fullInfo = []
     axios.get("/api/invite/" + localStorage.getItem("username")).then((response) => {
-      console.log("response from getInvites route", response);
       for (let i = 0; i < response.data.length; i++){
-        fullInfo.push({eventName: response.data[i].eventName, sender: response.data[i].sender})
+        fullInfo.push({eventName: response.data[i].eventName, sender: response.data[i].sender, inviteId: response.data[i].id})
       }; 
     });
-    console.log(fullInfo)
     this.setState({inviteInfo: fullInfo})
-    
   };
 
-  acceptInvite = () => {
-    axios.post("/api/join/" + this.props.match.params.id, {userId: localStorage.getItem("user_id")}).then((response)=>{
-      
+  acceptInvite = (id) => {
+    axios.post("/api/join/" + this.props.eventId, {userId: localStorage.getItem("user_id")}).then((response)=>{
+      axios.delete("/api/deleteInvite/" + id).then((second) => {
+        this.setState({delete: true})
+      })
     })
   }
 
@@ -37,7 +37,9 @@ class Invitation extends React.Component {
       <div>
       {this.state.inviteInfo.map((element)=>{
         return (
-        <p>{element.sender} invited you to {element.eventName}<button>Accept</button><button>delete</button></p> 
+        <p>{element.sender} invited you to {element.eventName}<button onClick={()=>{
+          this.acceptInvite(element.inviteId);
+        }}>Accept</button><button>delete</button></p> 
         )
       })}
       </div>

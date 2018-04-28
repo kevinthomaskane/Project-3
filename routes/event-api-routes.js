@@ -111,7 +111,7 @@ module.exports = function (app) {
   app.delete("/api/userEvent/:id", function (req, res) {
     db.Event.destroy({
       where: {
-        id: req.params.id
+        id: req.params.id,
       }
     }).then(function () {
       res.end();

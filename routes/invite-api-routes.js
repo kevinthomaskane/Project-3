@@ -13,6 +13,16 @@ module.exports = function (app) {
     });
   });
 
+  app.delete("/api/deleteInvite/:id", function (req, res) {
+    db.Invite.destroy({
+      where: {
+        id: req.params.id
+      }
+    }).then(function () {
+      res.end();
+    });
+  });
+
   app.post("/api/invite/", function (req, res) {
     db.Invite.create(req.body).then(function (data) {
       res.json(data);
