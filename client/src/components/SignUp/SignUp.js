@@ -105,7 +105,7 @@ class SignUp extends React.Component {
           </div>
         </div>
 
-        <button onClick={this.handleInputSubmit} className="btn btn-success" type="submit" value="Submit!"></button>
+        <button onClick={this.handleInputSubmit} className="btn btn-success" type="submit" value="Submit!">Sumbit</button>
       </form>
     </div>)
 

@@ -1,5 +1,5 @@
 import React from "react";
-import {Modal} from "react-materialize"
+import {Modal, Navbar, Icon, Col, Row, NavItem, CardPanel, Button} from "react-materialize"
 import axios from "axios";
 import Header from "../Header";
 import {Link} from "react-router-dom";
@@ -165,32 +165,34 @@ class Event extends React.Component {
     return (
     <div>
       <div className="container">
-        <div className="row">
-          <div className="col m8" id="topSection">
+        <Row>
+          <Col s={6} className="cardPanel">
+            <CardPanel>
             <h2>{this.state.currentEvent.name}</h2>
             <p><i class="material-icons">date_range</i>{this.state.date}</p><br/>
             <p id="address"><i class="material-icons">add_location</i>{this.state.currentEvent.address} </p>
             {this.getHostInfo()}<br/>
             {this.checkHost()}
-          </div>
-          <div id="mapLocation" className="col m4">
+            </ CardPanel>
+          </Col>
+          <Col s={6} id="mapLocation">
             <div id="map">
             <MapContainer isEvent={true} events={this.state.currentEvent}  style={styles.map}/>
             </div>
-          </div>
-        </div>  
-        <div className="row">
+          </Col>
+        </ Row>  
+        <Row>
           <h5>About this event</h5>
             <div class="col m12">
               <p>{this.state.currentEvent.description}</p>
             </div>
-        </div>
-        <div className="row">
+        </ Row>
+        <Row>
           <h5>Attendees</h5><br/>
             <div class="col m12">
             {this.filterHost()}
             </div>
-        </div>
+        </Row>
         <div className="row">
         <h5>Message Board</h5><br/>
           <div className="col m12">

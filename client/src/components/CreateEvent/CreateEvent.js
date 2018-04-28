@@ -1,5 +1,7 @@
 import React from "react";
 import axios from "axios";
+import "./CreateEvent.css";
+
 
 const user_id = localStorage.getItem("user_id");
 
@@ -51,31 +53,31 @@ class createEvent extends React.Component {
     return (
       <div className="row">
         <form id="createForm">
-          <div className="col s6">
+          <div className="col s6 inputField">
             <input onChange={this.handleInput} placeholder="Event name" name="eventName" value={this.state.eventName} type="text" className="validate"/>
           </div>
-          <div className="col s6">
+          <div className="col s6 inputField">
             <input onChange={this.handleInput} placeholder="Event Date " name="eventDate" value={this.state.eventDate} type="text" className="validate"/>
           </div>
-          <div className="col s6">
+          <div className="col s6 inputField">
             <input onChange={this.handleInput} placeholder="Sport " name="sportType" value={this.state.sportType} type="text" className="validate"/>
           </div>
-          <div className="col s6">
+          <div className="col s6 inputField">
             <input onChange={this.handleInput} placeholder="Address " name="address" value={this.state.address} type="text" className="validate"/>
           </div>
-          <div className="col s6">
+          <div className="col s6 inputField">
             <input onChange={this.handleInput} placeholder="City " name="city" value={this.state.city} type="text" className="validate"/>
           </div>
           <div className="col s6">
             <input onChange={this.handleInput} placeholder="State " name="state" value={this.state.state} type="text" className="validate"/>
           </div>
-          <div className="col s6">
+          <div className="col s6 inputField">
             <input onChange={this.handleInput} placeholder="Zipcode " name="zip" value={this.state.zip} type="text" className="validate"/>
           </div>
-          <div className="col s12">
+          <div className="col s12" id="description">
             <input onChange={this.handleInput} placeholder="Description " name="description" value={this.state.description} type="text" className="validate"/>
           </div>
-          <button onClick={this.handleSubmitForm} className="btn btn-success" type="submit" value="login!">Create Event</button>
+          <button onClick={this.handleSubmitForm} className="btn btn-success submitBtn" type="submit" value="login!">Create Event</button>
         </form>
       </div>
     );

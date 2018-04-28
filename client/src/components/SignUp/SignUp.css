@@ -11,6 +11,8 @@
     text-align: center;
     text-decoration: none;
     margin-left: 35px;
+    text-shadow: -1px 0 #2D3047, 0 2px #2D3047, 2px 0 #2D3047, 0 -1px #2D3047;
+    border-radius: 10px;
 }
 
 #signup:hover {

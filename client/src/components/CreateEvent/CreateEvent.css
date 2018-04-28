@@ -1,0 +1,16 @@
+.inputField {
+    margin-top: 10px;
+    font-family: 'Graduate', cursive;
+    color: #E8E8E1;
+}
+
+#description {
+    margin-top: 70px;
+    font-family: 'Graduate', cursive;
+    color: #E8E8E1;
+}
+
+.submitBtn {
+    margin-right: 50px;
+}
+
