@@ -7,7 +7,6 @@ class Invitation extends React.Component {
   state = {
     inviteInfo: [],
     delete: false
-
   };
 
   componentDidMount = () =>{

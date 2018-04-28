@@ -175,7 +175,7 @@ class Event extends React.Component {
             <p id="address"><i class="material-icons">add_location</i>{this.state.currentEvent.address} </p>
             {this.getHostInfo()}<br/>
             {this.checkHost()} 
-            <Modal trigger={<button>Invite a guest</button>}>
+            <Modal trigger={<button>Share with another user!</button>}>
             {this.state.allUsers.filter((user) => {
               return user.username !== localStorage.getItem("username");
             }).map((element) => {
