@@ -5,6 +5,7 @@ import Header from "../Header";
 import {Link} from "react-router-dom";
 import "./Event.css";
 import MapContainer from "../MapContainer";
+import Invitation from "../Invitation";
 
 const styles = {
   map: {
@@ -157,7 +158,7 @@ class Event extends React.Component {
   };
 
   inviteUser = (EID, username) => {
-    axios.post("/api/invite/", {eventId: EID, username: username, userId: localStorage.getItem("user_id")}).then((response) => {
+    axios.post("/api/invite/", {eventId: EID, eventName: this.state.currentEvent.name, username: username, userId: localStorage.getItem("user_id"), sender: localStorage.getItem("username")}).then((response) => {
     });
   };
 
@@ -197,6 +198,7 @@ class Event extends React.Component {
             </div>
         </div>
         <div className="row">
+        <Invitation />
           <h5>Attendees</h5><br/>
             <div class="col m12">
             {this.filterHost()}

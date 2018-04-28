@@ -6,6 +6,14 @@ module.exports = function (sequelize, DataTypes) {
     username:{
       type:DataTypes.STRING,
       allowNull: false
+    },
+    sender:{
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    eventName: {
+      type: DataTypes.STRING,
+      allowNull: false
     }
   });
 
