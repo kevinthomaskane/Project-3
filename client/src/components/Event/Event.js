@@ -65,9 +65,10 @@ class Event extends React.Component {
   }
 
   filterHost = () => {
-    let userArray = [];
-    userArray.concat(this.state.attendees);
+    let emptyArray = [];
+    let userArray = emptyArray.concat(this.state.attendees);
     let hostArray = this.state.hosts
+    console.log("userArray", userArray)
     for (let i = 0; i < userArray.length; i++){
       for (let j = 0; j < hostArray.length; j++){
         if (userArray[i].id === hostArray[j].userId){
@@ -130,13 +131,15 @@ class Event extends React.Component {
     if (!found){
       return (
         <button onClick={() => {
-          this.joinEvent(this.props.match.params.id)
+          this.joinEvent(this.props.match.params.id);
         }}id="join">Join this event</button>
       )
     } else {
       return (
         <Modal trigger={<button>Invite another host</button>}>
-        {this.state.allUsers.map((element) =>{
+        {this.state.allUsers.filter((user)=>{
+          return user.username !== localStorage.getItem("username")
+        }).map((element) =>{
           console.log("element", element)
           return (
             <h5 id={element.id}>{element.username} <button onClick={() => {
@@ -171,7 +174,7 @@ class Event extends React.Component {
             <p><i class="material-icons">date_range</i>{this.state.date}</p><br/>
             <p id="address"><i class="material-icons">add_location</i>{this.state.currentEvent.address} </p>
             {this.getHostInfo()}<br/>
-            {this.checkHost()}
+            {this.checkHost()} <button>Invite a guest</button>
           </div>
           <div id="mapLocation" className="col m4">
             <div id="map">
