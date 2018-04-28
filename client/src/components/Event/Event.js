@@ -66,7 +66,7 @@ class Event extends React.Component {
       return (
       <div class="host">
         <img id="hostImage" src={element.image === null ? "https://www.vccircle.com/wp-content/uploads/2017/03/default-profile.png" : element.image} /> 
-        <span id="hostName">{element.username} (Host)</span>
+        <span id="hostName"> <Link to={"/profile/" + element.id}><p>{element.username}</p></Link> (Host)</span>
       </div>
       )
     })
@@ -89,7 +89,7 @@ class Event extends React.Component {
       return (
         <div key={index} className="attendee">
           <img className="image" src={person.image === null ? "https://www.vccircle.com/wp-content/uploads/2017/03/default-profile.png" : person.image} />
-          <Link to={"/profile/" + person.userId}><p>{person.username}</p></Link>
+          <Link to={"/profile/" + person.id}><p>{person.username}</p></Link>
         </div>
         )
       })
