@@ -64,7 +64,7 @@ class Event extends React.Component {
     }
     return (hosts.map((element) =>{
       return (
-      <div>
+      <div class="host">
         <img id="hostImage" src={element.image === null ? "https://www.vccircle.com/wp-content/uploads/2017/03/default-profile.png" : element.image} /> 
         <span id="hostName">{element.username} (Host)</span>
       </div>
@@ -131,9 +131,10 @@ class Event extends React.Component {
     }
     if (!found){
       return (
-        <button disabled={this.state.joined} id="joinBtn" onClick={() => {
+        this.state.joined ? <button disabled={this.state.joined} id="joinBtn" onClick={() => {
+        }}id="join">You are going</button> : <button disabled={this.state.joined} id="joinBtn" onClick={() => {
           this.joinEvent(this.props.match.params.id);
-        }}id="join">Join this event</button>
+        }}id="join">Join this event</button> 
       )
     } else {
       return (
@@ -142,8 +143,8 @@ class Event extends React.Component {
           return user.username !== localStorage.getItem("username")
         }).map((element) =>{
           return (
-            <h5 id={element.id}>{element.username} <button onClick={() => {
-              this.inviteHost(this.props.match.params.id, element.id)
+            <h5>{element.username} <button value={element.username} onClick={() => {
+              this.inviteHost(this.props.match.params.id, element.id) 
             }}>send invitation</button></h5>
           )
         })}
@@ -154,6 +155,9 @@ class Event extends React.Component {
 
   inviteHost = (EID, userId) =>{
     axios.post("/api/addHost/" + EID, {userId: userId}).then((response) => {
+      let hosts = this.state.hosts
+      hosts.push(response.data.id)
+      this.setState({hosts: hosts})
     });
   };
 
@@ -161,6 +165,16 @@ class Event extends React.Component {
     axios.post("/api/invite/", {eventId: EID, eventName: this.state.currentEvent.name, username: username, userId: localStorage.getItem("user_id"), sender: localStorage.getItem("username")}).then((response) => {
     });
   };
+
+  checkInvited = (current) => {
+    console.log(this.state.attendees)
+    for (let i = 0; i < this.state.attendees.length; i++){
+      if (this.state.attendees[i].username === current){
+        return true
+      }
+    }
+    return false
+  }
 
   render(){
 
@@ -171,16 +185,20 @@ class Event extends React.Component {
           <div className="col m8" id="topSection">
             <h2>{this.state.currentEvent.name}</h2>
             <p><i class="material-icons">date_range</i>{this.state.date}</p><br/>
-            <p id="address"><i class="material-icons">add_location</i>{this.state.currentEvent.address} </p>
+            <p id="address"><i class="material-icons">add_location</i>{this.state.currentEvent.address} </p><br/>
             {this.getHostInfo()}<br/>
             {this.checkHost()} 
             <Modal trigger={<button>Share with another user!</button>}>
             {this.state.allUsers.filter((user) => {
               return user.username !== localStorage.getItem("username");
             }).map((element) => {
-              return <p>{element.username} <button id={element.username} onClick={() => {
+              return (
+              this.checkInvited(element.username) ? <p>{element.username} <button disabled="true" id={element.username} onClick={() => {
+                this.inviteUser(this.props.match.params.id, element.username)
+              }}>User is already going</button></p> : <p>{element.username} <button id={element.username} onClick={() => {
                 this.inviteUser(this.props.match.params.id, element.username)
               }}>Invite this user</button></p>
+            )
             })}
             </Modal>
           </div>
