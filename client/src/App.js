@@ -9,6 +9,7 @@ import createEvent from "./components/CreateEvent";
 import LocationSearchInput from "./components/LocationSearchInput";
 import ViewProfile from "./components/ViewProfile/ViewProfile";
 import ProfilePage from "./components/ProfilePage";
+import NoMatch from "./components/NoMatch";
 
 
 class App extends Component {
@@ -26,8 +27,8 @@ class App extends Component {
         <Route exact path="/map" component={MapContainer} />
         <Route exact path="/viewpage" component={ViewProfile}/>
         <Route exact path="/profilepage" component={ProfilePage}/>
-        {/* <Route component={NoMatch} /> */}
         <Route exact path="/search" component={LocationSearchInput} />
+        <Route component={NoMatch} />
       </Switch>
     </div>
   </Router>
