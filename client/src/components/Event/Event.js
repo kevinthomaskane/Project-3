@@ -158,15 +158,9 @@ class Event extends React.Component {
 
   inviteUser = (EID, username) => {
     axios.post("/api/invite/", {eventId: EID, username: username, userId: localStorage.getItem("user_id")}).then((response) => {
-      this.getInvites();
     });
   };
 
-  getInvites = () => {
-    axios.get("/api/invite/" + localStorage.getItem("username")).then((response) => {
-      console.log("response from getInvites route", response)
-    });
-  };
 
   render(){
 
