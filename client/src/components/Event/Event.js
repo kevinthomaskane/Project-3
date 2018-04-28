@@ -105,7 +105,6 @@ class Event extends React.Component {
     });
   };
 
-
   handleInputChange = (event) => {
     let message = event.target.value;
     this.setState({message: message});
