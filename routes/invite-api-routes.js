@@ -8,6 +8,7 @@ module.exports = function (app) {
         username: req.params.username
       }
     }).then(function (data) {
+      console.log(data)
       res.json(data);
     });
   });

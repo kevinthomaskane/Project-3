@@ -28,7 +28,6 @@ class Event extends React.Component {
 
   componentDidMount = () => {
     let eventId = this.props.match.params.id;
-    localStorage.setItem("eventId", eventId)
     this.getInfo(eventId);
    
   };
@@ -70,7 +69,6 @@ class Event extends React.Component {
     let emptyArray = [];
     let userArray = emptyArray.concat(this.state.attendees);
     let hostArray = this.state.hosts
-    console.log("userArray", userArray)
     for (let i = 0; i < userArray.length; i++){
       for (let j = 0; j < hostArray.length; j++){
         if (userArray[i].id === hostArray[j].userId){
@@ -142,7 +140,6 @@ class Event extends React.Component {
         {this.state.allUsers.filter((user)=>{
           return user.username !== localStorage.getItem("username")
         }).map((element) =>{
-          console.log("element", element)
           return (
             <h5 id={element.id}>{element.username} <button onClick={() => {
               this.inviteHost(this.props.match.params.id, element.id)
@@ -155,18 +152,21 @@ class Event extends React.Component {
   };
 
   inviteHost = (EID, userId) =>{
-    console.log("inside of add host")
     axios.post("/api/addHost/" + EID, {userId: userId}).then((response) => {
-      console.log("response from invite host request", response)
-    })
-  }
+    });
+  };
 
   inviteUser = (EID, username) => {
-    console.log(EID, username);
-    axios.post("/api/invite/", {eventId: EID, username: username, userId: 1}).then((response) => {
-      console.log("response from invite route", response)
-    })
-  }
+    axios.post("/api/invite/", {eventId: EID, username: username, userId: localStorage.getItem("user_id")}).then((response) => {
+      this.getInvites();
+    });
+  };
+
+  getInvites = () => {
+    axios.get("/api/invite/" + localStorage.getItem("username")).then((response) => {
+      console.log("response from getInvites route", response)
+    });
+  };
 
   render(){
 
@@ -185,7 +185,7 @@ class Event extends React.Component {
               return user.username !== localStorage.getItem("username");
             }).map((element) => {
               return <p>{element.username} <button id={element.username} onClick={() => {
-                this.inviteUser(localStorage.getItem("eventId"), element.username)
+                this.inviteUser(this.props.match.params.id, element.username)
               }}>Invite this user</button></p>
             })}
             </Modal>
