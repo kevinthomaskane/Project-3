@@ -42,8 +42,8 @@ class Event extends React.Component {
       axios.get("/api/chat/" + EID).then((response) => {
         axios.get("/api/allUsers").then((third)=>{
           console.log(data.data);
-          this.setState({messages: response.data, attendees: data.data.attendees.Users, currentEvent: data.data.attendees, date: data.data.attendees.date.split("T")[0],img:data.data.img,
-          ext:data.data.ext,hosts: data.data.host, allUsers: third.data});
+          this.setState({messages: response.data, attendees: data.data.attendees.Users, currentEvent: data.data.attendees, date: data.data.attendees.date.split("T")[0],img:data.data.images[0].img,
+          ext:data.data.images[0].ext,hosts: data.data.host, allUsers: third.data});
         })
       })
     });
