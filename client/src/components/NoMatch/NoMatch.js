@@ -1,5 +1,7 @@
 import React from "react";
 import { Col, Row, Container } from "react-materialize";
+import Invitation from "../Invitation";
+
 const styles = {
   style: {
     fontSize: 40,
@@ -15,6 +17,7 @@ const NoMatch = () => (
         <h3 style={styles.style}>404: Page Not Found</h3>
       </Col>
     </Row>
+    <Invitation />
   </Container>
 );
 

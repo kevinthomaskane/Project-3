@@ -1,6 +1,7 @@
 import React from "react";
 import axios from "axios";
-
+import {Row, Col, Collection, CollectionItem} from "react-materialize";
+import { setTimeout } from "timers";
 
 class Invitation extends React.Component {
 
@@ -20,8 +21,8 @@ class Invitation extends React.Component {
       for (let i = 0; i < response.data.length; i++){
         fullInfo.push({eventName: response.data[i].eventName, sender: response.data[i].sender, eventId: response.data[i].eventId, inviteId: response.data[i].id})
       }; 
+      this.setState({inviteInfo: fullInfo})
     });
-    this.setState({inviteInfo: fullInfo})
   };
 
   acceptInvite = (eventId, inviteId) => {
@@ -32,17 +33,37 @@ class Invitation extends React.Component {
     });
   };
 
+  printInvites = (array) => {
+    return (
+    array.map((element)=>{
+      return (
+        <CollectionItem>{element.sender} invited you to {element.eventName}<button onClick={()=>{
+        this.acceptInvite(element.eventId, element.inviteId);
+        }}>Accept</button><button>delete</button>
+        </CollectionItem> 
+        )
+      })
+    )
+  }
+
   render() {
     return (
-      <div>
-      {this.state.inviteInfo.map((element)=>{
-        return (
-        <p>{element.sender} invited you to {element.eventName}<button onClick={()=>{
-          this.acceptInvite(element.eventId, element.inviteId);
-        }}>Accept</button><button>delete</button></p> 
-        )
-      })}
-      </div>
+        <Row>
+        {console.log(this.state.inviteInfo)}
+          <Col m={6}>
+            <Collection header="Your Invitations">
+                {this.state.inviteInfo.map((element)=>{
+                  console.log(this.state.inviteInfo)
+                  return (
+                    <CollectionItem>{element.sender} invited you to {element.eventName}<button onClick={()=>{
+                    this.acceptInvite(element.eventId, element.inviteId);
+                    }}>Accept</button><button>delete</button>
+                    </CollectionItem> 
+                  )
+                })}
+            </Collection>
+          </Col>
+        </Row>
     )
   };
 };

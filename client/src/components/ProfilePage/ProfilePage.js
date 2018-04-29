@@ -94,7 +94,6 @@ class ProfilePage extends React.Component{
                     </form>
                 </form>
 
-                <Invitation />
             </div>
         )
     };
