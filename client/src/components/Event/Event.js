@@ -6,12 +6,12 @@ import {Link} from "react-router-dom";
 import "./Event.css";
 import MapContainer from "../MapContainer";
 
-const styles = {
-  map: {
-    width: 300,
-    height: 300
-  }
-}
+// const styles = {
+//   map: {
+//     width: 300,
+//     height: 300
+//   }
+// }
 
 class Event extends React.Component {
 
@@ -163,11 +163,10 @@ class Event extends React.Component {
   render(){
 
     return (
-    <div>
       <div className="container">
-        <Row>
-          <Col s={6} className="cardPanel">
-            <CardPanel>
+        <Row className="row1">
+          <Col s={6}>
+            <CardPanel className="eventCard">
             <h2>{this.state.currentEvent.name}</h2>
             <p><i class="material-icons">date_range</i>{this.state.date}</p><br/>
             <p id="address"><i class="material-icons">add_location</i>{this.state.currentEvent.address} </p>
@@ -175,27 +174,37 @@ class Event extends React.Component {
             {this.checkHost()}
             </ CardPanel>
           </Col>
-          <Col s={6} id="mapLocation">
-            <div id="map">
-            <MapContainer isEvent={true} events={this.state.currentEvent}  style={styles.map}/>
-            </div>
+          <Col s={6} className="mapContainer">
+            <MapContainer isEvent={true} events={this.state.currentEvent} className="map" />
           </Col>
-        </ Row>  
+        </Row>  
         <Row>
-          <h5>About this event</h5>
-            <div class="col m12">
-              <p>{this.state.currentEvent.description}</p>
-            </div>
-        </ Row>
-        <Row>
-          <h5>Attendees</h5><br/>
-            <div class="col m12">
+        <Col s={6}>
+        <CardPanel>
+          <span className="row2Header">About this event</span>
+          <br/>
+          <br/>
+              <span>{this.state.currentEvent.description}</span>
+              </CardPanel>
+           </Col>  
+        <Col s={6} >
+        <CardPanel >
+          <span className="row2Header">Attendees</span>
+          <br/>
+          <br/>
+          <span>
             {this.filterHost()}
-            </div>
+          </span>
+            </CardPanel>
+            </Col>
         </Row>
-        <div className="row">
+        <Row>
+          <Col s={12} >
         <h5>Message Board</h5><br/>
-          <div className="col m12">
+          </Col>
+        </Row>
+          <Row>
+            <Col s={12} >
               <div id="messageBoard">
                 <ul>
                   {this.state.messages.map((message, index) => {
@@ -223,10 +232,9 @@ class Event extends React.Component {
                   }}><i class="material-icons">send</i></button>
                 </div>
               </div>
-          </div>
-        </div>
+              </Col>
+          </Row>
       </div>
-    </div>
     )
   }
 
