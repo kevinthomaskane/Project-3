@@ -62,7 +62,7 @@ class Event extends React.Component {
     };
     return (hosts.map((element) =>{
       return (
-      <div class="host">
+      <div key={element.username} class="host">
         <img id="hostImage" src={element.image === null ? "https://www.vccircle.com/wp-content/uploads/2017/03/default-profile.png" : element.image} /> 
         <span id="hostName"> <Link to={"/profile/" + element.id}><p>{element.username}</p></Link> (Host)</span>
       </div>
@@ -140,7 +140,7 @@ class Event extends React.Component {
           return user.username !== localStorage.getItem("username")
         }).map((element) =>{
           return (
-            <h5>{element.username} <button value={element.username} onClick={() => {
+            <h5 key={element.username}>{element.username} <button value={element.username} onClick={() => {
               this.inviteHost(this.props.match.params.id, element.id) 
             }}>send invitation</button></h5>
           );
@@ -189,9 +189,9 @@ class Event extends React.Component {
               return user.username !== localStorage.getItem("username");
             }).map((element) => {
               return (
-              this.checkInvited(element.username) ? <p>{element.username} <button disabled="true" id={element.username} onClick={() => {
+              this.checkInvited(element.username) ? <p key={element.username}>{element.username} <button disabled="true" id={element.username} onClick={() => {
                 this.inviteUser(this.props.match.params.id, element.username)
-              }}>User is already going</button></p> : <p>{element.username} <button id={element.username} onClick={() => {
+              }}>User is already going</button></p> : <p key={element.username}>{element.username} <button id={element.username} onClick={() => {
                 this.inviteUser(this.props.match.params.id, element.username)
               }}>Invite this user</button></p>
             )
@@ -228,7 +228,6 @@ class Event extends React.Component {
                         <img className="messageImg" src={this.state.attendees.filter((item) => {
                           return item.username === message.username
                         }).map(function(element){
-                          console.log("image", element.image)
                           return (element.image === null ? 
                           "https://www.vccircle.com/wp-content/uploads/2017/03/default-profile.png" : element.image)
                         })}/> <span className="usernameMessage">{message.username}</span><br/>

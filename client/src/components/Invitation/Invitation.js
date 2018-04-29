@@ -1,7 +1,6 @@
 import React from "react";
 import axios from "axios";
 import {Row, Col, Collection, CollectionItem} from "react-materialize";
-import { setTimeout } from "timers";
 import "./Invitation.css";
 
 class Invitation extends React.Component {
@@ -17,11 +16,10 @@ class Invitation extends React.Component {
   getInvites = () => {
     let fullInfo = []
     axios.get("/api/invite/" + localStorage.getItem("username")).then((response) => {
-      console.log(response)
       for (let i = 0; i < response.data.length; i++){
         fullInfo.push({eventName: response.data[i].eventName, sender: response.data[i].sender, eventId: response.data[i].eventId, inviteId: response.data[i].id})
       }; 
-      this.setState({inviteInfo: fullInfo})
+      this.setState({inviteInfo: fullInfo});
     });
   };
 
@@ -42,23 +40,21 @@ class Invitation extends React.Component {
   render() {
     return (
         <Row>
-        {console.log(this.state.inviteInfo)}
-        <Col m={2}></Col>
-          <Col m={8}>
-            <Collection header="Your Invitations">
-                {this.state.inviteInfo.map((element)=>{
-                  console.log(this.state.inviteInfo)
-                  return (
-                    <CollectionItem><span className="collectionText">{element.sender} invited you to {element.eventName}</span><button className="green lighten-3"onClick={()=>{
-                    this.acceptInvite(element.eventId, element.inviteId);
-                    }}>Accept</button><button class="red lighten-3" onClick={() => {
-                      this.deleteInvite(element.inviteId)
-                    }}>Ignore</button>
-                    </CollectionItem> 
-                  )
-                })}
-            </Collection>
-          </Col>
+          <Col m={2}></Col>
+            <Col m={8}>
+              <Collection header="Your Invitations">
+                  {this.state.inviteInfo.map((element)=>{
+                    return (
+                      <CollectionItem key={element.inviteId}><span className="collectionText">{element.sender} invited you to {element.eventName}</span><button className="green lighten-3"onClick={()=>{
+                      this.acceptInvite(element.eventId, element.inviteId);
+                      }}>Accept</button><button class="red lighten-3" onClick={() => {
+                        this.deleteInvite(element.inviteId)
+                      }}>Ignore</button>
+                      </CollectionItem> 
+                    )
+                  })}
+              </Collection>
+            </Col>
           <Col m={2}></Col>
         </Row>
     )
