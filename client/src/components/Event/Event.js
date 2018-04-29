@@ -1,5 +1,5 @@
 import React from "react";
-import {Modal} from "react-materialize"
+import {Modal, Collection, CollectionItem} from "react-materialize"
 import axios from "axios";
 import Header from "../Header";
 import {Link} from "react-router-dom";
@@ -128,23 +128,30 @@ class Event extends React.Component {
     };
     if (!found){
       return (
-        this.state.joined ? <button disabled={this.state.joined} onClick={() => {
-        }}>You are going</button> : <button disabled={this.state.joined} onClick={() => {
+        this.state.joined ? <div><button disabled={this.state.joined} onClick={() => {
+        }}>You are going</button> <button onClick={() => {
+          this.leaveEvent(this.props.match.params.id, user_id)
+        }}>Cancel RSVP</button></div> : <button disabled={this.state.joined} onClick={() => {
           this.joinEvent(this.props.match.params.id);
         }}>Join this event</button> 
       );
     } else {
       return (
         <Modal trigger={<button>Add another host</button>}>
+        <Collection>
         {this.state.allUsers.filter((user)=>{
           return user.username !== localStorage.getItem("username")
         }).map((element) =>{
           return (
-            <h5 key={element.username}>{element.username} <button value={element.username} onClick={() => {
+            this.checkInvited(element.username) ? 
+            <CollectionItem key={element.username}>{element.username} <button disabled="true" value={element.username} onClick={() => {
               this.inviteHost(this.props.match.params.id, element.id) 
-            }}>send invitation</button></h5>
+            }}>already going</button></CollectionItem> : <CollectionItem key={element.username}>{element.username} <button value={element.username} onClick={() => {
+              this.inviteHost(this.props.match.params.id, element.id) 
+            }}>add as host</button></CollectionItem>
           );
         })}
+        </Collection>
         </Modal>
       );
     };
@@ -155,6 +162,13 @@ class Event extends React.Component {
       let hosts = this.state.hosts;
       hosts.push(response.data.id);
       this.setState({hosts: hosts});
+    });
+  };
+
+  leaveEvent = (EID, userId) => {
+    console.log(EID, userId)
+    axios.delete("/api/leaveEvent/" + userId, {data: {eventId: EID}}).then((response) => {
+      this.getInfo(EID);
     });
   };
 
@@ -185,17 +199,19 @@ class Event extends React.Component {
             {this.getHostInfo()}<br/>
             {this.checkHost()} 
             <Modal trigger={<button>Share with another user!</button>}>
-            {this.state.allUsers.filter((user) => {
-              return user.username !== localStorage.getItem("username");
-            }).map((element) => {
-              return (
-              this.checkInvited(element.username) ? <p key={element.username}>{element.username} <button disabled="true" id={element.username} onClick={() => {
-                this.inviteUser(this.props.match.params.id, element.username)
-              }}>User is already going</button></p> : <p key={element.username}>{element.username} <button id={element.username} onClick={() => {
-                this.inviteUser(this.props.match.params.id, element.username)
-              }}>Invite this user</button></p>
-            )
-            })}
+            <Collection>
+              {this.state.allUsers.filter((user) => {
+                  return user.username !== localStorage.getItem("username");
+                }).map((element) => {
+                  return (
+                  this.checkInvited(element.username) ? <CollectionItem key={element.username}>{element.username} <button disabled="true" id={element.username} onClick={() => {
+                    this.inviteUser(this.props.match.params.id, element.username)
+                  }}>User is already going</button></CollectionItem> : <CollectionItem key={element.username}>{element.username} <button className="blue lighten-2" id={element.username} onClick={() => {
+                    this.inviteUser(this.props.match.params.id, element.username)
+                  }}>Invite this user</button></CollectionItem>
+                )
+              })}
+            </Collection>
             </Modal>
           </div>
           <div id="mapLocation" className="col m4">
