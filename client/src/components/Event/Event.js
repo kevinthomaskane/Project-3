@@ -135,7 +135,7 @@ class Event extends React.Component {
       );
     } else {
       return (
-        <Modal trigger={<button>Invite another host</button>}>
+        <Modal trigger={<button>Add another host</button>}>
         {this.state.allUsers.filter((user)=>{
           return user.username !== localStorage.getItem("username")
         }).map((element) =>{
