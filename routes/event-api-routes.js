@@ -49,10 +49,10 @@ module.exports = function (app) {
         for (let i = 0; i < data.Users.length; i++) {
           let image = data.Users[i].image.toString("base64");
           let ext = data.Users[i].dataValues.tag;
-          images.push({img: image, ext:ext});
+          data.Users[i].image = image;
         }
 
-        res.json({attendees: data, host: response, images: images});
+        res.json({attendees: data, host: response});
       })
     });
   });

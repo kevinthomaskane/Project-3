@@ -26,8 +26,6 @@ class Event extends React.Component {
     messages: [],
     attendees: [],
     allUsers: [],
-    img:"",
-    ext:""
   }
 
   componentDidMount = () => {
@@ -42,8 +40,10 @@ class Event extends React.Component {
       axios.get("/api/chat/" + EID).then((response) => {
         axios.get("/api/allUsers").then((third)=>{
           console.log(data.data);
-          this.setState({messages: response.data, attendees: data.data.attendees.Users, currentEvent: data.data.attendees, date: data.data.attendees.date.split("T")[0],img:data.data.images[0].img,
-          ext:data.data.images[0].ext,hosts: data.data.host, allUsers: third.data});
+          this.setState({messages: response.data, attendees:
+          data.data.attendees.Users, currentEvent: data.data.attendees,
+          date: data.data.attendees.date.split("T")[0],
+          hosts: data.data.host, allUsers: third.data});
         })
       })
     });
@@ -63,8 +63,7 @@ class Event extends React.Component {
     return (hosts.map((element) =>{
       return (
       <div key={element.id}>
-        <img id="hostImage" src={element.image === null ? "https://www.vccircle.com/wp-content/uploads/2017/03/default-profile.png" : `data:image/${this.state.
-          ext};base64,${this.state.img}`} />
+        <img id="hostImage" src={element.image === null ? "https://www.vccircle.com/wp-content/uploads/2017/03/default-profile.png" : `data:image/${element.ext};base64,${element.image}`} />
         <span id="hostName">{element.username} (Host)</span>
       </div>
       )
