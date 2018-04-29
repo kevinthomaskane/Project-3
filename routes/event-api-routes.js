@@ -45,7 +45,12 @@ module.exports = function (app) {
           isHost: true
         }
       }).then(function(response){
-        res.json({attendees: data, host: response});
+
+        let image = data.Users[0].image.toString("base64");
+        let ext = data.Users[0].dataValues.tag;
+        //console.log(test);
+
+        res.json({attendees: data, host: response, ext:ext, img:image });
       })
     });
   });
@@ -111,7 +116,7 @@ module.exports = function (app) {
   app.delete("/api/userEvent/:id", function (req, res) {
     db.Event.destroy({
       where: {
-        id: req.params.id
+        id: req.params.id,
       }
     }).then(function () {
       res.end();

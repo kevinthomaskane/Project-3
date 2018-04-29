@@ -5,6 +5,7 @@ import Header from "../Header";
 import {Link} from "react-router-dom";
 import "./Event.css";
 import MapContainer from "../MapContainer";
+import Invitation from "../Invitation";
 
 const styles = {
   map: {
@@ -24,7 +25,9 @@ class Event extends React.Component {
     hosts: [],
     messages: [],
     attendees: [],
-    allUsers: []
+    allUsers: [],
+    img:"",
+    ext:""
   }
 
   componentDidMount = () => {
@@ -38,7 +41,9 @@ class Event extends React.Component {
       let eventId = this.props.match.params.id;
       axios.get("/api/chat/" + EID).then((response) => {
         axios.get("/api/allUsers").then((third)=>{
-          this.setState({messages: response.data, attendees: data.data.attendees.Users, currentEvent: data.data.attendees, date: data.data.attendees.date.split("T")[0], hosts: data.data.host, allUsers: third.data});
+          console.log(data.data);
+          this.setState({messages: response.data, attendees: data.data.attendees.Users, currentEvent: data.data.attendees, date: data.data.attendees.date.split("T")[0],img:data.data.img,
+          ext:data.data.ext,hosts: data.data.host, allUsers: third.data});
         })
       })
     });
@@ -57,8 +62,9 @@ class Event extends React.Component {
     }
     return (hosts.map((element) =>{
       return (
-      <div>
-        <img id="hostImage" src={element.image === null ? "https://www.vccircle.com/wp-content/uploads/2017/03/default-profile.png" : `data:${element.image.type};base64,${element.image.data}`} />
+      <div key={element.id}>
+        <img id="hostImage" src={element.image === null ? "https://www.vccircle.com/wp-content/uploads/2017/03/default-profile.png" : `data:image/${this.state.
+          ext};base64,${this.state.img}`} />
         <span id="hostName">{element.username} (Host)</span>
       </div>
       )
@@ -67,8 +73,8 @@ class Event extends React.Component {
   }
 
   filterHost = () => {
-    let userArray = [];
-    userArray.concat(this.state.attendees);
+    let emptyArray = [];
+    let userArray = emptyArray.concat(this.state.attendees);
     let hostArray = this.state.hosts
     for (let i = 0; i < userArray.length; i++){
       for (let j = 0; j < hostArray.length; j++){
@@ -133,14 +139,15 @@ class Event extends React.Component {
     if (!found){
       return (
         <button onClick={() => {
-          this.joinEvent(this.props.match.params.id)
+          this.joinEvent(this.props.match.params.id);
         }}id="join">Join this event</button>
       )
     } else {
       return (
         <Modal trigger={<button>Invite another host</button>}>
-        {this.state.allUsers.map((element) =>{
-          console.log("element", element)
+        {this.state.allUsers.filter((user)=>{
+          return user.username !== localStorage.getItem("username")
+        }).map((element) =>{
           return (
             <h5 id={element.id}>{element.username} <button onClick={() => {
               this.inviteHost(this.props.match.params.id, element.id)
@@ -153,15 +160,15 @@ class Event extends React.Component {
   };
 
   inviteHost = (EID, userId) =>{
-    console.log("inside of add host")
     axios.post("/api/addHost/" + EID, {userId: userId}).then((response) => {
-      console.log("response from invite host request", response)
-    })
-  }
+    });
+  };
 
-  getMap = () => {
+  inviteUser = (EID, username) => {
+    axios.post("/api/invite/", {eventId: EID, eventName: this.state.currentEvent.name, username: username, userId: localStorage.getItem("user_id"), sender: localStorage.getItem("username")}).then((response) => {
+    });
+  };
 
-  }
 
   render(){
 
@@ -175,6 +182,15 @@ class Event extends React.Component {
             <p id="address"><i class="material-icons">add_location</i>{this.state.currentEvent.address} </p>
             {this.getHostInfo()}<br/>
             {this.checkHost()}
+            <Modal trigger={<button>Share with another user!</button>}>
+            {this.state.allUsers.filter((user) => {
+              return user.username !== localStorage.getItem("username");
+            }).map((element) => {
+              return <p>{element.username} <button id={element.username} onClick={() => {
+                this.inviteUser(this.props.match.params.id, element.username)
+              }}>Invite this user</button></p>
+            })}
+            </Modal>
           </div>
           <div id="mapLocation" className="col m4">
             <div id="map">
@@ -189,6 +205,7 @@ class Event extends React.Component {
             </div>
         </div>
         <div className="row">
+        <Invitation eventId={this.props.match.params.id}/>
           <h5>Attendees</h5><br/>
             <div class="col m12">
             {this.filterHost()}

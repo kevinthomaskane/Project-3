@@ -2,8 +2,11 @@ const db = require("../models");
 
 module.exports = function (app) {
   app.post("/api/upload/:id", function (req, res) {
+    console.log(req.files.file);
+    let split = req.files.file.name.split(".");
+    let ext = split[1];
     db.User.update(
-      {image: req.files.file.data},
+      {image: req.files.file.data, tag: ext},
       {where: {
         id: req.params.id
       }}
