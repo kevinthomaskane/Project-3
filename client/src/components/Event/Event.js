@@ -12,8 +12,7 @@ const styles = {
     width: 300,
     height: 300
   }
-}
-
+};
 
 class Event extends React.Component {
 
@@ -26,12 +25,11 @@ class Event extends React.Component {
     attendees: [],
     allUsers: [],
     joined: false
-  }
+  };
 
   componentDidMount = () => {
     let eventId = this.props.match.params.id;
     this.getInfo(eventId);
-   
   };
 
   getInfo = (EID) => {
@@ -40,14 +38,14 @@ class Event extends React.Component {
       for (let i = 0; i < data.data.attendees.Users.length; i++){
         if (data.data.attendees.Users[i].username === localStorage.getItem("username")){
           joined = true;
-        }
-      }
+        };
+      };
       let eventId = this.props.match.params.id;
       axios.get("/api/chat/" + EID).then((response) => {
         axios.get("/api/allUsers").then((third)=>{
           this.setState({messages: response.data, attendees: data.data.attendees.Users, currentEvent: data.data.attendees, date: data.data.attendees.date.split("T")[0], hosts: data.data.host, allUsers: third.data, joined: joined});
-        })
-      })
+        });
+      });
     });
   };
 
@@ -59,16 +57,16 @@ class Event extends React.Component {
       for (let j = 0; j < hostArray.length; j++){
         if (userArray[i].id === hostArray[j].userId){
           hosts.push(userArray[i]);
-        }
-      }
-    }
+        };
+      };
+    };
     return (hosts.map((element) =>{
       return (
       <div class="host">
         <img id="hostImage" src={element.image === null ? "https://www.vccircle.com/wp-content/uploads/2017/03/default-profile.png" : element.image} /> 
         <span id="hostName"> <Link to={"/profile/" + element.id}><p>{element.username}</p></Link> (Host)</span>
       </div>
-      )
+      );
     })
   );
   };
@@ -76,14 +74,14 @@ class Event extends React.Component {
   filterHost = () => {
     let emptyArray = [];
     let userArray = emptyArray.concat(this.state.attendees);
-    let hostArray = this.state.hosts
+    let hostArray = this.state.hosts;
     for (let i = 0; i < userArray.length; i++){
       for (let j = 0; j < hostArray.length; j++){
         if (userArray[i].id === hostArray[j].userId){
           userArray.splice(i, 1);
-        }
-      }
-    }
+        };
+      };
+    };
     return (
     userArray.map(function(person, index){
       return (
@@ -91,7 +89,7 @@ class Event extends React.Component {
           <img className="image" src={person.image === null ? "https://www.vccircle.com/wp-content/uploads/2017/03/default-profile.png" : person.image} />
           <Link to={"/profile/" + person.id}><p>{person.username}</p></Link>
         </div>
-        )
+        );
       })
     );
   };
@@ -101,7 +99,7 @@ class Event extends React.Component {
     axios.post("/api/join/" + EID, {userId: userId}).then((response) => {
       let attendees = this.state.attendees;
       attendees.push(response.data);
-      this.setState({attendees: attendees, joined: true})
+      this.setState({attendees: attendees, joined: true});
     });
   };
 
@@ -120,21 +118,21 @@ class Event extends React.Component {
   };
 
   checkHost = () => {
-    let user_id = localStorage.getItem("user_id")
-    let hostArray = this.state.hosts
+    let user_id = localStorage.getItem("user_id");
+    let hostArray = this.state.hosts;
     let found = false;
     for (let i = 0; i < hostArray.length; i++){
       if (hostArray[i].userId === +user_id){
-        found = true
-      }
-    }
+        found = true;
+      };
+    };
     if (!found){
       return (
-        this.state.joined ? <button disabled={this.state.joined} id="joinBtn" onClick={() => {
-        }}id="join">You are going</button> : <button disabled={this.state.joined} id="joinBtn" onClick={() => {
+        this.state.joined ? <button disabled={this.state.joined} onClick={() => {
+        }}>You are going</button> : <button disabled={this.state.joined} onClick={() => {
           this.joinEvent(this.props.match.params.id);
-        }}id="join">Join this event</button> 
-      )
+        }}>Join this event</button> 
+      );
     } else {
       return (
         <Modal trigger={<button>Invite another host</button>}>
@@ -145,18 +143,18 @@ class Event extends React.Component {
             <h5>{element.username} <button value={element.username} onClick={() => {
               this.inviteHost(this.props.match.params.id, element.id) 
             }}>send invitation</button></h5>
-          )
+          );
         })}
         </Modal>
       );
     };
   };
 
-  inviteHost = (EID, userId) =>{
+  inviteHost = (EID, userId) => {
     axios.post("/api/addHost/" + EID, {userId: userId}).then((response) => {
-      let hosts = this.state.hosts
-      hosts.push(response.data.id)
-      this.setState({hosts: hosts})
+      let hosts = this.state.hosts;
+      hosts.push(response.data.id);
+      this.setState({hosts: hosts});
     });
   };
 
@@ -166,14 +164,13 @@ class Event extends React.Component {
   };
 
   checkInvited = (current) => {
-    console.log(this.state.attendees)
     for (let i = 0; i < this.state.attendees.length; i++){
       if (this.state.attendees[i].username === current){
         return true
-      }
-    }
+      };
+    };
     return false
-  }
+  };
 
   render(){
 
@@ -238,7 +235,7 @@ class Event extends React.Component {
                         <span className="message">{message.content}</span>
                         </div>
                       </li>
-                    )
+                      )
                   })}
                 </ul>
                 <div id="messageSubmit">
@@ -249,13 +246,12 @@ class Event extends React.Component {
                   }}><i class="material-icons">send</i></button>
                 </div>
               </div>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-    )
-  }
-
+    );
+  };
 };
 
 export default Event;
