@@ -20,6 +20,7 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.BLOB('long'),
       allowNull: true
     },
+    tag: DataTypes.STRING,
     skill_level: DataTypes.INTEGER,
     address: DataTypes.STRING,
     lat: DataTypes.FLOAT,

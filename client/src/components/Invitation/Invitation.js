@@ -18,7 +18,7 @@ class Invitation extends React.Component {
     axios.get("/api/invite/" + localStorage.getItem("username")).then((response) => {
       for (let i = 0; i < response.data.length; i++){
         fullInfo.push({eventName: response.data[i].eventName, sender: response.data[i].sender, eventId: response.data[i].eventId, inviteId: response.data[i].id})
-      }; 
+      };
       this.setState({inviteInfo: fullInfo});
     });
   };
@@ -50,7 +50,7 @@ class Invitation extends React.Component {
                       }}>Accept</button><button class="red lighten-3" onClick={() => {
                         this.deleteInvite(element.inviteId)
                       }}>Ignore</button>
-                      </CollectionItem> 
+                      </CollectionItem>
                     )
                   })}
               </Collection>

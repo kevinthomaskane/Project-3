@@ -2,8 +2,11 @@ const db = require("../models");
 
 module.exports = function (app) {
   app.post("/api/upload/:id", function (req, res) {
+    console.log(req.files.file);
+    let split = req.files.file.name.split(".");
+    let ext = split[1];
     db.User.update(
-      {image: req.files.file.data},
+      {image: req.files.file.data, tag: ext},
       {where: {
         id: req.params.id
       }}
@@ -25,14 +28,4 @@ module.exports = function (app) {
     });
   });
 
-  app.get("/test", function(req, res) {
-  // send html form with encoding type attr
-  res.send(`
-    <form method='POST' action='/upload' encType='multipart/form-data'>
-      <input type='text' name='myName' />
-      <input type='file' name='myUpload' />
-      <input type='submit' value='Submit' />
-    </form>
-  `);
-});
 };
