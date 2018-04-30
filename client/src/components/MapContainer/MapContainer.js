@@ -8,19 +8,52 @@ export class MapContainer extends Component {
 
   state = {
       events: [],
-      currentLocation:{lat:34.0622, lng: -118.445}
+      currentLocation:{},
+      showingInfoWindow: false,
+      activeMarker: {},
+      selectedPlace: {}
   };
 
-  componentWillMount () {
-    if(this.props.events.lat !== undefined){
+
+
+//  initMap = ()  => {
+//     if (true) {
+//       this.setState({
+//         currentLocation:{lat:this.props.event.lat, lng: this.props.event.lng}
+//         })
+//       }
+//     }
+
+  onMarkerClick = (props, marker, e) => 
+ 
+  {
+    console.log(props,marker);
+    return (
+
       this.setState({
-        currentLocation:{
-          lat: this.props.events.lat,
-          lng: this.props.events.lng
-        }
-      });
-    } else {
-      console.log("here");
+      selectedPlace: {},
+      activeMarker: marker,
+      showingInfoWindow: true
+    })
+  )
+  }
+
+
+  componentWillMount () {
+    console.log(this.props.currentLocation, this.props.lat)
+    if (this.props.lat) {
+      this.setState({
+        currentLocation:{lat:parseFloat(this.props.lat), lng: parseFloat(this.props.lng)}
+      })
+    }
+    else if (this.props.currentLocation) {
+      console.log(this.props.currentLocation)
+      this.setState({
+        currentLocation: this.props.currentLocation //geolocation here
+      })
+    }
+    else {
+      window.location.reload();
     }
   };
 
@@ -33,7 +66,7 @@ export class MapContainer extends Component {
 
           <Marker
             title={this.props.events.name}
-            position={{lat:this.props.events.lat, lng:this.props.events.lng}}
+            position={{lat:this.props.events.lat, lng: this.props.events.lng}}
               />
             :this.props.events === undefined ? null:
              this.props.events.map((even) => {
@@ -42,11 +75,12 @@ export class MapContainer extends Component {
               key={even.id}
               title={even.name}
               position={{lat: even.lat, lng:even.lng}}
+              onClick={this.onMarkerClick}
             />
           );
         })}
-
       </Map>
+
     );
   }
 }

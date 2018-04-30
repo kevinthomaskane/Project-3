@@ -212,7 +212,8 @@ class Event extends React.Component {
   };
 
   render(){
-
+    
+    console.log(window.location.pathname.split('/')[3])
     return (
     <div>
       <div className="container">
@@ -246,7 +247,7 @@ class Event extends React.Component {
             </CardPanel>
           </Col>
           <Col s={6} className="mapContainer">
-            <MapContainer className="map" isEvent={true} events={this.state.currentEvent}/>
+            <MapContainer className="map" isEvent={true} events={this.state.currentEvent} lat={window.location.pathname.split('/')[3]} lng={window.location.pathname.split('/')[4]}/>
           </Col>
           </Row>
         <Row className="row2">

@@ -23,7 +23,7 @@ class App extends Component {
         <Route exact path="/create" component={createEvent} />
         <Route exact path="/login" component={Login}/>
         {/* <Route exact path="/profile/:id" component={Profile} /> */}
-        <Route exact path="/event/:id" component={Even} />
+        <Route exact path="/event/:id/:lat/:lng" component={Even} />
         <Route exact path="/map" component={MapContainer} />
         <Route exact path="/viewpage" component={ViewProfile}/>
         <Route exact path="/profilepage" component={ProfilePage}/>
