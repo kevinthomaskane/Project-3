@@ -2,6 +2,7 @@ import {Map, InfoWindow, Marker, GoogleApiWrapper} from 'google-maps-react';
 import React, { Component } from 'react';
 import axios from "axios";
 // import mapTest from "../../mapTest.json";
+import "./MapContainer.css";
 const apiKey = "50074c58887a47f3330613f488693773"
 
 export class MapContainer extends Component {
