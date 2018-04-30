@@ -75,8 +75,10 @@ module.exports = function (app) {
         }
       }]
     }).then(function(data) {
-      let image = data.image.toString("base64");
-      data.image = image;
+      if (data.image !== null){
+        let image = data.image.toString("base64");
+        data.image = image;
+      };
       res.json(data);
     });
   });

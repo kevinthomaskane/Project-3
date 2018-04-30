@@ -91,7 +91,7 @@ class Event extends React.Component {
       return (
         <div key={index} className="attendee">
           <img className="image" src={person.image === null ? "https://www.vccircle.com/wp-content/uploads/2017/03/default-profile.png" : `data:image/${person.ext};base64,${person.image}`} />
-          <Link to={"/profile/" + person.id}><p>{person.username}</p></Link>
+          <Link to={"/viewpage/" + person.id}><p>{person.username}</p></Link>
         </div>
         );
       })
@@ -180,6 +180,7 @@ class Event extends React.Component {
   leaveEvent = (EID, userId) => {
     axios.delete("/api/leaveEvent/" + userId, {data: {eventId: EID}}).then((response) => {
       this.getInfo(EID);
+      window.location.reload();
     });
   };
 

@@ -13,8 +13,7 @@ class ViewProfile extends React.Component {
   }
 
   componentDidMount() {
-    let id = localStorage.getItem("user_id");
-    //      let id = this.props.match.params.id
+    let id = this.props.match.params.id
     axios.get("/api/userEvents/" + id).then((response) => {
       console.log(response);
 
