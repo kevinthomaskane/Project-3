@@ -2,7 +2,8 @@ import React from "react";
 import axios from "axios";
 import "./ViewProfile.css";
 import Image from "../Image";
-import {Modal,Dropdown, NavItem, Collection, CollectionItem, Navbar, Icon, Col, Row, CardPanel, Button} from "react-materialize";
+import {Modal,Dropdown, NavItem, Collection, CollectionItem, Navbar,
+  Icon, Col, Row, CardPanel, Button} from "react-materialize";
 
 class ViewProfile extends React.Component {
 
@@ -42,11 +43,22 @@ class ViewProfile extends React.Component {
 
          <div id="eventsContainer">
             <div  class="row" id="rightCol">
-                <span  class="col s12 m12 l12" id="eventTitle">Host:{"  "} {event.name}</span>
-                <span class="col s6 m6 l6" id="address"><Icon>add_location</Icon>{event.address}</span>
-                <span class="col s6 m6 l6">Created: {event.createdAt}</span>
-                <span  class="col s6 m6 l6" id="dateRange"><Icon>date_range</Icon>{event.date.split("T")[0]}</span>
-                <span class="col s6 m6 l6" id="sportType">Sport: {event.sportType}</span>
+                <span  class="col s12 m12 l12" id="eventTitle">
+                  Host:{"  "} {event.name}
+                </span>
+                <span class="col s6 m6 l6" id="address"><Icon>add_location</Icon>
+                  {event.address}
+                </span>
+                <span class="col s6 m6 l6">Created:
+                 {" "}  {event.createdAt.split("T")[0]}
+               </span>
+                <span  class="col s6 m6 l6"
+                  id="dateRange"><Icon>date_range</Icon>
+                  {event.date.split("T")[0]}
+                </span>
+                <span class="col s6 m6 l6" id="sportType">Sport:
+                  {event.sportType}
+                </span>
             </div>
          </div>
 
