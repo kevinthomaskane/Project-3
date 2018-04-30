@@ -94,8 +94,8 @@ export class MapContainer extends Component {
           marker={this.state.activeMarker}
           visible={this.state.showingInfoWindow}>
             <div>
-              <span id="infoWindowTitle">{this.state.selectedPlace.title}</span>
-              <p>{this.state.selectedPlace.description}</p>
+              <span id="infoWindowTitle">{this.state.selectedPlace.title}</span><br/><br/>
+              <span id="infoWindowDesc"><bold>Description:</bold> {this.state.selectedPlace.description}</span>
               <p>{this.state.selectedPlace.address}</p>
             </div>
         </InfoWindow>

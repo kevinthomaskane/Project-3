@@ -11,20 +11,23 @@ body {
 }
 
 .EventButton {
-    width: auto !important;
+    width: 16.5% !important;
     background-color: #C6C7C4 !important;
     color: #B4302B !important;
     font-family: 'Black Ops One', cursive;
-    font-size: 18px;
+    font-size: 14px;
     height: 60px;
     border: 3px solid #2D3047;
     margin-bottom: 20px;
     float: left;
+    margin-left: 13px;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
 
 }
 
 .EventButton:hover {
-    background-color: #2D3047;
+    background-color: #2D3047 !important;
 }
 
 .EventCard {
