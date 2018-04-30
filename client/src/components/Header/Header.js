@@ -69,8 +69,8 @@ class Header extends React.Component {
                                 ${this.state.image}`} />
                               </a>}>
                   <NavItem divider />
-                  <Link to={"/profilePage/"+id}><NavItem>Profile</NavItem></Link>
-                  <NavItem onClick={()=>this.signOut()} >Log Out</NavItem>
+                  <Link to="/profilePage"><NavItem>Profile</NavItem></Link> 
+                  <Link to="/"><NavItem onClick={()=>this.signOut()} >Log Out</NavItem></Link>
                   </Dropdown>
 
                 </div>
