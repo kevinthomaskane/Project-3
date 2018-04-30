@@ -17,7 +17,16 @@ class ProfilePage extends React.Component{
     componentDidMount(){
         // make get request to get user info and update
         // get id from local sotrage
-        // let id = this.props.match.params.id
+        let id = localStorage.getItem("user_id");
+        axios.get("/api/userEvents/" + id).then((response) => {
+            console.log(response);
+          
+            this.setState({
+              name:response.data.name,
+              username: response.data.username,
+              password: response.data.password,
+            });
+          });
         //     axios.update("/userUpdate/" )
         //     .then((data)=>{
         //         this.setState({
@@ -72,27 +81,27 @@ class ProfilePage extends React.Component{
                 <form className="col s12">
                     <div className="row">
                         <div className="input-field col s6">
-                            <input onChange={this.handleNameInputChange} placeholder="Username" id="name" value={this.state.name} type="text" className="validate" />
+                            <input onChange={this.handleNameInputChange} placeholder="Name" id="name" value={this.state.name} type="text" className="validate" />
                         </div>
                     </div>
                     <div className="row">
                         <div className="input-field col s12">
-                            <input onChange={this.handleUserNameInputChange} placeholder="Email" id="username" value={this.state.username} type="text" className="validate" />
+                            <input onChange={this.handleUserNameInputChange} placeholder="User Name" id="username" value={this.state.username} type="text" className="validate" />
                         </div>
                     </div>
                     <div className="row">
                         <div className="input-field col s6">
-                            <input onChange={this.handlePasswordInputChange} placeholder="First Name" id="password" value={this.state.password} type="text" className="validate" />
+                            <input onChange={this.handlePasswordInputChange} placeholder="Password" id="password" value={this.state.password} type="text" className="validate" />
                         </div>
                         <div className="input-field col s6">
                         </div>
                     </div>
-                    <form id="uploadImg" action="/api/upload" method="post" enctype="multipart/form-data">
-                        <p id="UploadText">Upload Your Image</p>
-                        <input type="file" name="uploadFile" />
-                        <input className="btn btn-success" type="submit" value="Submit!" />
-                        <input id="hiddenInput" type="hidden" value="32" name="userId" />
-                    </form>
+                    // <form id="uploadImg" action="/api/upload" method="post" enctype="multipart/form-data">
+                    //     <p id="UploadText">Upload Your Image</p>
+                    //     <input type="file" name="uploadFile" />
+                    //     <input className="btn btn-success" type="submit" value="Submit!" />
+                    //     <input id="hiddenInput" type="hidden" value="32" name="userId" />
+                    // </form>
                 </form>
             </div>
         )

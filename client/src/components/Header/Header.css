@@ -33,8 +33,13 @@
 }
 
 ul.dropdown-content {
-    position: relative;
-    margin-left:70.6%;
+ 
     margin-top:81px;
-    width:20% !important;
+    width:150px !important;
+ 
+}
+ 
+#dropDownMenu{
+    position: absolute;
+    margin-left:85%; 
 }
