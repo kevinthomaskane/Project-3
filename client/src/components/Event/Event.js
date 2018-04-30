@@ -24,8 +24,7 @@ class Event extends React.Component {
     messages: [],
     attendees: [],
     allUsers: [],
-    joined: false
-  };
+  }
 
   componentDidMount = () => {
     let eventId = this.props.match.params.id;
@@ -43,9 +42,13 @@ class Event extends React.Component {
       let eventId = this.props.match.params.id;
       axios.get("/api/chat/" + EID).then((response) => {
         axios.get("/api/allUsers").then((third)=>{
-          this.setState({messages: response.data, attendees: data.data.attendees.Users, currentEvent: data.data.attendees, date: data.data.attendees.date.split("T")[0], hosts: data.data.host, allUsers: third.data, joined: joined});
-        });
-      });
+          console.log(data.data);
+          this.setState({messages: response.data, attendees:
+          data.data.attendees.Users, currentEvent: data.data.attendees,
+          date: data.data.attendees.date.split("T")[0],
+          hosts: data.data.host, allUsers: third.data});
+        })
+      })
     });
   };
 
@@ -61,9 +64,10 @@ class Event extends React.Component {
       };
     };
     return (hosts.map((element) =>{
+      console.log(element);
       return (
       <div key={element.username} class="host">
-        <img id="hostImage" src={element.image === null ? "https://www.vccircle.com/wp-content/uploads/2017/03/default-profile.png" : element.image} /> 
+        <img id="hostImage" src={element.image === null ? "https://www.vccircle.com/wp-content/uploads/2017/03/default-profile.png" : element.image} />
         <span id="hostName"> <Link to={"/profile/" + element.id}><p>{element.username}</p></Link> (Host)</span>
       </div>
       );
@@ -133,7 +137,7 @@ class Event extends React.Component {
           this.leaveEvent(this.props.match.params.id, user_id)
         }}>Cancel RSVP</Button></div> : <Button className="cardBtn" disabled={this.state.joined} onClick={() => {
           this.joinEvent(this.props.match.params.id);
-        }}>Join this event</Button> 
+        }}>Join this event</Button>
       );
     } else {
       return (
@@ -150,11 +154,11 @@ class Event extends React.Component {
               return user.username !== localStorage.getItem("username")
             }).map((element) =>{
               return (
-                this.checkInvited(element.username) ? 
+                this.checkInvited(element.username) ?
                 <CollectionItem key={element.username}>{element.username} <Button disabled="true" value={element.username} onClick={() => {
-                  this.inviteHost(this.props.match.params.id, element.id) 
+                  this.inviteHost(this.props.match.params.id, element.id)
                 }}>already going</Button></CollectionItem> : <CollectionItem key={element.username}>{element.username} <Button value={element.username} className="blue lighten-3" onClick={() => {
-                  this.inviteHost(this.props.match.params.id, element.id) 
+                  this.inviteHost(this.props.match.params.id, element.id)
                 }}>add as host</Button></CollectionItem>
               );
             })}
@@ -223,7 +227,7 @@ class Event extends React.Component {
             <br/>
             {this.getHostInfo()}
             <br/>
-            {this.checkHost()} 
+            {this.checkHost()}
             <Modal trigger={<Button id="shareBtn" className="cardBtn">Share with another user!</Button>}>
               <Collection>
                 {this.state.allUsers.filter((user) => {
@@ -275,7 +279,7 @@ class Event extends React.Component {
                         <img className="messageImg" src={this.state.attendees.filter((item) => {
                           return item.username === message.username
                         }).map(function(element){
-                          return (element.image === null ? 
+                          return (element.image === null ?
                           "https://www.vccircle.com/wp-content/uploads/2017/03/default-profile.png" : element.image)
                         })}/> <span className="usernameMessage">{message.username}</span><br/>
                         <span className="message">{message.content}</span>
