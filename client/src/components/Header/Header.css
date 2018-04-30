@@ -31,6 +31,9 @@
     background-color: rgb(253, 252, 252);
     border-radius: 5px;
     color: rgb(80, 80, 80);
+    width: 100%;
+    padding: 0;
+    margin-left: 0;
 }
 
 #createBtn:hover {
@@ -40,6 +43,7 @@
 #profilePic{
     height: 60px;
     width: 60px;
+    margin-left: 5px;
     background-color: #E8E8E1;
     margin-top: 20px;
     margin-right: 5px;

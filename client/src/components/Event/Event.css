@@ -60,10 +60,13 @@ button.truncate {
   max-width: 100%;
   word-wrap: break-word;
   font-family: 'Open Sans', sans-serif;
-
+  margin-left: 0;
 
 }
 
+.cardBtn:active {
+  background-color: #B4302B;
+}
 
 /* #shareBtn {
   position: absolute;
