@@ -17,6 +17,15 @@
 
 }
 
+#createBtn {
+    margin-top: 30px;
+    background-color: rgb(182, 3, 3);
+    border-radius: 5px;
+}
+
+#createBtn:hover {
+    background-color: rgb(231, 7, 7);
+}
 #profilePic{
     height: 60px;
     width: 60px;
@@ -40,4 +49,17 @@ ul.dropdown-content {
     /* margin-left:70.6%; */
     margin-top: 15px;
     width: 200px!important;
+    height: 150px;
 }
+
+.dropdown {
+    height: 300px;
+}
+
+#userName {
+    display: inline-block;
+    vertical-align: top;
+    font-size: 28px;
+    color: white;
+}
+

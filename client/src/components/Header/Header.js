@@ -48,15 +48,16 @@ class Header extends React.Component {
               <div className="col m3 s3 l3">
                   <a id="logo" href="/">Squad-Up</a>
               </div>
-              
+              <div className="col m2">
+              <Link to="/create"><Button id="createBtn" >Create an Event</Button></Link>
+              </div>
                   <div className="col m2 s2 l2">
                   
-                 <Dropdown trigger={<a id="imageLink" href=""><img id="profilePic" data-toggle="modal" data-target="#imageModal" src="https://www.vccircle.com/wp-content/uploads/2017/03/default-profile.png" />
+                 <Dropdown trigger={<a id="imageLink" href=""><img id="profilePic" data-toggle="modal" data-target="#imageModal" src="https://www.vccircle.com/wp-content/uploads/2017/03/default-profile.png" /> <p id="userName">{localStorage.getItem("username")}</p>
                   </a>
                   }>
-                  <NavItem>Users: Name</NavItem>
                   <NavItem divider />
-                  <NavItem>Edit profile</NavItem> 
+                  <Link to="/profilePage"><NavItem>Profile</NavItem></Link> 
                   <NavItem onClick={()=>this.signOut()} >Log Out</NavItem> 
                   </Dropdown>
                   </div>
