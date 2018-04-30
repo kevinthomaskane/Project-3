@@ -54,7 +54,7 @@ class Login extends React.Component {
                     <input onChange={this.handleInputPassword} placeholder="Password "id="password" value={this.state.password} type="text" className="validate"/>
                 </div>
             </div>
-            <button className="submitBtn2" onClick={this.handleSubmitForm} className="btn btn-success" type="submit" value="login!">Log In</button>
+            <button onClick={this.handleSubmitForm} className="btn btn-success modal-close" type="submit" value="login!">Log In</button>
 
             </form>
         </div>

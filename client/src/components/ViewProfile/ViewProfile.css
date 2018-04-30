@@ -34,3 +34,11 @@ body{
     min-height: 550px;
     height: 100%;
 }
+
+#eventsContainer{
+    border: 3px solid red;
+}
+
+#eventsContainer{
+    margin-left: 22%;
+}
