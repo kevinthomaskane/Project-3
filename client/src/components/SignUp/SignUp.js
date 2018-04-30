@@ -48,14 +48,7 @@ class SignUp extends React.Component {
       formData.append('address', address);
       formData.append('lat', lat);
       formData.append('lon', lng);
-      // let data = {
-      //   name: `${this.state.first_name} ${this.state.last_name}`,
-      //   username: this.state.username,
-      //   password: this.state.password,
-      //   address: address,
-      //   lat: lat,
-      //   lon: lng
-      // };
+
 
       axios({
         url: "/api/newUser",
@@ -93,8 +86,7 @@ class SignUp extends React.Component {
           <div className="input-field col s6">
             <input type="text" onChange={this.handleInput} placeholder="First Name" name="first_name" value={this.state.first_name} className="validate"/>
           </div>
-        </div>
-        <div className="row">
+
           <div className="input-field col s6">
             <input type="text" onChange={this.handleInput} placeholder="Last Name" name="last_name" value={this.state.last_name} className="validate"/>
           </div>
@@ -111,8 +103,6 @@ class SignUp extends React.Component {
           <div className="input-field col s6">
             <input type="text" onChange={this.handleInput} placeholder="Address" name="address" value={this.state.address} className="validate"/>
           </div>
-        </div>
-        <div className="row">
           <div className="input-field col s6">
             <input type="text" onChange={this.handleInput} placeholder="City" name="city" value={this.state.city} className="validate"/>
           </div>
@@ -121,12 +111,12 @@ class SignUp extends React.Component {
           <div className="input-field col s6">
             <input type="text" onChange={this.handleInput} placeholder="State" name="state" value={this.state.state} className="validate"/>
           </div>
-        </div>
-        <div className="row">
           <div className="input-field col s6">
             <input type="text" onChange={this.handleInput} placeholder="Zipcode" name="zip" value={this.state.zip} className="validate"/>
           </div>
         </div>
+        <h5>File Upload</h5>
+        <input id="test" type="file" name="file" onChange={this.handleInput}/>
         <Link to="/"><button onClick={this.handleInputSubmit} className="btn btn-success modal-close" type="submit" value="Submit!">Sign Up</button></Link>
       </form>
 
