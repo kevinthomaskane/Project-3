@@ -67,11 +67,12 @@ module.exports = function (app) {
   });
 
   app.put("/update/:id", function (req,res) {
-    console.log(req.files.file.data);
-    req.body.image = req.files.file.data;
-    let split = req.files.file.name.split(".");
-    let ext = split[1];
-    req.body.tag = ext;
+    if(req.files !== null){
+      req.body.image = req.files.file.data;
+      let split = req.files.file.name.split(".");
+      let ext = split[1];
+      req.body.tag = ext;
+    }
     db.User.update(req.body,
     {where:{
       id:req.params.id
