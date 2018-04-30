@@ -83,19 +83,15 @@ class Mainpage extends Component {
           </Col>
         </Row>
       <Row>
-        <Col s={3}>
+        <Col m={12}>
           <Button className="EventButton needRight" onClick={() => this.getFiltered("football")}><img className="icon" src={"../images/football.png"}/>Flag Football</Button>
-        </Col>
-        <Col s={2.4}>
+        
           <Button className="EventButton needLeft" onClick={() => this.getFiltered("frisbee")}><img className="icon" src={"../images/fris.png"}/>Frisbee</Button>
-        </Col>
-        <Col s={2.4}>
+       
           <Button className="EventButton needLeft" onClick={() => this.getFiltered("basketball")}><img className="icon" src={"../images/bball.png"}/>Basketball</Button>
-        </Col>
-        <Col s={2.4}>
+        
           <Button className="EventButton needLeft" onClick={() => this.getFiltered("soccer")}><img className="icon" src={"../images/soccer.png"}/>Soccer</Button>
-        </Col>
-        <Col s={2.4}>
+        
           <Button className="EventButton needLeft" onClick={() => this.getFiltered("none")}><img className="icon" src={"../images/all.svg"}/>All</Button>
         </Col>
       </Row>

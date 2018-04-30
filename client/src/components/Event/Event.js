@@ -180,6 +180,7 @@ class Event extends React.Component {
   leaveEvent = (EID, userId) => {
     axios.delete("/api/leaveEvent/" + userId, {data: {eventId: EID}}).then((response) => {
       this.getInfo(EID);
+      window.location.reload();
     });
   };
 
