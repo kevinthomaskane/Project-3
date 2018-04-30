@@ -2,8 +2,8 @@ import React from "react";
 import axios from "axios";
 import Header from "../Header/Header";
 import Invitation from "../Invitation";
-
-const id = localStorage.getItem("user_id");
+import "./ProfilePage.css";
+let id = localStorage.getItem("user_id");
 
 class ProfilePage extends React.Component {
 
@@ -48,32 +48,36 @@ class ProfilePage extends React.Component {
       headers: {
         'Content-Type': 'multipart/form-data'
       }
-    }).then((res) => {}).catch((error) => {});
+    }).then((res) => {
+      this.setState({file: ""})
+    }).catch((error) => {});
   };
 
   render() {
     return (<div id="SignUpForm" className="row">
       <Invitation/>
-      <form onSubmit={this.handleInputSubmit} className="col s12">
+      <div id="editProfile">Edit Your Profile</div>
+      <form onSubmit={this.handleInputSubmit} id="formContainer" className="col s12">
         <div className="row">
-          <div className="input-field col s6">
-            <input onChange={this.handleInput} placeholder="Name" name="name" value={this.state.name} type="text" className="validate"/>
+          <div id="input-field" className="input-field col s6">
+            <input onChange={this.handleInput} placeholder="Name" name="name" id="name-ProfilePage" value={this.state.name} type="text" className="validate"/>
           </div>
         </div>
         <div className="row">
-          <div className="input-field col s12">
-            <input onChange={this.handleInput} placeholder="User Name" name="username" value={this.state.username} type="text" className="validate"/>
+          <div id="input-field" className="input-field col s12">
+            <input onChange={this.handleInput} placeholder="User Name" name="username" id="username-ProfilePage" value={this.state.username} type="text" className="validate"/>
           </div>
         </div>
         <div className="row">
-          <div className="input-field col s6">
-            <input onChange={this.handleInput} placeholder="Password" name="password" value={this.state.password} type="text" className="validate"/>
+          <div id="input-field" className="input-field col s6">
+            <input onChange={this.handleInput} placeholder="Password" name="password" type="text" id="password-ProfilePage" value={this.state.password} className="validate"/>
           </div>
-          <div className="input-field col s6"></div>
+          <div id="input-field" className="input-field col s6"></div>
         </div>
-        <h1>File Upload</h1>
+        <p id="UploadText">Upload Your Image</p>
         <input id="test" type="file" name="file" onChange={this.handleInput}/>
-        <button type="submit">Upload</button>
+        <input id="SubmitBtn-ProfilePage" className="btn btn-success" type="submit" value="Submit!"/>
+        <input id="hiddenInput" type="hidden" value="32" name="userId"/>
       </form>
     </div>)
   };

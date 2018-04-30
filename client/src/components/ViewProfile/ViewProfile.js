@@ -2,13 +2,15 @@ import React from "react";
 import axios from "axios";
 import "./ViewProfile.css";
 import Image from "../Image";
+import {Modal,Dropdown, NavItem, Collection, CollectionItem, Navbar, Icon, Col, Row, CardPanel, Button} from "react-materialize";
 
-import {Dropdown, Button, NavItem, Modal} from "react-materialize";
 class ViewProfile extends React.Component {
 
   state = {
     id: "",
     name:"",
+    username:"",
+    address:"",
     events:[],
   }
 
@@ -22,23 +24,32 @@ class ViewProfile extends React.Component {
         tag: response.data.tag,
         id: response.data.id,
         name:response.data.name,
+        username:response.data.username,
+        address:response.data.address,
         events: response.data.Events
       });
     });
-    console.log(this.state.name)
+    console.log("state",this.state.events)
   };
 
   render() {
     console.log(this.state);
 
     var eventNodes = this.state.events.map( event => {
+      console.log("event",event)
       return  (
-          <div id="eventsContainer">
-          <div>Events</div>
-          <div>Name:{event.name}</div>
-          <div>Address:{event.address}</div>
-          <div>Created At:{event.date.slice("T")[0]}</div>
-        </div>
+
+
+         <div id="eventsContainer">
+            <div  class="row" id="rightCol">
+                <span  class="col s12 m12 l12" id="eventTitle">Host:{"  "} {event.name}</span>
+                <span class="col s6 m6 l6" id="address"><Icon>add_location</Icon>{event.address}</span>
+                <span class="col s6 m6 l6">Created: {event.createdAt}</span>
+                <span  class="col s6 m6 l6" id="dateRange"><Icon>date_range</Icon>{event.date.split("T")[0]}</span>
+                <span class="col s6 m6 l6" id="sportType">Sport: {event.sportType}</span>
+            </div>
+         </div>
+
       );
     });
 
@@ -51,7 +62,8 @@ class ViewProfile extends React.Component {
             <img id="usersImage" src={this.state.image === null ? "https://www.vccircle.com/wp-content/uploads/2017/03/default-profile.png" : `data:image/${this.state.ext};base64,${this.state.image}`}/>
             <div>
               <p>{this.state.name}</p>
-              <p id="ratingStars">☆☆☆☆☆☆☆</p>
+              <p>Username:{this.state.username}</p>
+              <p>Address:{this.state.address}</p>
             </div>
           </div>
           <div id="userInfo"></div>
@@ -61,6 +73,7 @@ class ViewProfile extends React.Component {
 
 
       </div>
+      <div id="eventsText">Events</div>
       {eventNodes}
 
     </div>)

@@ -24,6 +24,7 @@ class Event extends React.Component {
     messages: [],
     attendees: [],
     allUsers: [],
+    joined: false
   }
 
   componentDidMount = () => {
@@ -46,7 +47,7 @@ class Event extends React.Component {
           this.setState({messages: response.data, attendees:
           data.data.attendees.Users, currentEvent: data.data.attendees,
           date: data.data.attendees.date.split("T")[0],
-          hosts: data.data.host, allUsers: third.data});
+          hosts: data.data.host, allUsers: third.data, joined:joined});
         })
       })
     });
@@ -180,7 +181,6 @@ class Event extends React.Component {
   leaveEvent = (EID, userId) => {
     axios.delete("/api/leaveEvent/" + userId, {data: {eventId: EID}}).then((response) => {
       this.getInfo(EID);
-      window.location.reload();
     });
   };
 
@@ -213,7 +213,7 @@ class Event extends React.Component {
   };
 
   render(){
-    
+
     console.log(window.location.pathname.split('/')[3])
     return (
     <div>

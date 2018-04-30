@@ -1,0 +1,33 @@
+#formContainer{
+    border: 2px solid gray;
+    width:45%;
+    margin-left: 28%;
+    background-color:rgba(128, 128, 128, 0.548);
+    margin-bottom:15px;
+}
+
+#input-field {
+    margin-left:25%;
+}
+
+ 
+
+#uploadImg{
+    margin-left: 25%;
+}
+#SubmitBtn-ProfilePage{
+    margin:15%;
+ 
+}
+#editProfile{
+    margin-left:44%;
+    font-family: 'Black Ops One', cursive;
+}
+#username-ProfilePage{
+    width:48%;
+}
+
+.collection{
+    background-color:gray;
+}
+
