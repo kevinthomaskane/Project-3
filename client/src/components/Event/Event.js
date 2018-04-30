@@ -68,7 +68,7 @@ class Event extends React.Component {
       return (
       <div key={element.username} class="host">
         <img id="hostImage" src={element.image === null ? "https://www.vccircle.com/wp-content/uploads/2017/03/default-profile.png" : `data:image/${element.ext};base64,${element.image}`} />
-        <span id="hostName"><Link to={"/profilePage/" + element.id}><p>{element.username}</p></Link> (Host)</span>
+        <span id="hostName"><Link to={"/viewpage"}><p>{element.username}</p></Link> (Host)</span>
       </div>
       );
     })

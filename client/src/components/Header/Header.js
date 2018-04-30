@@ -57,7 +57,7 @@ class Header extends React.Component {
                   </a>
                   }>
                   <NavItem divider />
-                  <Link to="/profilePage"><NavItem>Profile</NavItem></Link> 
+                  <Link to="/profilePage/:id"><NavItem>Profile</NavItem></Link> 
                   <NavItem onClick={()=>this.signOut()} >Log Out</NavItem> 
                   </Dropdown>
                   </div>

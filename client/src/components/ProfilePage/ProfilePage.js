@@ -2,7 +2,7 @@ import React from "react";
 import axios from "axios";
 import Header from "../Header/Header";
 import Invitation from "../Invitation";
-
+import "../ProfilePage/ProfilePage.css";
 let id = localStorage.getItem("user_id");
 class ProfilePage extends React.Component{
 
@@ -70,30 +70,31 @@ class ProfilePage extends React.Component{
         return(
             <div id="SignUpForm" className="row">
 <Invitation />
-                <form className="col s12">
+                <div id="editProfile">Edit Your Profile</div>
+                <form id="formContainer" className="col s12">
                     <div className="row">
-                        <div className="input-field col s6">
-                            <input onChange={this.handleNameInputChange} placeholder="Name" id="name" value={this.state.name} type="text" className="validate" />
+                        <div id="input-field" className="input-field col s6">
+                            <input onChange={this.handleNameInputChange} placeholder="Name" id="name-ProfilePage" value={this.state.name} type="text" className="validate" />
                         </div>
                     </div>
                     <div className="row">
-                        <div className="input-field col s12">
-                            <input onChange={this.handleUserNameInputChange} placeholder="User Name" id="username" value={this.state.username} type="text" className="validate" />
+                        <div id="input-field"className="input-field col s12">
+                            <input onChange={this.handleUserNameInputChange} placeholder="User Name" id="username-ProfilePage" value={this.state.username} type="text" className="validate" />
                         </div>
                     </div>
                     <div className="row">
-                        <div className="input-field col s6">
-                            <input onChange={this.handlePasswordInputChange} placeholder="Password" id="password" value={this.state.password} type="text" className="validate" />
+                        <div id="input-field"className="input-field col s6">
+                            <input onChange={this.handlePasswordInputChange} placeholder="Password" type="password" id="password-ProfilePage" value={this.state.password} type="text" className="validate" />
                         </div>
-                        <div className="input-field col s6">
+                        <div id="input-field"className="input-field col s6">
                         </div>
                     </div>
-                    // <form id="uploadImg" action="/api/upload" method="post" enctype="multipart/form-data">
-                    //     <p id="UploadText">Upload Your Image</p>
-                    //     <input type="file" name="uploadFile" />
-                    //     <input className="btn btn-success" type="submit" value="Submit!" />
-                    //     <input id="hiddenInput" type="hidden" value="32" name="userId" />
-                    // </form>
+                      <form id="uploadImg" action="/api/upload" method="post" enctype="multipart/form-data">
+                       <p id="UploadText">Upload Your Image</p>
+                         <input type="file" name="uploadFile" />
+                         <input id="SubmitBtn-ProfilePage" className="btn btn-success" type="submit" value="Submit!" />
+                         <input id="hiddenInput" type="hidden" value="32" name="userId" />
+                     </form>
                 </form>
             </div>
         )
