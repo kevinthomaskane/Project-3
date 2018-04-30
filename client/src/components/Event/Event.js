@@ -67,8 +67,8 @@ class Event extends React.Component {
       console.log(element);
       return (
       <div key={element.username} class="host">
-        <img id="hostImage" src={element.image === null ? "https://www.vccircle.com/wp-content/uploads/2017/03/default-profile.png" : element.image} />
-        <span id="hostName"> <Link to={"/profile/" + element.id}><p>{element.username}</p></Link> (Host)</span>
+        <img id="hostImage" src={element.image === null ? "https://www.vccircle.com/wp-content/uploads/2017/03/default-profile.png" : `data:image/${element.ext};base64,${element.image}`} />
+        <span id="hostName"><Link to={"/profilePage/" + element.id}><p>{element.username}</p></Link> (Host)</span>
       </div>
       );
     })
@@ -90,7 +90,7 @@ class Event extends React.Component {
     userArray.map(function(person, index){
       return (
         <div key={index} className="attendee">
-          <img className="image" src={person.image === null ? "https://www.vccircle.com/wp-content/uploads/2017/03/default-profile.png" : person.image} />
+          <img className="image" src={person.image === null ? "https://www.vccircle.com/wp-content/uploads/2017/03/default-profile.png" : `data:image/${person.ext};base64,${person.image}`} />
           <Link to={"/profile/" + person.id}><p>{person.username}</p></Link>
         </div>
         );
