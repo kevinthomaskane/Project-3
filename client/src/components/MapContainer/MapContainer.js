@@ -32,7 +32,7 @@ export class MapContainer extends Component {
       activeMarker: marker,
       showingInfoWindow: true
     });
-  
+
   //   console.log(props,marker);
   //   return (
 
@@ -46,8 +46,7 @@ export class MapContainer extends Component {
 
 
   componentWillMount () {
-    
-    console.log(this.props.currentLocation, this.props.lat)
+    console.log(this.props.currentLocation);
     if (this.props.lat) {
       this.setState({
         currentLocation:{lat:parseFloat(this.props.lat), lng: parseFloat(this.props.lng)}
@@ -60,7 +59,9 @@ export class MapContainer extends Component {
       })
     }
     else {
-      window.location.reload();
+      this.setState({
+        currentLocation: {lat: 33.8896, lng: -118.168} //geolocation here
+      })
     }
   };
 
