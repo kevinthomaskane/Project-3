@@ -137,22 +137,30 @@ class Event extends React.Component {
       );
     } else {
       return (
-        <Modal trigger={<button>Add another host</button>}>
-        <Collection>
-        {this.state.allUsers.filter((user)=>{
-          return user.username !== localStorage.getItem("username")
-        }).map((element) =>{
-          return (
-            this.checkInvited(element.username) ? 
-            <CollectionItem key={element.username}>{element.username} <button disabled="true" value={element.username} onClick={() => {
-              this.inviteHost(this.props.match.params.id, element.id) 
-            }}>already going</button></CollectionItem> : <CollectionItem key={element.username}>{element.username} <button value={element.username} onClick={() => {
-              this.inviteHost(this.props.match.params.id, element.id) 
-            }}>add as host</button></CollectionItem>
-          );
-        })}
-        </Collection>
-        </Modal>
+        <div id="topButtons">
+          <Modal trigger={<button>Delete this event</button>}>
+          <h5>Are you sure you want to delete this event?</h5>
+          <Link to={"/"}><button onClick={() => {
+            this.deleteEvent(this.props.match.params.id, user_id)
+          }}>Delete this event</button></Link>
+          </Modal>
+            <Modal trigger={<button>Add another host</button>}>
+            <Collection>
+            {this.state.allUsers.filter((user)=>{
+              return user.username !== localStorage.getItem("username")
+            }).map((element) =>{
+              return (
+                this.checkInvited(element.username) ? 
+                <CollectionItem key={element.username}>{element.username} <button disabled="true" value={element.username} onClick={() => {
+                  this.inviteHost(this.props.match.params.id, element.id) 
+                }}>already going</button></CollectionItem> : <CollectionItem key={element.username}>{element.username} <button value={element.username} className="blue lighten-3" onClick={() => {
+                  this.inviteHost(this.props.match.params.id, element.id) 
+                }}>add as host</button></CollectionItem>
+              );
+            })}
+            </Collection>
+            </Modal>
+        </div>
       );
     };
   };
@@ -161,15 +169,28 @@ class Event extends React.Component {
     axios.post("/api/addHost/" + EID, {userId: userId}).then((response) => {
       let hosts = this.state.hosts;
       hosts.push(response.data.id);
-      this.setState({hosts: hosts});
+      this.getInfo(EID);
     });
   };
 
   leaveEvent = (EID, userId) => {
-    console.log(EID, userId)
     axios.delete("/api/leaveEvent/" + userId, {data: {eventId: EID}}).then((response) => {
       this.getInfo(EID);
     });
+  };
+
+  deleteEvent = (EID, userId) => {
+    let isHost = false
+    for (let i = 0; i < this.state.hosts.length; i++){
+      if (this.state.hosts[i].userId === +userId){
+        isHost = true;
+      };
+    };
+    if (isHost){
+      axios.delete("/api/userEvent/" + EID).then((response) => {
+        console.log(response);
+      });
+    };
   };
 
   inviteUser = (EID, username) => {
@@ -199,19 +220,19 @@ class Event extends React.Component {
             {this.getHostInfo()}<br/>
             {this.checkHost()} 
             <Modal trigger={<button>Share with another user!</button>}>
-            <Collection>
-              {this.state.allUsers.filter((user) => {
-                  return user.username !== localStorage.getItem("username");
-                }).map((element) => {
-                  return (
-                  this.checkInvited(element.username) ? <CollectionItem key={element.username}>{element.username} <button disabled="true" id={element.username} onClick={() => {
-                    this.inviteUser(this.props.match.params.id, element.username)
-                  }}>User is already going</button></CollectionItem> : <CollectionItem key={element.username}>{element.username} <button className="blue lighten-2" id={element.username} onClick={() => {
-                    this.inviteUser(this.props.match.params.id, element.username)
-                  }}>Invite this user</button></CollectionItem>
-                )
-              })}
-            </Collection>
+              <Collection>
+                {this.state.allUsers.filter((user) => {
+                    return user.username !== localStorage.getItem("username");
+                  }).map((element) => {
+                    return (
+                    this.checkInvited(element.username) ? <CollectionItem key={element.username}>{element.username} <button disabled="true" id={element.username} onClick={() => {
+                      this.inviteUser(this.props.match.params.id, element.username)
+                    }}>User is already going</button></CollectionItem> : <CollectionItem key={element.username}>{element.username} <button className="blue lighten-2" id={element.username} onClick={() => {
+                      this.inviteUser(this.props.match.params.id, element.username)
+                    }}>Invite this user</button></CollectionItem>
+                  )
+                })}
+              </Collection>
             </Modal>
           </div>
           <div id="mapLocation" className="col m4">
