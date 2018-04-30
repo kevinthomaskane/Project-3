@@ -3,7 +3,7 @@ import axios from "axios";
 import Header from "../Header/Header";
 import Invitation from "../Invitation";
 
-
+let id = localStorage.getItem("user_id");
 class ProfilePage extends React.Component{
 
 
@@ -17,7 +17,7 @@ class ProfilePage extends React.Component{
     componentDidMount(){
         // make get request to get user info and update
         // get id from local sotrage
-        let id = localStorage.getItem("user_id");
+      
         axios.get("/api/userEvents/" + id).then((response) => {
             console.log(response);
           
@@ -27,15 +27,7 @@ class ProfilePage extends React.Component{
               password: response.data.password,
             });
           });
-        //     axios.update("/userUpdate/" )
-        //     .then((data)=>{
-        //         this.setState({
-        //             name:data.name,
-        //             username:data.username,
-        //             password:data.password,
-                
-        //         });
-        //     });
+    
     };
 
     handleNameInputChange = (event) =>{
@@ -65,7 +57,7 @@ class ProfilePage extends React.Component{
         };
         axios({
             method:"PUT",
-            url:"/update/:id",
+            url:"/update/"+id, data,
             data:data
         }).then((res)=>{
         }).catch((error)=>{

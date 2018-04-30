@@ -26,7 +26,7 @@ class App extends Component {
         <Route exact path="/event/:id" component={Even} />
         <Route exact path="/map" component={MapContainer} />
         <Route exact path="/viewpage" component={ViewProfile}/>
-        <Route exact path="/profilepage" component={ProfilePage}/>
+        <Route exact path="/profilepage/:id" component={ProfilePage}/>
         <Route exact path="/search" component={LocationSearchInput} />
         <Route component={NoMatch} />
       </Switch>
