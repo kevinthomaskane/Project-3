@@ -14,7 +14,21 @@ const styles = {
   }
 }
 
-let win1251decoder = new TextDecoder('windows-1251');
+function binarySearch(stuff, searchElement, left, right) {
+  if (right >= left){
+    let middle = Math.floor((left+right)/2);
+
+    if(stuff[middle].id === searchElement){
+      return middle;
+    }
+
+    if(searchElement > stuff[middle].id){
+      return binarySearch(stuff, searchElement, middle+1, right);
+    }
+
+    return binarySearch(stuff, searchElement, left, middle-1);
+  }
+}
 
 class Event extends React.Component {
 
@@ -51,6 +65,7 @@ class Event extends React.Component {
 
   getHostInfo = () => {
     let userArray =  this.state.attendees
+    console.log(userArray);
     let hostArray = this.state.hosts
     let hosts = [];
     for (let i = 0; i < userArray.length; i++){
@@ -75,12 +90,19 @@ class Event extends React.Component {
     let emptyArray = [];
     let userArray = emptyArray.concat(this.state.attendees);
     let hostArray = this.state.hosts
-    for (let i = 0; i < userArray.length; i++){
-      for (let j = 0; j < hostArray.length; j++){
-        if (userArray[i].id === hostArray[j].userId){
-          userArray.splice(i, 1);
-        }
-      }
+    console.log(hostArray);
+    for (let i = 0; i < hostArray.length; i++){
+      // for (let j = 0; j < hostArray.length; j++){
+      //   if (userArray[i].id === hostArray[j].userId){
+      //     console.log(userArray);
+      //     userArray.splice(i, 1);
+      //   }
+      // }
+      let middle = binarySearch(userArray, hostArray[i].userId, 0,
+        userArray.length-1);
+      console.log(hostArray);
+      userArray.splice(middle, 1);
+      console.log(userArray);
     }
     return (
     userArray.map(function(person, index){
