@@ -50,6 +50,18 @@ module.exports = function (app) {
     });
   });
 
+  app.delete("/api/leaveEvent/:user_id", function(req, res){
+    console.log(req.body)
+    db.Going.destroy({
+      where: {
+        eventId: req.body.eventId,
+        userId: req.params.user_id
+      }
+    }).then(function(response){
+      res.json(response)
+    })
+  })
+
   //this route is for Ed and the profile page so users can create events
   app.post("/api/createEvent/:user_id", function(req, res) {
     db.Event.create(req.body)
@@ -111,7 +123,7 @@ module.exports = function (app) {
   app.delete("/api/userEvent/:id", function (req, res) {
     db.Event.destroy({
       where: {
-        id: req.params.id
+        id: req.params.id,
       }
     }).then(function () {
       res.end();

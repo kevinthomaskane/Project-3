@@ -1,6 +1,9 @@
 import React from "react";
 import axios from "axios";
-import Header from "../Header/Header"
+import Header from "../Header/Header";
+import Invitation from "../Invitation";
+
+
 class ProfilePage extends React.Component{
 
 
@@ -14,16 +17,16 @@ class ProfilePage extends React.Component{
     componentDidMount(){
         // make get request to get user info and update
         // get id from local sotrage
-        let id = this.props.match.params.id
-            axios.update("/userUpdate/" )
-            .then((data)=>{
-                this.setState({
-                    name:data.name,
-                    username:data.username,
-                    password:data.password,
+        // let id = this.props.match.params.id
+        //     axios.update("/userUpdate/" )
+        //     .then((data)=>{
+        //         this.setState({
+        //             name:data.name,
+        //             username:data.username,
+        //             password:data.password,
                 
-                });
-            });
+        //         });
+        //     });
     };
 
     handleNameInputChange = (event) =>{
@@ -65,7 +68,7 @@ class ProfilePage extends React.Component{
     render(){
         return(
             <div id="SignUpForm" className="row">
-
+<Invitation />
                 <form className="col s12">
                     <div className="row">
                         <div className="input-field col s6">

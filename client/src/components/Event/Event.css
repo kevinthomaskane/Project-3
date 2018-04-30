@@ -4,6 +4,11 @@
   width: 35% !important;
 }
 
+.host {
+  display: inline-block;
+  margin-right: 5px;
+}
+
   #map {
     height: 300px;
     width: 300px;
@@ -16,7 +21,7 @@
 
 
   #topSection {
-    height: 300px;
+    height: 350px;
     background-color: rgb(171, 248, 221);
     border-radius: 10px;
     box-shadow: 1px 2px 4px rgba(143, 143, 143, 0.5);
@@ -87,7 +92,7 @@
   button{
     height: 40px;
     border-radius: 5px;
-    float: right;
+    margin: 5px 0;
   }
 
   .message {
@@ -146,4 +151,14 @@
   #topSection i{
     margin-right: 5px;
   }
+
+  .collection-item button{
+    float: right;
+  }
+
+  #topButtons div{
+    display: inline-block !important;
+    margin-right: 10px;
+  }
+
 

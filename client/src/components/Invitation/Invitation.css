@@ -1,0 +1,37 @@
+.collection {
+  overflow: scroll;
+  overflow-x: hidden;
+  width: 100%;
+}
+
+.collection button {
+  margin-left: 10px;
+}
+
+.collection-item:nth-child(odd) {
+  background: rgb(247, 245, 245);
+}
+
+.collection-item:hover {
+  background-color: rgb(219, 216, 216);
+}
+
+.collection-item {
+  position: relative;
+  height: 80px;
+}
+
+.collectionText{
+  line-height: 60px;
+  vertical-align: middle;
+}
+
+.red {
+  position: absolute;
+  right: 10px;
+}
+
+.green {
+  position: absolute;
+  right: 80px;
+}
