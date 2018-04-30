@@ -46,7 +46,7 @@ export class MapContainer extends Component {
 
 
   componentWillMount () {
-    console.log(this.props.currentLocation);
+    
     if (this.props.lat) {
       this.setState({
         currentLocation:{lat:parseFloat(this.props.lat), lng: parseFloat(this.props.lng)}

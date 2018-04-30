@@ -26,12 +26,13 @@ class Mainpage extends Component {
     searchterm: "",
     filtered: [],
     clicked: false,
-    currentLocation: ""
+    currentLocation: "",
+    rendered: false
 
   };
 
   componentDidMount() {
-    this.getFiltered("none")
+    this.getFiltered("none");
 
   }
 
@@ -47,7 +48,8 @@ class Mainpage extends Component {
             lat: res.data.latitude,
             lng: res.data.longitude
           },
-          events: response.data.data});
+          events: response.data.data,
+          rendered: true});
       });
     });
   };
@@ -100,10 +102,10 @@ class Mainpage extends Component {
         <Col s={6}>
           {
             this.state.clicked === false
-              ? this.state.events.map((event, index) => {
-                  console.log(event)
+              ? this.state.events.map(function(event, index) {
                   return (
-                  <Link key={event.id} to={"/event/" + event.id + "/" + event.lat + "/"+ event.lng}>
+                  <Link key={event.id} to={"/event/" + event.id
+                    + "/" + event.lat + "/" + event.lng}>
                     <Col s={12}>
                       <CardPanel className="EventCard">
                         <h2>{event.name}</h2>
@@ -117,9 +119,8 @@ class Mainpage extends Component {
           }
         </Col>
         <Col s={6}>
-          <MapContainer events={this.state.events} currentLocation={this.state.currentLocation}
-
-          />
+          {this.state.rendered === false ? "":
+            <MapContainer events={this.state.events} currentLocation={this.state.currentLocation}/> }
         </Col>
       </Row>
 
