@@ -1,33 +1,41 @@
 import React from "react";
 import "../Header/Header.css";
+import axios from "axios";
 import {Dropdown, Button, NavItem, Modal} from "react-materialize"
 import { BrowserRouter as Router, Route, Link,Redirect} from "react-router-dom";
 import Login from "../Login/Login";
 import SignUp from "../SignUp/SignUp";
-var username = localStorage.getItem("username");
+const id = localStorage.getItem("user_id");
+const username = localStorage.getItem("username");
 
 
 class Header extends React.Component {
 
   state ={
     loggedIn:false,
- 
+    image: "",
+    tag:""
   }
 
   componentDidMount(){
     if(username !==null){
-    this.setState({
-      loggedIn:true
-    })
-  }
+      axios.get("/api/user/"+id).then((data) => {
+        console.log(data);
+        this.setState({
+          loggedIn:true,
+          image: data.data.image,
+          tag: data.data.tag
+        });
+      });
+    }
   }
  signIn = () =>{
    console.log("CHECK")
- 
+
   this.setState({
     loggedIn:true
   })
- 
+
  }
 
  signOut = () =>{
@@ -51,14 +59,14 @@ class Header extends React.Component {
               <div id="dropDownMenu">
                   <div className="col m2 s2 l2"></div>
                   <Dropdown trigger={
-                  <div class="col m1 xs1 l1"><a id="imageLink" href=""><img id="profilePic" data-toggle="modal" data-target="#imageModal" src="https://www.vccircle.com/wp-content/uploads/2017/03/default-profile.png" />
+                  <div class="col m1 xs1 l1"><a id="imageLink" href=""><img id="profilePic" data-toggle="modal" data-target="#imageModal" src={this.state.image === null ? "https://www.vccircle.com/wp-content/uploads/2017/03/default-profile.png" : `data:image/${this.state.tag};base64,${this.state.image}`} />
                   </a>
                   </div>
                   }>
                   <NavItem>Users: Name</NavItem>
                   <NavItem divider />
-                  <NavItem>Edit profile</NavItem> 
-                  <NavItem onClick={()=>this.signOut()} >Log Out</NavItem> 
+                  <NavItem>Edit profile</NavItem>
+                  <NavItem onClick={()=>this.signOut()} >Log Out</NavItem>
                   </Dropdown>
               </div>
           </div>

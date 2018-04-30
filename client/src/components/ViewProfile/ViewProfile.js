@@ -60,9 +60,7 @@ class ViewProfile extends React.Component {
       </div>
       <div className="col s6 m6 l6" id="rightContainer">
 
-        <Modal trigger={<a id = "signup" href = "/image" > Upload - Image</a>}>
-          <Image id={this.state.id}/>
-        </Modal>
+
       </div>
       {eventNodes}
 
