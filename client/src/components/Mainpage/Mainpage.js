@@ -31,11 +31,7 @@ class Mainpage extends Component {
   };
 
   componentDidMount() {
-    Axios.get("/api/events/none").then(res => {
-      console.log(res);
-      this.setState({events: res.data.data})
-
-    }).catch(err => console.log(err));
+    this.getFiltered("none")
 
   }
 
@@ -104,9 +100,10 @@ class Mainpage extends Component {
         <Col s={6}>
           {
             this.state.clicked === false
-              ? this.state.events.map(function(event, index) {
+              ? this.state.events.map((event, index) => {
+                  console.log(event)
                   return (
-                  <Link key={event.id} to={"/event/" + event.id}>
+                  <Link key={event.id} to={"/event/" + event.id + "/" + event.lat + "/"+ event.lng}>
                     <Col s={12}>
                       <CardPanel className="EventCard">
                         <h2>{event.name}</h2>
@@ -120,7 +117,9 @@ class Mainpage extends Component {
           }
         </Col>
         <Col s={6}>
-          <MapContainer events={this.state.events} currentLocation={this.state.currentLocation}/>
+          <MapContainer events={this.state.events} currentLocation={this.state.currentLocation}
+
+          />
         </Col>
       </Row>
 
