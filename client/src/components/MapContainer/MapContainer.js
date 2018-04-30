@@ -24,22 +24,28 @@ export class MapContainer extends Component {
 //       }
 //     }
 
-  onMarkerClick = (props, marker, e) => 
- 
-  {
-    console.log(props,marker);
-    return (
-
-      this.setState({
-      selectedPlace: {},
+  onMarkerClick = (props, marker, e) => {
+    console.log(props);
+    this.setState({
+      selectedPlace: props,
       activeMarker: marker,
       showingInfoWindow: true
-    })
-  )
+    });
+  
+  //   console.log(props,marker);
+  //   return (
+
+  //     this.setState({
+  //     selectedPlace: {},
+  //     activeMarker: marker,
+  //     showingInfoWindow: true
+  //   })
+  // )
   }
 
 
   componentWillMount () {
+    
     console.log(this.props.currentLocation, this.props.lat)
     if (this.props.lat) {
       this.setState({
@@ -72,13 +78,26 @@ export class MapContainer extends Component {
              this.props.events.map((even) => {
           return (
             <Marker
+              address={even.address}
+              description={even.description}
               key={even.id}
               title={even.name}
               position={{lat: even.lat, lng:even.lng}}
               onClick={this.onMarkerClick}
             />
+
           );
         })}
+
+        <InfoWindow
+          marker={this.state.activeMarker}
+          visible={this.state.showingInfoWindow}>
+            <div>
+              <span id="infoWindowTitle">{this.state.selectedPlace.title}</span>
+              <p>{this.state.selectedPlace.description}</p>
+              <p>{this.state.selectedPlace.address}</p>
+            </div>
+        </InfoWindow>
       </Map>
 
     );
