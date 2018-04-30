@@ -1,6 +1,7 @@
 import React from "react";
 import axios from "axios";
 import "./SignUp.css";
+import {Link} from "react-router-dom";
 class SignUp extends React.Component {
 
   state = {
@@ -23,7 +24,7 @@ class SignUp extends React.Component {
 
   handleInputSubmit = (event) => {
     console.log("here");
-    event.preventDefault();
+  
     let lat;
     let lng;
     let address = `${this.state.address} ${this.state.city} ${this.state.state} ${this.state.zip}`;
@@ -59,8 +60,11 @@ class SignUp extends React.Component {
           zip: "",
         });
       }).catch((error) => {});
+
     });
+    window.location.reload()
   };
+
 
   render() {
     return (<div id="SignUpForm" className="row">
@@ -104,9 +108,9 @@ class SignUp extends React.Component {
             <input type="text" onChange={this.handleInput} placeholder="Zipcode" name="zip" value={this.state.zip} className="validate"/>
           </div>
         </div>
-
-        <button onClick={this.handleInputSubmit} className="btn btn-success" type="submit" value="Submit!"></button>
+        <Link to="/"><button onClick={this.handleInputSubmit} className="btn btn-success modal-close" type="submit" value="Submit!">Sign Up</button></Link>
       </form>
+      
     </div>)
 
   };

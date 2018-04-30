@@ -1,7 +1,9 @@
 import React from "react";
 import axios from "axios";
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
 const user_id = localStorage.getItem("user_id");
+
 
 class createEvent extends React.Component {
   state = {
@@ -23,7 +25,6 @@ class createEvent extends React.Component {
     });
   };
   handleSubmitForm = (event) => {
-    event.preventDefault();
     console.log(this.state);
     let address = `${this.state.address} ${this.state.city} ${this.state.state} ${this.state.zip}`;
     axios.get(`https://maps.googleapis.com/maps/api/geocode/json?address=${address}CA&key=AIzaSyDKYcYNqOJapazYjjFKVq3t94ljuBhx67o`
@@ -45,6 +46,7 @@ class createEvent extends React.Component {
           console.log(response);
         });
     });
+    window.location.reload()
   };
 
   render() {
@@ -75,8 +77,9 @@ class createEvent extends React.Component {
           <div className="col s12">
             <input onChange={this.handleInput} placeholder="Description " name="description" value={this.state.description} type="text" className="validate"/>
           </div>
-          <button onClick={this.handleSubmitForm} className="btn btn-success" type="submit" value="login!">Create Event</button>
+          <Link to="/"><button onClick={this.handleSubmitForm} className="btn btn-success" type="submit" value="login!">Create Event</button></Link>
         </form>
+      
       </div>
     );
   }
