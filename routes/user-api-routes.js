@@ -4,11 +4,20 @@ module.exports = function (app) {
 
   //this route is for Ed and the create a new user page
   app.post("/api/newUser", function(req, res) {
+
+    if(req.files !== null){
+      req.body.image = req.files.file.data;
+      let split = req.files.file.name.split(".");
+      let ext = split[1];
+      req.body.tag = ext;
+    }
     req.body.token =  "t"+Math.random();
     console.log(req.body.token);
     db.User.create(req.body).then(function(data) {
       res.cookie("token", req.body.token,{maxAge: 999999999});
       res.json(data);
+    }).catch(function (err) {
+      console.log(err);
     });
   });
 
@@ -37,6 +46,17 @@ module.exports = function (app) {
     });
   });
 
+  app.get("/api/user/:id", function (req, res) {
+    db.User.findOne({
+      where:{
+        id: req.params.id
+      }
+    }).then(function (data) {
+      let image = data.image.toString("base64");
+      data.image = image;
+      res.json(data);
+    })
+  });
   //this route is for Ed and the profile page to display a user's events
   app.get("/api/userEvents/:id", function(req, res) {
     db.User.findOne({
@@ -53,6 +73,8 @@ module.exports = function (app) {
         }
       }]
     }).then(function(data) {
+      let image = data.image.toString("base64");
+      data.image = image;
       res.json(data);
     });
   });
@@ -63,4 +85,20 @@ module.exports = function (app) {
       res.json(data);
     });
   });
+
+  app.put("/update/:id", function (req,res) {
+    if(req.files !== null){
+      req.body.image = req.files.file.data;
+      let split = req.files.file.name.split(".");
+      let ext = split[1];
+      req.body.tag = ext;
+    }
+    db.User.update(req.body,
+    {where:{
+      id:req.params.id
+    }}).then(function (data) {
+      res.json(data);
+    });
+  });
+
 };

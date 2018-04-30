@@ -28,7 +28,16 @@ class createEvent extends React.Component {
     let address = `${this.state.address} ${this.state.city} ${this.state.state} ${this.state.zip}`;
     axios.get(`https://maps.googleapis.com/maps/api/geocode/json?address=${address}CA&key=AIzaSyDKYcYNqOJapazYjjFKVq3t94ljuBhx67o`
     ).then((response) => {
-      console.log(response);
+      console.log(response.data.results);
+      let lat;
+      let lng;
+      if(response.data.results.length > 0){
+        lat = response.data.results[0].geometry.location.lat;
+        lng = response.data.results[0].geometry.location.lng
+      } else {
+        lat = 0;
+        lng = 0;
+      }
       let eventObj = {
         name: this.state.eventName,
         date: this.state.eventDate,
@@ -36,8 +45,8 @@ class createEvent extends React.Component {
         sportType: this.state.sportType,
         description: this.state.description,
         address: address,
-        lat: response.data.results[0].geometry.location.lat,
-        lng: response.data.results[0].geometry.location.lng
+        lat: lat,
+        lng: lng
       }
       console.log(eventObj);
       axios.post("/api/createEvent/"+user_id, eventObj)

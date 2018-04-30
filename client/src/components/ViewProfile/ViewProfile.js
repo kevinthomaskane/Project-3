@@ -17,8 +17,10 @@ class ViewProfile extends React.Component {
     //      let id = this.props.match.params.id
     axios.get("/api/userEvents/" + id).then((response) => {
       console.log(response);
-    
+
       this.setState({
+        image: response.data.image,
+        tag: response.data.tag,
         id: response.data.id,
         name:response.data.name,
         events: response.data.Events
@@ -47,7 +49,7 @@ class ViewProfile extends React.Component {
       <div className="col s6 m6 l6">
         <div className="col s6 m6 l6" id="leftContainer">
           <div id="imageContainer">
-            <img id="usersImage" src="https://s3.amazonaws.com/pickfu-media/options/6649/8a87b229e35a719a635c94910f4e2373b4dab86c.png?1374528750"/>
+            <img id="usersImage" src={this.state.image === null ? "https://www.vccircle.com/wp-content/uploads/2017/03/default-profile.png" : `data:image/${this.state.ext};base64,${this.state.image}`}/>
             <div>
               <p>{this.state.name}</p>
               <p id="ratingStars">☆☆☆☆☆☆☆</p>
@@ -57,13 +59,11 @@ class ViewProfile extends React.Component {
         </div>
       </div>
       <div className="col s6 m6 l6" id="rightContainer">
-    
-        <Modal trigger={<a id = "signup" href = "/image" > Upload - Image</a>}>
-          <Image id={this.state.id}/>
-        </Modal>
+
+
       </div>
       {eventNodes}
-      
+
     </div>)
   }
 

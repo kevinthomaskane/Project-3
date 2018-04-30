@@ -22,7 +22,6 @@ class SignUp extends React.Component {
   }
 
   handleInputSubmit = (event) => {
-    console.log("here");
     event.preventDefault();
     let lat;
     let lng;
@@ -36,18 +35,38 @@ class SignUp extends React.Component {
         lng = 0;
       }
 
-      let data = {
-        name: `${this.state.first_name} ${this.state.last_name}`,
-        username: this.state.username,
-        password: this.state.password,
-        address: address,
-        lat: lat,
-        lon: lng
-      };
+      const formData = new FormData();
+      let name = `${this.state.first_name} ${this.state.last_name}`;
+      if (this.state.file !== "") {
+        let file = document.getElementById("test").files[0];
+        formData.append('file', file);
+      }
+      formData.append('name', name);
+      formData.append('username', this.state.username);
+      formData.append('password', this.state.password);
+      formData.append('address', address);
+      formData.append('lat', lat);
+      formData.append('lon', lng);
+      // let data = {
+      //   name: `${this.state.first_name} ${this.state.last_name}`,
+      //   username: this.state.username,
+      //   password: this.state.password,
+      //   address: address,
+      //   lat: lat,
+      //   lon: lng
+      // };
 
-      axios.post("/api/newUser", data).then((res) => {
+      axios({
+        url: "/api/newUser",
+        method: "POST",
+        data: formData,
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        }
+      }).then((res) => {
         localStorage.setItem("user_id", res.data.id);
         localStorage.setItem("username", res.data.username);
+        console.log("here");
         this.setState({
           first_name: "",
           last_name: "",
@@ -105,7 +124,9 @@ class SignUp extends React.Component {
           </div>
         </div>
 
-        <button onClick={this.handleInputSubmit} className="btn btn-success modal-close" type="submit" value="Submit!">Submit</button>
+        <h5>File Upload</h5>
+        <input id="test" type="file" name="file" onChange={this.handleInput}/>
+        <button onClick={this.handleInputSubmit} className="btn btn-success" type="submit" value="Submit!"></button>
       </form>
     </div>)
 
