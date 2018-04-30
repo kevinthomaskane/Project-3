@@ -2,6 +2,7 @@
     background-color: #B4302B;
     height: 100px;
     margin-bottom: 20px;
+    width: 100%;
 }
 
 #logo{
@@ -36,7 +37,7 @@
 
 ul.dropdown-content {
     position: relative;
-    margin-left:70.6%;
-    margin-top:81px;
-    width:20% !important;
+    /* margin-left:70.6%; */
+    margin-top: 15px;
+    width: 200px!important;
 }
