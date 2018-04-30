@@ -128,12 +128,12 @@ class Event extends React.Component {
     };
     if (!found){
       return (
-        this.state.joined ? <div><button disabled={this.state.joined} onClick={() => {
-        }}>You are going</button> <button onClick={() => {
+        this.state.joined ? <div><Button className="cardBtn" disabled={this.state.joined} onClick={() => {
+        }}>You are going</Button> <Button className="cardBtn" onClick={() => {
           this.leaveEvent(this.props.match.params.id, user_id)
-        }}>Cancel RSVP</button></div> : <button disabled={this.state.joined} onClick={() => {
+        }}>Cancel RSVP</Button></div> : <Button className="cardBtn" disabled={this.state.joined} onClick={() => {
           this.joinEvent(this.props.match.params.id);
-        }}>Join this event</button> 
+        }}>Join this event</Button> 
       );
     } else {
       return (
@@ -230,7 +230,7 @@ class Event extends React.Component {
                     return user.username !== localStorage.getItem("username");
                   }).map((element) => {
                     return (
-                    this.checkInvited(element.username) ? <CollectionItem key={element.username}>{element.username} <Button disabled="true" id={element.username} onClick={() => {
+                    this.checkInvited(element.username) ? <CollectionItem key={element.username}>{element.username} <Button className="cardBtn" disabled="true" id={element.username} onClick={() => {
                       this.inviteUser(this.props.match.params.id, element.username)
                     }}>User is already going</Button></CollectionItem> : <CollectionItem key={element.username}>{element.username} <Button className="blue lighten-2" id={element.username} onClick={() => {
                       this.inviteUser(this.props.match.params.id, element.username)
@@ -245,15 +245,15 @@ class Event extends React.Component {
             <MapContainer className="map" isEvent={true} events={this.state.currentEvent}/>
           </Col>
           </Row>
-        <Row>
+        <Row className="row2">
           <Col s={6}>
-          <CardPanel>
+          <CardPanel className="eventCard">
           <span className="colTitle">About this event</span>
               <p>{this.state.currentEvent.description}</p>
           </CardPanel>
           </Col>
           <Col s={6} >
-          <CardPanel>
+          <CardPanel className="eventCard">
           <span className="colTitle">Attendees</span>
           <br/>
             {this.filterHost()}
