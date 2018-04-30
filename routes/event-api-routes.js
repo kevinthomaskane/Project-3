@@ -46,9 +46,11 @@ module.exports = function (app) {
         }
       }).then(function(response){
         for (let i = 0; i < data.Users.length; i++) {
-          let image = data.Users[i].image.toString("base64");
-          let ext = data.Users[i].dataValues.tag;
-          data.Users[i].image = image;
+          if(data.Users[i].image !== null){
+            let image = data.Users[i].image.toString("base64");
+            let ext = data.Users[i].dataValues.tag;
+            data.Users[i].image = image;
+          }
         }
 
         res.json({attendees: data, host: response});
