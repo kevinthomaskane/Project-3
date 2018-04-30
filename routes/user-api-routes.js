@@ -53,6 +53,8 @@ module.exports = function (app) {
         }
       }]
     }).then(function(data) {
+      let image = data.image.toString("base64");
+      data.image = image;
       res.json(data);
     });
   });
@@ -63,4 +65,19 @@ module.exports = function (app) {
       res.json(data);
     });
   });
+
+  app.put("/update/:id", function (req,res) {
+    console.log(req.files.file.data);
+    req.body.image = req.files.file.data;
+    let split = req.files.file.name.split(".");
+    let ext = split[1];
+    req.body.tag = ext;
+    db.User.update(req.body,
+    {where:{
+      id:req.params.id
+    }}).then(function (data) {
+      res.json(data);
+    });
+  });
+
 };
