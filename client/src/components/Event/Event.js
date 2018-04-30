@@ -1,5 +1,5 @@
 import React from "react";
-import {Modal, Collection, CollectionItem} from "react-materialize"
+import {Modal, Collection, CollectionItem, Navbar, Icon, Col, Row, CardPanel, Button} from "react-materialize"
 import axios from "axios";
 import Header from "../Header";
 import {Link} from "react-router-dom";
@@ -137,25 +137,25 @@ class Event extends React.Component {
       );
     } else {
       return (
-        <div id="topButtons">
-          <Modal trigger={<button>Delete this event</button>}>
+        <div className="btnContainer">
+          <Modal trigger={<Button className="cardBtn" id="deleteEventBtn">Delete this event</Button>}>
           <h5>Are you sure you want to delete this event?</h5>
-          <Link to={"/"}><button onClick={() => {
+          <Link to={"/"}><Button className="cardBtn" onClick={() => {
             this.deleteEvent(this.props.match.params.id, user_id)
-          }}>Delete this event</button></Link>
+          }}>Delete this event</Button></Link>
           </Modal>
-            <Modal trigger={<button>Add another host</button>}>
+            <Modal trigger={<Button className="cardBtn" id="addHostEventBtn">Add another host</Button>}>
             <Collection>
             {this.state.allUsers.filter((user)=>{
               return user.username !== localStorage.getItem("username")
             }).map((element) =>{
               return (
                 this.checkInvited(element.username) ? 
-                <CollectionItem key={element.username}>{element.username} <button disabled="true" value={element.username} onClick={() => {
+                <CollectionItem key={element.username}>{element.username} <Button disabled="true" value={element.username} onClick={() => {
                   this.inviteHost(this.props.match.params.id, element.id) 
-                }}>already going</button></CollectionItem> : <CollectionItem key={element.username}>{element.username} <button value={element.username} className="blue lighten-3" onClick={() => {
+                }}>already going</Button></CollectionItem> : <CollectionItem key={element.username}>{element.username} <Button value={element.username} className="blue lighten-3" onClick={() => {
                   this.inviteHost(this.props.match.params.id, element.id) 
-                }}>add as host</button></CollectionItem>
+                }}>add as host</Button></CollectionItem>
               );
             })}
             </Collection>
@@ -212,47 +212,53 @@ class Event extends React.Component {
     return (
     <div>
       <div className="container">
-        <div className="row">
-          <div className="col m8" id="topSection">
-            <h2>{this.state.currentEvent.name}</h2>
-            <p><i class="material-icons">date_range</i>{this.state.date}</p><br/>
-            <p id="address"><i class="material-icons">add_location</i>{this.state.currentEvent.address} </p><br/>
-            {this.getHostInfo()}<br/>
+        <Row className="row1">
+          <Col s={6} >
+          <CardPanel>
+            <span id="eventTitle">{this.state.currentEvent.name}</span>
+            <br/>
+            <span id="dateRange"><Icon>date_range</Icon>{this.state.date}</span>
+            <br/>
+            <span id="address"><Icon>add_location</Icon>{this.state.currentEvent.address}</span>
+            <br/>
+            {this.getHostInfo()}
+            <br/>
             {this.checkHost()} 
-            <Modal trigger={<button>Share with another user!</button>}>
+            <Modal trigger={<Button className="cardBtn">Share with another user!</Button>}>
               <Collection>
                 {this.state.allUsers.filter((user) => {
                     return user.username !== localStorage.getItem("username");
                   }).map((element) => {
                     return (
-                    this.checkInvited(element.username) ? <CollectionItem key={element.username}>{element.username} <button disabled="true" id={element.username} onClick={() => {
+                    this.checkInvited(element.username) ? <CollectionItem key={element.username}>{element.username} <Button disabled="true" id={element.username} onClick={() => {
                       this.inviteUser(this.props.match.params.id, element.username)
-                    }}>User is already going</button></CollectionItem> : <CollectionItem key={element.username}>{element.username} <button className="blue lighten-2" id={element.username} onClick={() => {
+                    }}>User is already going</Button></CollectionItem> : <CollectionItem key={element.username}>{element.username} <Button className="blue lighten-2" id={element.username} onClick={() => {
                       this.inviteUser(this.props.match.params.id, element.username)
-                    }}>Invite this user</button></CollectionItem>
+                    }}>Invite this user</Button></CollectionItem>
                   )
                 })}
               </Collection>
             </Modal>
-          </div>
-          <div id="mapLocation" className="col m4">
-            <div id="map">
+            </CardPanel>
+          </Col>
+          <Col s={6} className="mapContainer">
             <MapContainer isEvent={true} events={this.state.currentEvent}  style={styles.map}/>
-            </div>
-          </div>
-        </div>  
-        <div className="row">
+          </Col>
+          </Row>
+        <Row>
+          <Col s={6} >
+          <CardPanel>
           <h5>About this event</h5>
-            <div class="col m12">
               <p>{this.state.currentEvent.description}</p>
-            </div>
-        </div>
-        <div className="row">
+          </CardPanel>
+          </Col>
+          <Col s={6} >
+          <CardPanel>
           <h5>Attendees</h5><br/>
-            <div class="col m12">
             {this.filterHost()}
-            </div>
-        </div>
+          </CardPanel>
+          </Col>
+          </Row>
         <div className="row">
         <h5>Message Board</h5><br/>
           <div className="col m12">
