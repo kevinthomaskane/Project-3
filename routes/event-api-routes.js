@@ -45,7 +45,6 @@ module.exports = function (app) {
           isHost: true
         }
       }).then(function(response){
-        let images = [];
         for (let i = 0; i < data.Users.length; i++) {
           let image = data.Users[i].image.toString("base64");
           let ext = data.Users[i].dataValues.tag;

@@ -28,14 +28,4 @@ module.exports = function (app) {
     });
   });
 
-  app.get("/test", function(req, res) {
-  // send html form with encoding type attr
-  res.send(`
-    <form method='POST' action='/upload' encType='multipart/form-data'>
-      <input type='text' name='myName' />
-      <input type='file' name='myUpload' />
-      <input type='submit' value='Submit' />
-    </form>
-  `);
-});
 };
