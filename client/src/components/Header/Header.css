@@ -7,11 +7,13 @@
 #logo{
     color: #E8E8E1;
     font-family: 'Black Ops One', cursive;
-    font-size: 250%;
+    font-size: 48px;
     line-height: 100px;
     vertical-align: middle;
     text-align: center;
     text-decoration: none;
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+
 }
 
 #profilePic{
