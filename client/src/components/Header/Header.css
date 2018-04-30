@@ -3,6 +3,15 @@
     height: 100px;
     margin-bottom: 20px;
     width: 100%;
+    font-family: 'Open Sans', sans-serif;
+}
+
+#login {
+    font-family: 'Open Sans', sans-serif;
+}
+
+#signup {
+    font-family: 'Open Sans', sans-serif;
 }
 
 #logo{
@@ -19,18 +28,21 @@
 
 #createBtn {
     margin-top: 30px;
-    background-color: rgb(182, 3, 3);
+    background-color: rgb(253, 252, 252);
     border-radius: 5px;
+    color: rgb(80, 80, 80);
 }
 
 #createBtn:hover {
-    background-color: rgb(231, 7, 7);
+    background-color: #B4302B;
+    color: white;
 }
 #profilePic{
     height: 60px;
     width: 60px;
     background-color: #E8E8E1;
     margin-top: 20px;
+    margin-right: 5px;
     border-radius: 3px;
     box-shadow: 0 4px 8px 0 rgba(66, 66, 66, 0.2), 0 6px 20px 0 rgba(58, 57, 57, 0.05);
 }

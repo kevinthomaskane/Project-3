@@ -23,6 +23,7 @@ button.truncate {
   margin-bottom: -0.5px; 
   overflow: scroll;
   overflow-x: hidden;
+  font-family: 'Open Sans', sans-serif;
 
 }
 
@@ -44,6 +45,8 @@ button.truncate {
 
 #address {
   display: inline-block;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 16px;
 }
 
 .cardBtn {
@@ -56,6 +59,7 @@ button.truncate {
   margin-bottom: 5px;
   max-width: 100%;
   word-wrap: break-word;
+  font-family: 'Open Sans', sans-serif;
 
 
 }
@@ -73,12 +77,32 @@ button.truncate {
   display: inline-block;
   margin-left: 20px;
   margin-bottom: 20px;
-  margin-top: 15px;
+  font-family: 'Open Sans', sans-serif;
+  margin-top: 10px;
+  width: 75px;
+  background-color: white;
+  border-radius: 5px;
+  box-shadow: 3px 3px 5px rgb(194, 192, 192);
+  text-align: center;
+  padding-bottom: 5px;
+}
+
+#hostName p {
+  margin: 3px;
+}
+
+#hostName {
+  margin-bottom: 3px;
 }
 
 .mapContainer {
   position: relative;
   height: 100% !important;
+  width: 100%;
+}
+
+.mapContainer > div > div {
+  width: 96% !important;
 }
 
 .map {
@@ -97,11 +121,12 @@ div.card-panel {
 #eventTitle {
   font-size: 36px;
   font-weight: bolder;
+  font-family: 'Open Sans', sans-serif;
 }
 
 #hostImage{
-  width: 40px;
-  height: 40px;
+  width: 75px;
+  height: 75px;
   vertical-align: middle;
 
 }
@@ -113,6 +138,7 @@ div.card-panel {
   margin-bottom: 100px;
   position: relative;
   border-radius: 5px;
+  font-family: 'Open Sans', sans-serif;
 }
 
 #messageSubmit{
@@ -141,6 +167,7 @@ div.card-panel {
   color: #E8E8E1;
   margin-left: 10px;
   text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+  font-family: 'Open Sans', sans-serif;
 
 }
 
@@ -148,6 +175,11 @@ div.card-panel {
   display: inline-block;
   padding-left: 10px;
   margin-bottom: 20px;
+}
+
+#dateRange {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 16px;
 }
 
 #usernameMessage {
@@ -199,6 +231,7 @@ textarea{
   margin: 0 auto;
   border-radius: 5px;
   display: inline-block;
+  background-color: white;
 }
 
 .attendee p {
@@ -208,14 +241,33 @@ textarea{
 }
 
 .attendee {
+  margin-top: 10px;
   width: 75px;
   float: left;
   margin-left: 20px;
+  background-color: white;
+  border-radius: 5px;
+  box-shadow: 3px 3px 5px rgb(194, 192, 192);
 }
 
 .row2 {
   height: 30vh !important;
   position: relative;
+}
+
+.collection-item button{
+  float: right;
+}
+
+.collection-item {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 20px;
+}
+
+.usernameMessage{
+  line-height: 40px;
+  vertical-align: top;
+  font-weight: bold;
 }
 
 
@@ -228,6 +280,7 @@ textarea{
   display: inline-block;
   margin-right: 5px;
 }
+
 
 
   .image {
@@ -306,11 +359,7 @@ textarea{
     margin-bottom: 20px;
   }
 
-  .usernameMessage{
-    line-height: 40px;
-    vertical-align: top;
-    font-weight: bold;
-  }
+  
 
   #hostImage{
     width: 40px;
@@ -333,9 +382,7 @@ textarea{
     margin-right: 5px;
   }
 
-  .collection-item button{
-    float: right;
-  }
+  
 
   #topButtons div{
     display: inline-block !important;

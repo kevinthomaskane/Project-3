@@ -45,7 +45,7 @@ class Login extends React.Component {
   render() {
     return (
         <div>
-        <form id="loginForm"   >
+        <form id="loginForm">
             <div className="row">
                 <div className="input-field col s6">
                     <input onChange={this.handleInputUsername} placeholder="User Name"id="username" value={this.state.username} type="text" className="validate"/>
