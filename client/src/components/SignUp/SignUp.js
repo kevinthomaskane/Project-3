@@ -48,14 +48,6 @@ class SignUp extends React.Component {
       formData.append('address', address);
       formData.append('lat', lat);
       formData.append('lon', lng);
-      // let data = {
-      //   name: `${this.state.first_name} ${this.state.last_name}`,
-      //   username: this.state.username,
-      //   password: this.state.password,
-      //   address: address,
-      //   lat: lat,
-      //   lon: lng
-      // };
 
       axios({
         url: "/api/newUser",
@@ -67,17 +59,6 @@ class SignUp extends React.Component {
       }).then((res) => {
         localStorage.setItem("user_id", res.data.id);
         localStorage.setItem("username", res.data.username);
-        console.log("here");
-        // this.setState({
-        //   first_name: "",
-        //   last_name: "",
-        //   username: "",
-        //   password: "",
-        //   address: "",
-        //   city: "",
-        //   state: "",
-        //   zip: "",
-        // });
         window.location.reload();
       }).catch((error) => {});
 
