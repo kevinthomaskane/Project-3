@@ -55,7 +55,7 @@ class createEvent extends React.Component {
           console.log(response);
         });
     });
-    window.location.reload()
+    // window.location.reload()
   };
 
   render() {
