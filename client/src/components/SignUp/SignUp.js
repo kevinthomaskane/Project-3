@@ -38,7 +38,7 @@ class SignUp extends React.Component {
 
       const formData = new FormData();
       let name = `${this.state.first_name} ${this.state.last_name}`;
-      if (this.state.file !== "") {
+      if (this.state.file !== undefined) {
         let file = document.getElementById("test").files[0];
         formData.append('file', file);
       }
@@ -81,7 +81,7 @@ class SignUp extends React.Component {
       }).catch((error) => {});
 
     });
-    window.location.reload()
+    // window.location.reload()
   };
 
 
