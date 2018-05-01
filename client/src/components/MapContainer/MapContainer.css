@@ -1,4 +1,12 @@
 #infoWindowTitle {
-   font-size: 16px;
+   font-size: 24px;
    font-weight: bolder;
+}
+
+#infoWindowDesc {
+    font-size: 14px;
+}
+
+#infoWindow {
+    background-color: #C6C7C4 !important;
 }
