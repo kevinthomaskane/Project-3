@@ -68,20 +68,20 @@ class SignUp extends React.Component {
         localStorage.setItem("user_id", res.data.id);
         localStorage.setItem("username", res.data.username);
         console.log("here");
-        this.setState({
-          first_name: "",
-          last_name: "",
-          username: "",
-          password: "",
-          address: "",
-          city: "",
-          state: "",
-          zip: "",
-        });
+        // this.setState({
+        //   first_name: "",
+        //   last_name: "",
+        //   username: "",
+        //   password: "",
+        //   address: "",
+        //   city: "",
+        //   state: "",
+        //   zip: "",
+        // });
+        window.location.reload();
       }).catch((error) => {});
 
     });
-    // window.location.reload()
   };
 
 

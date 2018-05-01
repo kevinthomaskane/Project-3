@@ -53,9 +53,10 @@ class createEvent extends React.Component {
       axios.post("/api/createEvent/"+user_id, eventObj)
         .then((response) => {
           console.log(response);
+          window.location.reload();
         });
     });
-    // window.location.reload()
+    
   };
 
   render() {
