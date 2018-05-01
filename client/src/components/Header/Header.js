@@ -1,7 +1,7 @@
 import React from "react";
 import "../Header/Header.css";
 import axios from "axios";
-import {Dropdown, Button, NavItem, Modal} from "react-materialize"
+import {Dropdown, Button, NavItem, Modal, Col, Row} from "react-materialize"
 import { BrowserRouter as Router, Route, Link,Redirect} from "react-router-dom";
 import Login from "../Login/Login";
 import SignUp from "../SignUp/SignUp";
@@ -51,29 +51,28 @@ class Header extends React.Component {
   if (this.state.loggedIn) {
     return (
       <div>
-          <div className="row header">
-              <div className="col m5 s5 l5"></div>
-              <div className="col m3 s3 l3">
+          <Row className="header">
+              <Col s={3}>
                   <a id="logo" href="/">Squad-Up</a>
-              </div>
-              <div className="col m2">
+              </Col>
+              <Col s={4}>
+              </Col>
+              <Col s={5}>
               <Link to="/create"><Button id="createBtn" >Create an Event</Button></Link>
-              </div>
-                  <div className="col m2 s2 l2">
                   
                  <Dropdown trigger={<a id="imageLink" href=""><img id="profilePic" data-toggle="modal" data-target="#imageModal" src={this.state.image === null ?
                                 "https://www.vccircle.com/wp-content/uploads/2017/03/default-profile.png" :
                                 `data:image/${this.state.tag};base64,
-                                ${this.state.image}`} /> <p id="userName">{localStorage.getItem("username")}</p>
+                                ${this.state.image}`} /> <span id="userName">{localStorage.getItem("username")}</span>
                   </a>
                   }>
                   <NavItem divider />
                   <Link to="/profilePage"><NavItem>Profile</NavItem></Link> 
                   <Link to="/"><NavItem onClick={()=>this.signOut()} >Log Out</NavItem></Link>
                   </Dropdown>
-                  </div>
-              
-          </div>
+                  </Col>
+              </Row>
+          
       </div>
   )
   } else {

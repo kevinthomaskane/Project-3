@@ -1,9 +1,10 @@
 .header{
-    background-color: #B4302B;
+    background-color: #B4302B !important;
     height: 100px;
     margin-bottom: 20px;
     width: 100%;
     font-family: 'Open Sans', sans-serif;
+    
 }
 
 #login {
@@ -23,21 +24,23 @@
     text-align: center;
     text-decoration: none;
     text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
-
+    margin-left: 20px;
 }
 
 #createBtn {
-    margin-top: 30px;
-    background-color: rgb(253, 252, 252);
+    background-color: #C6C7C4;
     border-radius: 5px;
-    color: rgb(80, 80, 80);
-    width: 100%;
-    padding: 0;
-    margin-left: 0;
+    color: black;
+    font-weight: bolder;
+    width: auto;
+    display: inline-block;
+    vertical-align: middle !important;
+    margin-left: 60px;
+    margin-bottom: 50px;
 }
 
 #createBtn:hover {
-    background-color: #B4302B;
+    background-color: #2D3047;
     color: white;
 }
 #profilePic{
@@ -49,6 +52,9 @@
     margin-right: 5px;
     border-radius: 3px;
     box-shadow: 0 4px 8px 0 rgba(66, 66, 66, 0.2), 0 6px 20px 0 rgba(58, 57, 57, 0.05);
+    display: inline-block;
+    margin-left: 60px;
+
 }
 
 #profilePic:hover{
@@ -74,8 +80,14 @@ ul.dropdown-content {
 
 #userName {
     display: inline-block;
-    vertical-align: top;
-    font-size: 28px;
+    font-size: 20px;
     color: white;
+    margin-left: 0;
+    text-align: center;
+    width: auto;
+    display: inline-block;
+    vertical-align: middle !important;
+    margin-left: 0;
+    margin-bottom: 50px;
 }
 
