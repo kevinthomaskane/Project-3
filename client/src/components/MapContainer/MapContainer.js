@@ -1,4 +1,4 @@
-import {Map, InfoWindow, Marker, GoogleApiWrapper} from 'google-maps-react';
+import {Map, InfoWindow, Marker, GoogleApiWrapper, CustomMarker} from 'google-maps-react';
 import React, { Component } from 'react';
 import axios from "axios";
 // import mapTest from "../../mapTest.json";
@@ -16,15 +16,6 @@ export class MapContainer extends Component {
   };
 
 
-
-//  initMap = ()  => {
-//     if (true) {
-//       this.setState({
-//         currentLocation:{lat:this.props.event.lat, lng: this.props.event.lng}
-//         })
-//       }
-//     }
-
   onMarkerClick = (props, marker, e) => {
     console.log(props);
     this.setState({
@@ -32,21 +23,12 @@ export class MapContainer extends Component {
       activeMarker: marker,
       showingInfoWindow: true
     });
-
-  //   console.log(props,marker);
-  //   return (
-
-  //     this.setState({
-  //     selectedPlace: {},
-  //     activeMarker: marker,
-  //     showingInfoWindow: true
-  //   })
-  // )
   }
 
 
   componentWillMount () {
     
+    console.log(this.props.currentLocation, this.props.lat)
     if (this.props.lat) {
       this.setState({
         currentLocation:{lat:parseFloat(this.props.lat), lng: parseFloat(this.props.lng)}
@@ -59,9 +41,7 @@ export class MapContainer extends Component {
       })
     }
     else {
-      this.setState({
-        currentLocation: {lat: 33.8896, lng: -118.168} //geolocation here
-      })
+      window.location.reload();
     }
   };
 
@@ -78,25 +58,41 @@ export class MapContainer extends Component {
               />
             :this.props.events === undefined ? null:
              this.props.events.map((even) => {
+
+                // if (even.sportType === "basketball" | "bball" | "Basketball" | "b-ball"){
+                //   this.props.google.maps.icon.url = "../../images/bball.png"
+                // }
+
           return (
             <Marker
               address={even.address}
               description={even.description}
+              date={even.date}
               key={even.id}
               title={even.name}
               position={{lat: even.lat, lng:even.lng}}
               onClick={this.onMarkerClick}
+              icon={{
+                url: even.sportType === "basketball" ? "../../images/bball.png": 
+                even.sportType === "football" ? "../../images/football.png": 
+                even.sportType === "soccer" ? "../../images/soccer.png":
+                even.sportType === "frisbee" ? "../../images/fris.png": "../../images/all.svg" ,
+                anchor: new this.props.google.maps.Point(16,16),
+                scaledSize: new this.props.google.maps.Size(24,24)  
+              }}
             />
 
           );
         })}
 
         <InfoWindow
+          id="infoWindow"
           marker={this.state.activeMarker}
           visible={this.state.showingInfoWindow}>
             <div>
-              <span id="infoWindowTitle">{this.state.selectedPlace.title}</span>
-              <p>{this.state.selectedPlace.description}</p>
+              <span id="infoWindowTitle">{this.state.selectedPlace.title}</span><br/><br/>
+              <span id="infoWindowDesc">{this.state.selectedPlace.description}</span>
+              <span id="infoWindowDate">{this.state.selectedPlace.date}</span>
               <p>{this.state.selectedPlace.address}</p>
             </div>
         </InfoWindow>
