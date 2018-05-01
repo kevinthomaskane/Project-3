@@ -282,7 +282,9 @@ class Event extends React.Component {
                           return item.username === message.username
                         }).map(function(element){
                           return (element.image === null ?
-                          "https://www.vccircle.com/wp-content/uploads/2017/03/default-profile.png" : element.image)
+                          "https://www.vccircle.com/wp-content/uploads/2017/03/default-profile.png" :
+                          `data:image/${element.ext};base64,
+                          ${element.image}`)
                         })}/> <span className="usernameMessage">{message.username}</span><br/>
                         <span className="message">{message.content}</span>
                         </div>
