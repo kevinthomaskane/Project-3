@@ -48,10 +48,7 @@ class SignUp extends React.Component {
       formData.append('address', address);
       formData.append('lat', lat);
       formData.append('lon', lng);
-<<<<<<< HEAD
 
-=======
->>>>>>> 167cad03d24086819af67a1054e816e604992ed8
 
       axios({
         url: "/api/newUser",
