@@ -38,7 +38,7 @@ class SignUp extends React.Component {
 
       const formData = new FormData();
       let name = `${this.state.first_name} ${this.state.last_name}`;
-      if (this.state.file !== "") {
+      if (this.state.file !== undefined) {
         let file = document.getElementById("test").files[0];
         formData.append('file', file);
       }
@@ -48,7 +48,10 @@ class SignUp extends React.Component {
       formData.append('address', address);
       formData.append('lat', lat);
       formData.append('lon', lng);
+<<<<<<< HEAD
 
+=======
+>>>>>>> 167cad03d24086819af67a1054e816e604992ed8
 
       axios({
         url: "/api/newUser",
@@ -60,21 +63,10 @@ class SignUp extends React.Component {
       }).then((res) => {
         localStorage.setItem("user_id", res.data.id);
         localStorage.setItem("username", res.data.username);
-        console.log("here");
-        this.setState({
-          first_name: "",
-          last_name: "",
-          username: "",
-          password: "",
-          address: "",
-          city: "",
-          state: "",
-          zip: "",
-        });
+        window.location.reload();
       }).catch((error) => {});
 
     });
-    window.location.reload()
   };
 
 
