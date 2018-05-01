@@ -14,6 +14,7 @@ class Header extends React.Component {
     loggedIn: false,
     image: "",
     tag: ""
+    
   }
 
   componentDidMount() {
