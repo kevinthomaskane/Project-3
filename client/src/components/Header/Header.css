@@ -1,10 +1,14 @@
 .header{
-    background-color: #B4302B !important;
+    background-color: rgb(223, 9, 2) !important;
     height: 100px;
     margin-bottom: 20px;
     width: 100%;
     font-family: 'Open Sans', sans-serif;
     
+}
+
+.rightItems {
+    text-align: right;
 }
 
 #login {
@@ -16,7 +20,7 @@
 }
 
 #logo{
-    color: #E8E8E1;
+    color: rgb(241, 241, 240);
     font-family: 'Black Ops One', cursive;
     font-size: 48px;
     line-height: 100px;
@@ -28,7 +32,7 @@
 }
 
 #createBtn {
-    background-color: #C6C7C4;
+    background-color: rgb(241, 241, 240);
     border-radius: 5px;
     color: black;
     font-weight: bolder;
@@ -49,7 +53,7 @@
     margin-left: 5px;
     background-color: #E8E8E1;
     margin-top: 20px;
-    margin-right: 5px;
+    margin-right: 15px;
     border-radius: 3px;
     box-shadow: 0 4px 8px 0 rgba(66, 66, 66, 0.2), 0 6px 20px 0 rgba(58, 57, 57, 0.05);
     display: inline-block;
@@ -82,7 +86,7 @@ ul.dropdown-content {
     display: inline-block;
     font-size: 20px;
     color: white;
-    margin-left: 0;
+    margin-right: 25px;
     text-align: center;
     width: auto;
     display: inline-block;

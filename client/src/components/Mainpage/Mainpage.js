@@ -95,7 +95,7 @@ class Mainpage extends Component {
       </Row>
 
       <Row>
-        <Col s={6}>
+        <Col m={6} s={12}>
           {
             this.state.clicked === false
               ? this.state.events.map(function(event, index) {
@@ -107,6 +107,7 @@ class Mainpage extends Component {
                         <h2>{event.name}</h2>
                         <img className="circle" src={event.image}/>
                         <p>{event.description}</p>
+                        <p>{event.date.split("T")[0]}</p>
                       </CardPanel>
                     </Col>
                   </Link>)
@@ -114,7 +115,7 @@ class Mainpage extends Component {
               : ""
           }
         </Col>
-        <Col s={6}>
+        <Col m={6} s={12}>
           {this.state.rendered === false ? "":
             <MapContainer events={this.state.events} currentLocation={this.state.currentLocation}/> }
         </Col>

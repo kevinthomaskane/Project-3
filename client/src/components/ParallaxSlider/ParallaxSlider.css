@@ -4,25 +4,28 @@
     margin-top: -20px !important;
     margin-right: -20px !important;
     margin-left: -20px !important;
+   
     
   
   }
   
   .slider .slides {
     height: 75vh !important;
+   
   }
   
   h3 {
       font-family: 'Graduate', cursive;
       color: #E8E8E1;
       float: left;
-      text-shadow: -1px 0 black, 0 2px black, 2px 0 black, 0 -1px black;
-      margin-top: 110px;
-      margin-left: 40px;
-  
+      font-size: 35px;
+      height: 40vh;
+      line-height: 40vh;
+      vertical-align: middle;
+      text-transform: uppercase;
   }
   
   .slides li img {
     background-attachment: fixed;
-    /* box-shadow: 0 4px 8px 0 rgba(66, 66, 66, 0.2), 0 6px 20px 0 rgba(58, 57, 57, 0.05); */
+    -webkit-filter: brightness(40%);
   }

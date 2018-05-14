@@ -51,12 +51,10 @@ class Header extends React.Component {
     return (
       <div>
           <Row className="header">
-              <Col s={3}>
+              <Col m={3}>
                   <a id="logo" href="/">Squad-Up</a>
               </Col>
-              <Col s={4}>
-              </Col>
-              <Col s={5}>
+              <Col className="rightItems" m={9}>
               <Link to="/create"><Button id="createBtn" >Create an Event</Button></Link>
                   
                  <Dropdown trigger={<a id="imageLink" href=""><img id="profilePic" data-toggle="modal" data-target="#imageModal" src={this.state.image === null ?

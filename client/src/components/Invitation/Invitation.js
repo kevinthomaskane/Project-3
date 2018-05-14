@@ -37,10 +37,11 @@ class Invitation extends React.Component {
     });
   };
 
+
   render() {
-    console.log(this.state.invite);
-    if (this.state.inviteInfo.length > 0) {
-      return (<Row>
+    var noDisplay
+    this.state.inviteInfo.length > 0 ? noDisplay = null : noDisplay = "noDisplay"
+      return (<Row className={noDisplay}>
         <Col m={2}></Col>
         <Col m={8}>
           <Collection header="Your Invitations">
@@ -61,10 +62,7 @@ class Invitation extends React.Component {
           </Collection>
         </Col>
         <Col m={2}></Col>
-      </Row>);
-    } else {
-      return (<div></div>)
-    }
+      </Row>)
   };
 };
 

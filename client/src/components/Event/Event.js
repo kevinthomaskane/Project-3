@@ -7,12 +7,6 @@ import "./Event.css";
 import MapContainer from "../MapContainer";
 import Invitation from "../Invitation";
 
-// const styles = {
-//   map: {
-//     width: 300,
-//     height: 300
-//   }
-// };
 
 class Event extends React.Component {
 
@@ -105,6 +99,7 @@ class Event extends React.Component {
       let attendees = this.state.attendees;
       attendees.push(response.data);
       this.setState({attendees: attendees, joined: true});
+      this.getInfo(EID);
     });
   };
 

@@ -8,6 +8,13 @@
   margin-left: 10px;
 }
 
+.collection button:hover {
+  background-color: rgb(71, 68, 241) !important;
+}
+
+.collection button:active{
+  background-color: rgb(12, 11, 54) !important;
+}
 .collection-item:nth-child(odd) {
   background: rgb(247, 245, 245);
 }
@@ -34,4 +41,8 @@
 .green {
   position: absolute;
   right: 80px;
+}
+
+.noDisplay {
+  display: none;
 }

@@ -1,16 +1,25 @@
 #formContainer{
-    border: 2px solid gray;
     width:45%;
     margin-left: 28%;
-    background-color:rgba(128, 128, 128, 0.548);
+    background-color:rgb(241, 241, 240);
     margin-bottom:15px;
+    box-shadow: 3px 3px 1px rgb(196, 195, 195);
+    border: solid 1px rgb(207, 206, 206);
+    color: black !important;
 }
 
 #input-field {
     margin-left:25%;
 }
 
- 
+#SignUpForm {
+    background-color: rgb(241, 241, 240);
+    color: black !important;
+}
+
+#UploadText {
+    color: black !important;
+}
 
 #uploadImg{
     margin-left: 25%;
@@ -28,6 +37,6 @@
 }
 
 .collection{
-    background-color:gray;
+    background-color:rgb(241, 241, 240);
 }
 
