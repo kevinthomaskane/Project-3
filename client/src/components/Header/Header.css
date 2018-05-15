@@ -7,6 +7,9 @@
     
 }
 
+.logoDiv {
+    text-align: right;
+}
 .rightItems {
     text-align: right;
 }
@@ -19,16 +22,19 @@
     font-family: 'Open Sans', sans-serif;
 }
 
+Modal {
+    display: inline-block;
+}
+
 #logo{
     color: rgb(241, 241, 240);
     font-family: 'Black Ops One', cursive;
     font-size: 48px;
     line-height: 100px;
     vertical-align: middle;
-    text-align: center;
+    text-align: right;
     text-decoration: none;
     text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
-    margin-left: 20px;
 }
 
 #createBtn {

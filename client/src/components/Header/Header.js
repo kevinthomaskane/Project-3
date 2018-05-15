@@ -55,20 +55,20 @@ class Header extends React.Component {
                   <a id="logo" href="/">Squad-Up</a>
               </Col>
               <Col className="rightItems" m={9}>
-              <Link to="/create"><Button id="createBtn" >Create an Event</Button></Link>
-                  
-                 <Dropdown trigger={<a id="imageLink" href=""><img id="profilePic" data-toggle="modal" data-target="#imageModal" src={this.state.image === null ?
-                                "https://www.vccircle.com/wp-content/uploads/2017/03/default-profile.png" :
-                                `data:image/${this.state.tag};base64,
-                                ${this.state.image}`} /> <span id="userName">{localStorage.getItem("username")}</span>
-                  </a>
-                  }>
-                  <NavItem divider />
-                  <Link to="/profilePage"><NavItem>Profile</NavItem></Link> 
-                  <Link to="/"><NavItem onClick={()=>this.signOut()} >Log Out</NavItem></Link>
-                  </Dropdown>
-                  </Col>
-              </Row>
+                  <Link to="/create"><Button id="createBtn" >Create an Event</Button></Link>
+                      
+                    <Dropdown trigger={<a id="imageLink" href=""><img id="profilePic" data-toggle="modal" data-target="#imageModal" src={this.state.image === null ?
+                                    "https://www.vccircle.com/wp-content/uploads/2017/03/default-profile.png" :
+                                    `data:image/${this.state.tag};base64,
+                                    ${this.state.image}`} /> <span id="userName">{localStorage.getItem("username")}</span>
+                      </a>
+                      }>
+                      <NavItem divider />
+                      <Link to="/profilePage"><NavItem>Profile</NavItem></Link> 
+                      <Link to="/"><NavItem onClick={()=>this.signOut()} >Log Out</NavItem></Link>
+                      </Dropdown>
+              </Col>
+          </Row>
           
       </div>
   )
@@ -76,12 +76,10 @@ class Header extends React.Component {
     return (
       <div>
         <div className="row header">
-          <div className="col s5 col m5 col l5"></div>
-          <div className="col s3 col m3 col l3">
+          <div className="col m7 logoDiv">
             <a id="logo" href="/">Squad-Up</a>
           </div>
-          <div>
-            <div className="col s2 col m2 col l2  ">
+            <div className="col m2 offset-m1">
               <Modal trigger={<a onClick = {
                   this.signIn
                 }
@@ -89,11 +87,12 @@ class Header extends React.Component {
                 <Login signin={this.signIn}/>
               </Modal>
             </div>
-            <Modal trigger={<a id = "signup" href = "/signup" >
+            <div className="col m2">
+              <Modal trigger={<a id = "signup" href = "/signup" >
               sign - up</a>}>
-              <SignUp/>
-            </Modal>
-          </div>
+                <SignUp/>
+              </Modal>
+            </div>
         </div>
       </div>)
     };
