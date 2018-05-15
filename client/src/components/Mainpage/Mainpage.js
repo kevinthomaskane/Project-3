@@ -116,8 +116,9 @@ class Mainpage extends Component {
           }
         </Col>
         <Col m={6} s={12}>
-          {this.state.rendered === false ? "":
-            <MapContainer events={this.state.events} currentLocation={this.state.currentLocation}/> }
+          {this.state.rendered === false ? "": 
+             <MapContainer events={this.state.events} currentLocation={this.state.currentLocation}/> 
+            }
         </Col>
       </Row>
 

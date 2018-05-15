@@ -22,13 +22,13 @@
     "cookie-parser": "^1.4.3",
     "express": "^4.15.4",
     "express-fileupload": "^0.4.0",
-    "google-maps-react": "^2.0.0",
+    "google-maps-react": "^2.0.2",
     "ipware": "^1.0.0",
     "mysql": "^2.15.0",
     "mysql2": "^1.5.3",
     "promise": "^8.0.1",
     "react-materialize": "^2.2.0",
-    "react-places-autocomplete": "^7.1.1",
+    "react-places-autocomplete": "^7.0.1",
     "sequelize": "^4.37.6"
   },
   "repository": "git@github.com:bijansemnani/Project-3.git"
