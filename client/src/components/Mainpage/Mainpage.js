@@ -41,12 +41,13 @@ class Mainpage extends Component {
   getFiltered = sportType => {
     Axios.get("/api/events/" + sportType).then(response => {
       Axios.get(
-        `http://api.ipstack.com/172.91.83.176?access_key=${geoLocation}`
+        `https://ipinfo.io?token=2fa1678e14fe54`
       ).then(res => {
+        console.log(res)
         this.setState({
           currentLocation: {
-            lat: res.data.latitude,
-            lng: res.data.longitude
+            lat: res.data.loc.split(",")[0],
+            lng: res.data.loc.split(",")[1],
           },
           events: response.data.data,
           rendered: true
