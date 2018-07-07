@@ -12,12 +12,10 @@ module.exports = function (app) {
       req.body.tag = ext;
     }
     req.body.token =  "t"+Math.random();
-    console.log(req.body.token);
     db.User.create(req.body).then(function(data) {
       res.cookie("token", req.body.token,{maxAge: 999999999});
       res.json(data);
     }).catch(function (err) {
-      console.log(err);
     });
   });
 
@@ -31,7 +29,6 @@ module.exports = function (app) {
       }
     }).then(function(data) {
       if (data) {
-        console.log("here");
         res.cookie("token", req.body.token,{maxAge: 999999999});
         db.User.findOne({
           where:{

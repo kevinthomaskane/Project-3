@@ -1,6 +1,6 @@
-import React, {Component} from "react";
-import Axios from "axios"
-import {Link} from "react-router-dom";
+import React, { Component } from "react";
+import Axios from "axios";
+import { Link } from "react-router-dom";
 import {
   Navbar,
   Icon,
@@ -15,9 +15,11 @@ import ParallaxSlider from "../ParallaxSlider";
 import MapContainer from "../MapContainer";
 
 const style = {
-  width: '50%',
-  height: '50%'
+  width: "50%",
+  height: "50%"
 };
+
+const geoLocation = "f7db228d9ebbfe921babd1a37a7caadd";
 
 class Mainpage extends Component {
   state = {
@@ -28,101 +30,134 @@ class Mainpage extends Component {
     clicked: false,
     currentLocation: "",
     rendered: false
-
   };
 
   componentDidMount() {
     this.getFiltered("none");
-
   }
 
   loadEvents = () => {};
 
-  getFiltered = (sportType) => {
-    console.log(sportType);
-    Axios.get("/api/events/" + sportType).then((response) => {
-      Axios.get(`https://freegeoip.net/json/`).then((res) => {
-        console.log(res);
+  getFiltered = sportType => {
+    Axios.get("/api/events/" + sportType).then(response => {
+      Axios.get(
+        `http://api.ipstack.com/172.91.83.176?access_key=${geoLocation}`
+      ).then(res => {
         this.setState({
           currentLocation: {
             lat: res.data.latitude,
             lng: res.data.longitude
           },
           events: response.data.data,
-          rendered: true});
+          rendered: true
+        });
       });
     });
   };
 
   handleInputChange = event => {
-    const {name, value} = event.target;
-    this.setState({[name]: value});
-  }
+    const { name, value } = event.target;
+    this.setState({ [name]: value });
+  };
 
   togglesearch = () => {
     this.state.searching
-      ? this.setState({searching: false})
-      : this.setState({searching: true})
-  }
+      ? this.setState({ searching: false })
+      : this.setState({ searching: true });
+  };
 
-  toggleFiltered = (Sports) => {
+  toggleFiltered = Sports => {
     this.state.filtered
-      ? this.setState({filtered: false})
-      : this.setState({filtered: true})
+      ? this.setState({ filtered: false })
+      : this.setState({ filtered: true });
     //     after Axios request you would want to set state of events to the results of the request
-  }
+  };
 
   render() {
     return (
-    <div id="content">
-     <Row>
+      <div id="content">
+        <Row>
           <Col s={12}>
             <ParallaxSlider />
           </Col>
         </Row>
-      <Row>
-        <Col m={12}>
-          <Button className="EventButton needRight" onClick={() => this.getFiltered("football")}><img className="icon" src={"../images/football.png"}/>Flag Football</Button>
-        
-          <Button className="EventButton needLeft" onClick={() => this.getFiltered("frisbee")}><img className="icon" src={"../images/fris.png"}/>Frisbee</Button>
-       
-          <Button className="EventButton needLeft" onClick={() => this.getFiltered("basketball")}><img className="icon" src={"../images/bball.png"}/>Basketball</Button>
-        
-          <Button className="EventButton needLeft" onClick={() => this.getFiltered("soccer")}><img className="icon" src={"../images/soccer.png"}/>Soccer</Button>
-        
-          <Button className="EventButton needLeft" onClick={() => this.getFiltered("none")}><img className="icon" src={"../images/all.svg"}/>All</Button>
-        </Col>
-      </Row>
+        <Row>
+          <Col m={12}>
+            <Button
+              className="EventButton needRight"
+              onClick={() => this.getFiltered("football")}
+            >
+              <img className="icon" src={"../images/football.png"} />Flag
+              Football
+            </Button>
 
-      <Row>
-        <Col m={6} s={12}>
-          {
-            this.state.clicked === false
+            <Button
+              className="EventButton needLeft"
+              onClick={() => this.getFiltered("frisbee")}
+            >
+              <img className="icon" src={"../images/fris.png"} />Frisbee
+            </Button>
+
+            <Button
+              className="EventButton needLeft"
+              onClick={() => this.getFiltered("basketball")}
+            >
+              <img className="icon" src={"../images/bball.png"} />Basketball
+            </Button>
+
+            <Button
+              className="EventButton needLeft"
+              onClick={() => this.getFiltered("soccer")}
+            >
+              <img className="icon" src={"../images/soccer.png"} />Soccer
+            </Button>
+
+            <Button
+              className="EventButton needLeft"
+              onClick={() => this.getFiltered("none")}
+            >
+              <img className="icon" src={"../images/all.svg"} />All
+            </Button>
+          </Col>
+        </Row>
+
+        <Row>
+          <Col m={6} s={12}>
+            {this.state.clicked === false
               ? this.state.events.map(function(event, index) {
                   return (
-                  <Link key={event.id} to={"/event/" + event.id
-                    + "/" + event.lat + "/" + event.lng}>
-                    <Col s={12}>
-                      <CardPanel className="EventCard">
-                        <h2>{event.name}</h2>
-                        <img className="circle" src={event.image}/>
-                        <p>{event.description}</p>
-                        <p>{event.date.split("T")[0]}</p>
-                      </CardPanel>
-                    </Col>
-                  </Link>)
-              })
-              : ""
-          }
-        </Col>
-        <Col m={6} s={12}>
-          {this.state.rendered === false ? "": 
-             <MapContainer events={this.state.events} currentLocation={this.state.currentLocation}/> 
-            }
-        </Col>
-      </Row>
-
-    </div>)
+                    <Link
+                      key={event.id}
+                      to={
+                        "/event/" + event.id + "/" + event.lat + "/" + event.lng
+                      }
+                    >
+                      <Col s={12}>
+                        <CardPanel className="EventCard">
+                          <h2>{event.name}</h2>
+                          <img className="circle" src={event.image} />
+                          <p>{event.description}</p>
+                          <p>{event.date.split("T")[0]}</p>
+                        </CardPanel>
+                      </Col>
+                    </Link>
+                  );
+                })
+              : ""}
+          </Col>
+          <Col m={6} s={12}>
+            {this.state.rendered === false ? (
+              ""
+            ) : (
+              <MapContainer
+                events={this.state.events}
+                currentLocation={this.state.currentLocation}
+              />
+            )}
+          </Col>
+        </Row>
+      </div>
+    );
   }
 }
 
